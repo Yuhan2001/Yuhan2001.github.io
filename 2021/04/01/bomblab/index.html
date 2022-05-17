@@ -1,0 +1,1007 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wu Yuhan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="深入理解计算机系统课程实验bomblab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP-bomblab">
+<meta property="og:url" content="http://yuhan2001.github.io/2021/04/01/bomblab/index.html">
+<meta property="og:site_name" content="Yuhan&#39;s blog">
+<meta property="og:description" content="深入理解计算机系统课程实验bomblab">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210510225736415.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210511204851504.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210511202402385.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210511204913739.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210511211431900.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512084515692.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512085729848.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512133109861.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512154349129.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512154529595.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512155152270.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512155207546.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512202614163.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512203929992.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512225255740.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512233328889.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210512233328889-1625373895945.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513114343306.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513200430515.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513200542728.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513200748969.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513200806250.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513201243594.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513201259639.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513201315080.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513203029685.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513204703675.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513204722687.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513205050635.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210513205105128.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210514111858675.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210514112742119.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210514112928319.png">
+<meta property="og:image" content="http://yuhan2001.github.io/bomblab/image-20210514112906727.png">
+<meta property="article:published_time" content="2021-03-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-05T04:55:41.863Z">
+<meta property="article:author" content="Wu Yuhan">
+<meta property="article:tag" content="深入理解计算机系统">
+<meta property="article:tag" content="CSAPP-LAB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yuhan2001.github.io/bomblab/image-20210510225736415.png">
+  
+  
+  <title>CSAPP-bomblab - Yuhan&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yuhan2001.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6da93a2e5d7f160e0f40b273ddbbddac","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yuhan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/3.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSAPP-bomblab">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-01 00:00" pubdate>
+        2021年4月1日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      34k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      287 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSAPP-bomblab</h1>
+            
+            <div class="markdown-body">
+              <h1 id="CSAPP-bomblab"><a href="#CSAPP-bomblab" class="headerlink" title="CSAPP-bomblab"></a>CSAPP-bomblab</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>​	理解汇编语言，学习使用gdb调试器，推导出正确的字符串用于跳过explode_bomb，破解bomb.c生成的炸弹。</p>
+<h2 id="实验环境和工具"><a href="#实验环境和工具" class="headerlink" title="实验环境和工具"></a>实验环境和工具</h2><p>​	ubuntu 12.04.5 (32位) ；</p>
+<p>​	gdb 7.4 ；</p>
+<h2 id="实验内容及操作步骤"><a href="#实验内容及操作步骤" class="headerlink" title="实验内容及操作步骤"></a>实验内容及操作步骤</h2><h3 id="阅读bomb-c"><a href="#阅读bomb-c" class="headerlink" title="阅读bomb.c"></a>阅读bomb.c</h3><ul>
+<li>C文件开头的注释如下：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/***************************************************************************</span><br><span class="hljs-comment"> * Dr. Evil&#x27;s Insidious Bomb, Version 1.1</span><br><span class="hljs-comment"> * Copyright 2011, Dr. Evil Incorporated. All rights reserved.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * LICENSE:</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * Dr. Evil Incorporated (the PERPETRATOR) hereby grants you (the</span><br><span class="hljs-comment"> * VICTIM) explicit permission to use this bomb (the BOMB).  This is a</span><br><span class="hljs-comment"> * time limited license, which expires on the death of the VICTIM.</span><br><span class="hljs-comment"> * The PERPETRATOR takes no responsibility for damage, frustration,</span><br><span class="hljs-comment"> * insanity, bug-eyes, carpal-tunnel syndrome, loss of sleep, or other</span><br><span class="hljs-comment"> * harm to the VICTIM.  Unless the PERPETRATOR wants to take credit,</span><br><span class="hljs-comment"> * that is.  The VICTIM may not distribute this bomb source code to</span><br><span class="hljs-comment"> * any enemies of the PERPETRATOR.  No VICTIM may debug,</span><br><span class="hljs-comment"> * reverse-engineer, run &quot;strings&quot; on, decompile, decrypt, or use any</span><br><span class="hljs-comment"> * other technique to gain knowledge of and defuse the BOMB.  BOMB</span><br><span class="hljs-comment"> * proof clothing may not be worn when handling this program.  The</span><br><span class="hljs-comment"> * PERPETRATOR will not apologize for the PERPETRATOR&#x27;s poor sense of</span><br><span class="hljs-comment"> * humor.  This license is null and void where the BOMB is prohibited</span><br><span class="hljs-comment"> * by law.</span><br><span class="hljs-comment"> ***************************************************************************/</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>翻译如下：</li>
+</ul>
+<p>​	Evil Incorporated博士（PERPETRATOR）特此授予您（VICTIM）使用该炸弹（BOMB）的明确许可。 这是一个有时间限制的许可证，在VICTIM死亡时到期。 PERPETRATOR对损坏，沮丧，精神错乱，虫眼，腕管综合症，睡眠不足或对VICTIM造成的其他伤害不承担任何责任。 除非PERPETRATOR想要获得信誉，否则就是这样。 VICTIM不得将此炸弹源代码分发给PERPETRATOR的任何敌人。 VICTIM不得调试，反向工程，在其上运行“字符串”，反编译，解密或使用任何其他技术来了解和缓解BOMB。 处理此程序时，可能不能穿防弹衣。 PERPETRATOR不会因PERPETRATOR的幽默感而道歉。 在法律禁止BOMB的情况下，此许可无效。</p>
+<ul>
+<li>bomb.c代码如下：（英文注释做了适当翻译）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;support.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;phases.h&quot;</span></span><br><br><span class="hljs-comment">/* </span><br><span class="hljs-comment"> * Note to self: Remember to erase this file so my victims will have no</span><br><span class="hljs-comment"> * idea what is going on, and so they will all blow up in a</span><br><span class="hljs-comment"> * spectaculary fiendish explosion. -- Dr. Evil </span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">//自我提醒：请记住要删除此文件，以使我的受害者不知道发生了什么事，因此他们都会在一场壮观的恶魔般的爆炸中炸毁。 -邪恶博士</span><br><br>FILE *infile;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>    <span class="hljs-type">char</span> *input;<br><br>    <span class="hljs-comment">/* Note to self: remember to port this bomb to Windows and put a </span><br><span class="hljs-comment">     * fantastic GUI on it. */</span>	<span class="hljs-comment">//自我提醒：记得将炸弹移植到Windows并在上面放上精美的GUI。</span><br>    <br>    <span class="hljs-comment">/* When run with no arguments, the bomb reads its input lines </span><br><span class="hljs-comment">     * from standard input. */</span>	<span class="hljs-comment">//当不带参数运行时，炸弹会从标准输入中读取其输入行。</span><br>    <span class="hljs-keyword">if</span> (argc == <span class="hljs-number">1</span>) &#123;  <br>	infile = <span class="hljs-built_in">stdin</span>;<br>    &#125; <br><br>    <span class="hljs-comment">/* When run with one argument &lt;file&gt;, the bomb reads from &lt;file&gt; </span><br><span class="hljs-comment">     * until EOF, and then switches to standard input. Thus, as you </span><br><span class="hljs-comment">     * defuse each phase, you can add its defusing string to &lt;file&gt; and</span><br><span class="hljs-comment">     * avoid having to retype it. */</span><br>    <span class="hljs-comment">//当使用一个参数&lt;file&gt;运行时，炸弹会从&lt;file&gt;读取直到EOF，然后切换到标准输入。 因此，在对每个阶段进行解压缩时，可以将其解压缩字符串添加到&lt;file&gt;中，而不必重新输入。</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (argc == <span class="hljs-number">2</span>) &#123;<br>	<span class="hljs-keyword">if</span> (!(infile = fopen(argv[<span class="hljs-number">1</span>], <span class="hljs-string">&quot;r&quot;</span>))) &#123;<br>	    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s: Error: Couldn&#x27;t open %s\n&quot;</span>, argv[<span class="hljs-number">0</span>], argv[<span class="hljs-number">1</span>]);<br>	    <span class="hljs-built_in">exit</span>(<span class="hljs-number">8</span>);<br>	&#125;<br>    &#125;<br><br>    <span class="hljs-comment">/* You can&#x27;t call the bomb with more than 1 command line argument. */</span>	    <span class="hljs-comment">//您不能使用超过1个命令行参数来调用炸弹。</span><br>    <span class="hljs-keyword">else</span> &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Usage: %s [&lt;input_file&gt;]\n&quot;</span>, argv[<span class="hljs-number">0</span>]);<br>	<span class="hljs-built_in">exit</span>(<span class="hljs-number">8</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/* Do all sorts of secret stuff that makes the bomb harder to defuse. */</span>	  <span class="hljs-comment">//做各种使炸弹难以化解的秘密工作。</span><br>    initialize_bomb();<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Welcome to my fiendish little bomb. You have 6 phases with\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;which to blow yourself up. Have a nice day!\n&quot;</span>);<br><br>    <span class="hljs-comment">/* Hmm...  Six phases must be more secure than one phase! */</span><br>    <span class="hljs-comment">//嗯...六个阶段必须比一个阶段更安全！</span><br>    input = read_line();             <span class="hljs-comment">/* Get input                   */</span> <span class="hljs-comment">//获取输入</span><br>    phase_1(input);                  <span class="hljs-comment">/* Run the phase               */</span> <span class="hljs-comment">//运行阶段</span><br>    phase_defused();                 <span class="hljs-comment">/* Drat!  They figured it out!		//他们想通了！</span><br><span class="hljs-comment">				      * Let me know how they did it. */</span>					<span class="hljs-comment">//让我知道他们是如何做到的。</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Phase 1 defused. How about the next one?\n&quot;</span>);<br><br>    <span class="hljs-comment">/* The second phase is harder.  No one will ever figure out</span><br><span class="hljs-comment">     * how to defuse this... */</span>		<span class="hljs-comment">//第二阶段比较困难。 没有人会想出如何化解这个问题的。</span><br>    input = read_line();<br>    phase_2(input);<br>    phase_defused();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;That&#x27;s number 2.  Keep going!\n&quot;</span>);<br><br>    <span class="hljs-comment">/* I guess this is too easy so far.  Some more complex code will</span><br><span class="hljs-comment">     * confuse people. */</span>		<span class="hljs-comment">//我想到目前为止这太容易了。 一些更复杂的代码会使人们感到困惑。</span><br>    input = read_line();<br>    phase_3(input);<br>    phase_defused();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Halfway there!\n&quot;</span>);<br><br>    <span class="hljs-comment">/* Oh yeah?  Well, how good is your math?  Try on this saucy problem! */</span> <span class="hljs-comment">//哦耶？ 好吧，你的数学有多好？ 尝试这个棘手的问题！</span><br>    input = read_line();<br>    phase_4(input);<br>    phase_defused();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;So you got that one.  Try this one.\n&quot;</span>);<br>    <br>    <span class="hljs-comment">/* Round and &#x27;round in memory we go, where we stop, the bomb blows! */</span>	<span class="hljs-comment">//我们在记忆中走来走去，停下来，炸弹炸毁！</span><br>    input = read_line();<br>    phase_5(input);<br>    phase_defused();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good work!  On to the next...\n&quot;</span>);<br><br>    <span class="hljs-comment">/* This phase will never be used, since no one will get past the</span><br><span class="hljs-comment">     * earlier ones.  But just in case, make this one extra hard. */</span><br>    <span class="hljs-comment">//此阶段将永远不会使用，因为没有人会越过早期的阶段。 但以防万一，使这一操作更加困难。</span><br>    input = read_line();<br>    phase_6(input);<br>    phase_defused();<br><br>    <span class="hljs-comment">/* Wow, they got it!  But isn&#x27;t something... missing?  Perhaps</span><br><span class="hljs-comment">     * something they overlooked?  Mua ha ha ha ha! */</span>	<span class="hljs-comment">//哇，他们明白了！ 但是，是不是……缺少了什么？ 也许他们忽略了什么？ 哇哈哈哈哈哈！</span><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>总之，有两种方法闯关：</li>
+</ul>
+<ol>
+<li><code>./bomb</code>，然后在终端输入</li>
+<li><code>./bomb xxx.txt</code>，<code>xxx.txt</code>中按行保存用于过关的字符串</li>
+</ol>
+<h3 id="分析汇编代码，找到通关密码"><a href="#分析汇编代码，找到通关密码" class="headerlink" title="分析汇编代码，找到通关密码"></a>分析汇编代码，找到通关密码</h3><h4 id="1-phase-1"><a href="#1-phase-1" class="headerlink" title="1.  phase_1"></a>1.  phase_1</h4><ul>
+<li><p>phase_1的汇编代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_1:<br>   0x08048b50 &lt;+0&gt;:		sub    $0x1c,%esp						<br>   ;栈指针esp减去0x1c，给当前帧开辟大小为0x1c的空间<br>   0x08048b53 &lt;+3&gt;:		movl   $0x804a1a4,0x4(%esp)				<br>   ;将0x804a1a4（原字符串在内存中的地址）赋给M[0x4+esp]。<br>   ;（从后面调用函数&lt;strings_not_equal&gt;推测其为字符串，通过查看&lt;strings_not_equal&gt;的汇编代码进行验证）<br>   0x08048b5b &lt;+11&gt;:	mov    0x20(%esp),%eax					;将M[0x20+%esp]（输入的字符串）赋值给eax<br>   0x08048b5f &lt;+15&gt;:	mov    %eax,(%esp)						<br>   ;eax的值赋给M[esp]，与M[0x4+esp]共同作为&lt;strings_not_equal&gt;的参数<br>   0x08048b62 &lt;+18&gt;:	call   0x8048fd4 &lt;strings_not_equal&gt;	<br>   ;比较两字符串是否相等，若相等，则返回值%eax=0<br>   0x08048b67 &lt;+23&gt;:	test   %eax,%eax						;如果eax=0，则zf=1<br>   0x08048b69 &lt;+25&gt;:	je     0x8048b70 &lt;phase_1+32&gt;			;zf=1时跳转至*（phase_1+32）,即下一关<br>   0x08048b6b &lt;+27&gt;:	call   0x80490e6 &lt;explode_bomb&gt;			;否则爆炸<br>   0x08048b70 &lt;+32&gt;:	add    $0x1c,%esp<br>   0x08048b73 &lt;+35&gt;:	ret		<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>其中，<code>&lt;strings_not_equal&gt;</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">·#执行call指令:esp=esp-4<br>Dump of assembler code for function strings_not_equal:<br>   0x08048fd4 &lt;+0&gt;:		sub    $0x10,%esp						;esp=esp-10	<br>   0x08048fd7 &lt;+3&gt;:		mov    %ebx,0x4(%esp)				<br>   0x08048fdb &lt;+7&gt;:		mov    %esi,0x8(%esp)<br>   0x08048fdf &lt;+11&gt;:	mov    %edi,0xc(%esp)<br>   0x08048fe3 &lt;+15&gt;:	mov    0x14(%esp),%ebx					<br>   ;此时M[0x14+esp]为输入的字符串*s1,存入ebx<br>   0x08048fe7 &lt;+19&gt;:	mov    0x18(%esp),%esi					<br>   ;此时M[0x18+esp]为原字符串*s0，存入esi<br>   0x08048feb &lt;+23&gt;:	mov    %ebx,(%esp)<br>   0x08048fee &lt;+26&gt;:	call   0x8048fbb &lt;string_length&gt;		<br>   ;eax返回值为ebx中字符串的长度s1.length<br>   0x08048ff3 &lt;+31&gt;:	mov    %eax,%edi						;存入edi<br>   0x08048ff5 &lt;+33&gt;:	mov    %esi,(%esp)	<br>   0x08048ff8 &lt;+36&gt;:	call   0x8048fbb &lt;string_length&gt;		<br>   ;eax返回值为esi中字符串的长度s0.length<br>   0x08048ffd &lt;+41&gt;:	mov    $0x1,%edx<br>   0x08049002 &lt;+46&gt;:	cmp    %eax,%edi						;比较s1.length和s0.length<br>   0x08049004 &lt;+48&gt;:	jne    0x8049039 &lt;strings_not_equal+101&gt;;不相等，则跳转-&gt;return 1<br>   0x08049006 &lt;+50&gt;:	movzbl (%ebx),%eax						;s1首地址存入eax<br>   0x08049009 &lt;+53&gt;:	mov    $0x0,%dl							;edx=0<br>   0x0804900b &lt;+55&gt;:	test   %al,%al							<br>   0x0804900d &lt;+57&gt;:	je     0x8049039 &lt;strings_not_equal+101&gt;;if(*s1==0)-&gt;return 0 <br>   																;(输入空字符)<br>   0x0804900f &lt;+59&gt;:	mov    $0x1,%dl							;edx=1<br>   0x08049011 &lt;+61&gt;:	cmp    (%esi),%al						<br>   0x08049013 &lt;+63&gt;:	jne    0x8049039 &lt;strings_not_equal+101&gt;;if(*s1!=*s0)-&gt;return 1<br>   0x08049015 &lt;+65&gt;:	mov    $0x0,%eax						;eax=0（字符串从*s+1开始的偏移量）<br>   0x0804901a &lt;+70&gt;:	jmp    0x8049024 &lt;strings_not_equal+80&gt;<br>   0x0804901c &lt;+72&gt;:	add    $0x1,%eax							<br>   0x0804901f &lt;+75&gt;:	cmp    (%esi,%eax,1),%dl				;if(*s0+(x++)+1!=*s1+x+1)<br>   0x08049022 &lt;+78&gt;:	jne    0x8049034 &lt;strings_not_equal+96&gt;	;return 1<br>   0x08049024 &lt;+80&gt;:	movzbl 0x1(%ebx,%eax,1),%edx			<br>   						;edx存入ebx+（eax存储的偏移量）+1，即*s1+x+1<br>   0x08049029 &lt;+85&gt;:	test   %dl,%dl							<br>   0x0804902b &lt;+87&gt;:	jne    0x804901c &lt;strings_not_equal+72&gt; ;if(*s1+x+1!=0) 执行循环<br>   0x0804902d &lt;+89&gt;:	mov    $0x0,%edx						<br>   0x08049032 &lt;+94&gt;:	jmp    0x8049039 &lt;strings_not_equal+101&gt;;否则完成比较，字符串相等，return 0<br>   0x08049034 &lt;+96&gt;:	mov    $0x1,%edx<br>   0x08049039 &lt;+101&gt;:	mov    %edx,%eax					;if(edx==1) return 1;else return 0<br>   0x0804903b &lt;+103&gt;:	mov    0x4(%esp),%ebx<br>   0x0804903f &lt;+107&gt;:	mov    0x8(%esp),%esi<br>   0x08049043 &lt;+111&gt;:	mov    0xc(%esp),%edi<br>   0x08049047 &lt;+115&gt;:	add    $0x10,%esp<br>   0x0804904a &lt;+118&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;string_length&gt;</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function string_length:<br>   0x08048fbb &lt;+0&gt;:		mov    0x4(%esp),%edx				;edx=[0x4+esp] --字符串首地址<br>   0x08048fbf &lt;+4&gt;:		mov    $0x0,%eax					;eax=0	--计数<br>   0x08048fc4 &lt;+9&gt;:		cmpb   $0x0,(%edx)					<br>   0x08048fc7 &lt;+12&gt;:	je     0x8048fd2 &lt;string_length+23&gt;	;edx=0则退出<br>   0x08048fc9 &lt;+14&gt;:	add    $0x1,%eax					;eax++ --偏移量++<br>   0x08048fcc &lt;+17&gt;:	cmpb   $0x0,(%edx,%eax,1)			;edx+eax!=0,即当前字符不为空<br>   0x08048fd0 &lt;+21&gt;:	jne    0x8048fc9 &lt;string_length+14&gt;	;则继续循环<br>   0x08048fd2 &lt;+23&gt;:	repz ret 							;返回eax则为字符串长度<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>所以我们要使输入的字符串和<code>0x804a1a4</code>存储的字符串相等。</p>
+</li>
+<li><p>查看0x804a1a4存储的字符串：</p>
+</li>
+</ul>
+<p><img src="/bomblab/image-20210510225736415.png" srcset="/img/loading.gif" lazyload alt="image-20210510225736415"></p>
+<ul>
+<li>运行<code>./bomb</code>，输入该字符串：<code>Crikey! I have lost my mojo!</code>，即可得到通过第一关：</li>
+</ul>
+<p><img src="/bomblab/image-20210511204851504.png" srcset="/img/loading.gif" lazyload alt="image-20210511204851504"></p>
+<h4 id="2-phase-2"><a href="#2-phase-2" class="headerlink" title="2. phase_2"></a>2. phase_2</h4><ul>
+<li>phase_2的汇编代码（调用函数<read_six_numbers>前的部分）</li>
+</ul>
+<p>	</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs assembly">Dump of assembler code for function phase_2:<br>   0x08048b74 &lt;+0&gt;:		push   %esi								;调用程序的地址入栈<br>   0x08048b75 &lt;+1&gt;:		push   %ebx								;被调用者保存寄存器的值入栈<br>   0x08048b76 &lt;+2&gt;:		sub    $0x34,%esp						;栈指针esp减去0x34，<br>   																;--给当前帧开辟大小为0x34的空间<br>   0x08048b79 &lt;+5&gt;:		lea    0x18(%esp),%eax					;eax=地址（0x18+esp） <br>   0x08048b7d &lt;+9&gt;:		mov    %eax,0x4(%esp)					;M[0x4+esp]=eax=地址（0x18+esp）-数组首地址<br>   0x08048b81 &lt;+13&gt;:	mov    0x40(%esp),%eax					;eax=M[0x40+esp]<br>   0x08048b85 &lt;+17&gt;:	mov    %eax,(%esp)						;M[esp]=eax=M[0x40+esp]	-输入<br>   0x08048b88 &lt;+20&gt;:	call   0x804921b &lt;read_six_numbers&gt;		;调用函数（读入6个数）<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;read_six_numbers&gt;</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">#调用函数 esp=esp-4<br>Dump of assembler code for function read_six_numbers:<br>   0x0804921b &lt;+0&gt;:		sub    $0x2c,%esp						;栈指针esp减去0x2c<br>   0x0804921e &lt;+3&gt;:		mov    0x34(%esp),%eax					;eax=esp+0x34 [原esp+0x4]<br>   0x08049222 &lt;+7&gt;:		lea    0x14(%eax),%edx<br>   0x08049225 &lt;+10&gt;:	mov    %edx,0x1c(%esp)					;读入第六个数<br>   0x08049229 &lt;+14&gt;:	lea    0x10(%eax),%edx<br>   0x0804922c &lt;+17&gt;:	mov    %edx,0x18(%esp)					;读入第五个数<br>   0x08049230 &lt;+21&gt;:	lea    0xc(%eax),%edx						<br>   0x08049233 &lt;+24&gt;:	mov    %edx,0x14(%esp)					;读入第四个数<br>   0x08049237 &lt;+28&gt;:	lea    0x8(%eax),%edx<br>   0x0804923a &lt;+31&gt;:	mov    %edx,0x10(%esp)					;读入第三个数<br>   0x0804923e &lt;+35&gt;:	lea    0x4(%eax),%edx<br>   0x08049241 &lt;+38&gt;:	mov    %edx,0xc(%esp)					;读入第二个数<br>   0x08049245 &lt;+42&gt;:	mov    %eax,0x8(%esp)					;读入第一个数<br>   0x08049249 &lt;+46&gt;:	movl   $0x804a3bf,0x4(%esp)<br>   0x08049251 &lt;+54&gt;:	mov    0x30(%esp),%eax					;eax=esp+0x30<br>   0x08049255 &lt;+58&gt;:	mov    %eax,(%esp)						;M[esp]=eax=输入<br>   0x08049258 &lt;+61&gt;:	call   0x8048870 &lt;__isoc99_sscanf@plt&gt;<br>   						;函数__isoc99_sscanf返回输入参数的个数<br>   0x0804925d &lt;+66&gt;:	cmp    $0x5,%eax						<br>   0x08049260 &lt;+69&gt;:	jg     0x8049267 &lt;read_six_numbers+76&gt; ;输入参数数量大于5则安全退出该函数<br>   0x08049262 &lt;+71&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08049267 &lt;+76&gt;:	add    $0x2c,%esp<br>   0x0804926a &lt;+79&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>函数<code>&lt;__isoc99_sscanf@plt&gt;</code>的汇编代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function __isoc99_sscanf@plt:<br>   0x08048870 &lt;+0&gt;:		jmp    *0x804c040		<br>   0x08048876 &lt;+6&gt;:		push   $0x80<br>   0x0804887b &lt;+11&gt;:	jmp    0x8048760<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<p>查看<code>__isoc99_sscanf</code>调用的第二个参数，可知可以成功输入6个参数的形式</p>
+<p><img src="/bomblab/image-20210511202402385.png" srcset="/img/loading.gif" lazyload alt="image-20210511202402385"></p>
+</li>
+</ul>
+</li>
+<li><p>phase_2的汇编代码（调用函数<read_six_numbers>后的部分）</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">   0x08048b8d &lt;+25&gt;:	cmpl   $0x1,0x18(%esp)					;比较M[0x18+esp]和0x1的大小<br>   0x08048b92 &lt;+30&gt;:	je     0x8048b99 &lt;phase_2+37&gt;			;若相等，跳转至&lt;phase_2+37&gt;	<br>   0x08048b94 &lt;+32&gt;:	call   0x80490e6 &lt;explode_bomb&gt;			;否则爆炸<br>   0x08048b99 &lt;+37&gt;:	lea    0x1c(%esp),%ebx					;ebx=地址（0x1c+esp）	--第一次<br>   0x08048b9d &lt;+41&gt;:	lea    0x30(%esp),%esi					;esi=地址（0x30+esp）<br>   0x08048ba1 &lt;+45&gt;:	mov    -0x4(%ebx),%eax					;eax=M[ebx-0x4]			<br>   																;--第一次为M[0x18+esp]=1<br>   0x08048ba4 &lt;+48&gt;:	add    %eax,%eax						;eax=2M[ebx-0x4]		<br>   0x08048ba6 &lt;+50&gt;:	cmp    %eax,(%ebx)						;比较M[ebx]和2M[ebx-0x4]的大小	<br>   																;--第一次为M[0x1c+esp]和2M[0x18+esp]<br>   0x08048ba8 &lt;+52&gt;:	je     0x8048baf &lt;phase_2+59&gt;			;若相等，跳转至&lt;phase_2+59&gt;<br>   0x08048baa &lt;+54&gt;:	call   0x80490e6 &lt;explode_bomb&gt;			;否则爆炸<br>   0x08048baf &lt;+59&gt;:	add    $0x4,%ebx						;ebx=ebx+0x4			<br>   																;--第一次变为地址（0x20+esp）<br>   0x08048bb2 &lt;+62&gt;:	cmp    %esi,%ebx						;比较（0x30+esp）和ebx所存地址的大小<br>   0x08048bb4 &lt;+64&gt;:	jne    0x8048ba1 &lt;phase_2+45&gt;			;若不相等则跳转至&lt;phase_2+45&gt;,执行循环<br>   0x08048bb6 &lt;+66&gt;:	add    $0x34,%esp						;循环结束后，释放栈帧空间<br>   0x08048bb9 &lt;+69&gt;:	pop    %ebx								;还原ebx	<br>   0x08048bba &lt;+70&gt;:	pop    %esi								;弹出入口地址<br>   0x08048bbb &lt;+71&gt;:	ret										;成功结束phase_2<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>通过上方汇编代码的&lt;+62&gt;、&lt;+64&gt;可知，该函数会执行循环，在每次循环中ebx所存地址（初始地址为0x1c+esp）的值会先加0x4，直到等于0x30+esp。故循环的执行次数为5次。<code>0x1c+esp</code>的初始值为<code>M[0x18+esp]=1</code>的两倍为2，如此循环。可以推知我们输入6个数存储地址分别为上方的<code>(0x18+esp)</code>、<code>(0x1c+esp)</code>、<code>(0x20+esp)</code>、<code>(0x24+esp)</code>、<code>(0x28+esp)</code>、<code>(0x2c+esp)</code>，是以1为首项，2为公比的等比数列。故通关密码为：<code>1 2 4 8 16 32</code>，结果如下：</li>
+</ul>
+<p><img src="/bomblab/image-20210511204913739.png" srcset="/img/loading.gif" lazyload alt="image-20210511204913739"></p>
+<h4 id="3-phase-3"><a href="#3-phase-3" class="headerlink" title="3. phase_3"></a>3. phase_3</h4><ul>
+<li><p>phase_3的汇编代码（调用<code>&lt;__isoc99_sscanf@plt&gt;</code>前的部分）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_3:<br>   0x08048bbc &lt;+0&gt;:		sub    $0x2c,%esp						;栈指针esp减去0x2c<br>   0x08048bbf &lt;+3&gt;:		lea    0x1c(%esp),%eax					;eax=(0x1c+esp)<br>   0x08048bc3 &lt;+7&gt;:		mov    %eax,0xc(%esp)					;M[0xc+esp]=(0x1c+esp)<br>   0x08048bc7 &lt;+11&gt;:	lea    0x18(%esp),%eax					;eax=(0x18+esp)<br>   0x08048bcb &lt;+15&gt;:	mov    %eax,0x8(%esp)					;M[0x8+esp]=(0x18+esp)<br>   0x08048bcf &lt;+19&gt;:	movl   $0x804a3cb,0x4(%esp)				;M[0x4+esp]=0x804a3cb<br>   0x08048bd7 &lt;+27&gt;:	mov    0x30(%esp),%eax					;eax=M[0x30+esp]<br>   0x08048bdb &lt;+31&gt;:	mov    %eax,(%esp)						;M[esp]=eax<br>   0x08048bde &lt;+34&gt;:	call   0x8048870 &lt;__isoc99_sscanf@plt&gt;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>这里也调用了函数<code> &lt;__isoc99_sscanf@plt&gt;</code>。查看其第二个参数所在地址<code>$0x804a3cb</code>的内容:</li>
+</ul>
+<p><img src="/bomblab/image-20210511211431900.png" srcset="/img/loading.gif" lazyload alt="image-20210511211431900"></p>
+<ul>
+<li>可知输入应该为两个整型数据，对应的保存地址分别为<code>0x18+esp</code>,<code>0x1c+esp</code>。</li>
+</ul>
+</li>
+<li><p>phase_3的汇编代码（剩余部分）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">   0x08048be3 &lt;+39&gt;:	cmp    $0x1,%eax					<br>   ;`&lt;__isoc99_sscanf@plt&gt;的返回值为输入参数的个数，保存在eax中<br>   0x08048be6 &lt;+42&gt;:	jg     0x8048bed &lt;phase_3+49&gt;	;参数个数需大于1，否则爆炸<br>   0x08048be8 &lt;+44&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048bed &lt;+49&gt;:	cmpl   $0x7,0x18(%esp)			<br>   0x08048bf2 &lt;+54&gt;:	ja     0x8048c5a &lt;phase_3+158&gt;	<br>   ;第一个整数需要无符号小于等于7，即范围为0-7否则跳转-&gt;爆炸<br>   0x08048bf4 &lt;+56&gt;:	mov    0x18(%esp),%eax			<br>   0x08048bf8 &lt;+60&gt;:	jmp    *0x804a1e0(,%eax,4)		<br>   ;无条件跳转至地址(M[0x804a1e0+4*eax]),即根据第一个整数为跳转的偏移量<br>   ;根据跳转表，以eax=1为例子如下：<br>   0x08048bff &lt;+67&gt;:	mov    $0x0,%eax				;eax=0<br>   0x08048c04 &lt;+72&gt;:	jmp    0x8048c0b &lt;phase_3+79&gt;	;跳转至&lt;phase_3+79&gt;<br>   0x08048c06 &lt;+74&gt;:	mov    $0x240,%eax				;(被跳过)<br>   0x08048c0b &lt;+79&gt;:	sub    $0x28b,%eax				;eax=eax-0x28b=-0x28b<br>   0x08048c10 &lt;+84&gt;:	jmp    0x8048c17 &lt;phase_3+91&gt;	;跳转至&lt;phase_3+91&gt;<br>   0x08048c12 &lt;+86&gt;:	mov    $0x0,%eax				;(被跳过)<br>   0x08048c17 &lt;+91&gt;:	add    $0x35a,%eax				;eax=eax+0x35a=0xcf<br>   0x08048c1c &lt;+96&gt;:	jmp    0x8048c23 &lt;phase_3+103&gt;	;跳转至&lt;phase_3+103&gt;<br>   0x08048c1e &lt;+98&gt;:	mov    $0x0,%eax				;(被跳过)	<br>   0x08048c23 &lt;+103&gt;:	sub    $0xc5,%eax				;eax=eax-0xc5=0xa<br>   0x08048c28 &lt;+108&gt;:	jmp    0x8048c2f &lt;phase_3+115&gt;	;跳转至&lt;phase_3+115&gt;<br>   0x08048c2a &lt;+110&gt;:	mov    $0x0,%eax				;(被跳过)<br>   0x08048c2f &lt;+115&gt;:	add    $0xc5,%eax				;eax=eax+0xc5=0xcf<br>   0x08048c34 &lt;+120&gt;:	jmp    0x8048c3b &lt;phase_3+127&gt;	;跳转至&lt;phase_3+127&gt;<br>   0x08048c36 &lt;+122&gt;:	mov    $0x0,%eax				;(被跳过)<br>   0x08048c3b &lt;+127&gt;:	sub    $0xc5,%eax				;eax=eax-0xc5=0xa<br>   0x08048c40 &lt;+132&gt;:	jmp    0x8048c47 &lt;phase_3+139&gt;	;跳转至&lt;phase_3+139&gt;<br>   0x08048c42 &lt;+134&gt;:	mov    $0x0,%eax				;(被跳过)<br>   0x08048c47 &lt;+139&gt;:	add    $0xc5,%eax				;eax=eax+0xc5=0xcf<br>   0x08048c4c &lt;+144&gt;:	jmp    0x8048c53 &lt;phase_3+151&gt;	;跳转至&lt;phase_3+151&gt;<br>   0x08048c4e &lt;+146&gt;:	mov    $0x0,%eax				;(被跳过)<br>   0x08048c53 &lt;+151&gt;:	sub    $0xc5,%eax				;eax=eax-0xc5=0xa<br>   0x08048c58 &lt;+156&gt;:	jmp    0x8048c64 &lt;phase_3+168&gt;	;(需要此步)跳转至&lt;phase_3+168&gt;，否则爆炸<br>   0x08048c5a &lt;+158&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048c5f &lt;+163&gt;:	mov    $0x0,%eax<br>   0x08048c64 &lt;+168&gt;:	cmpl   $0x5,0x18(%esp)			<br>   0x08048c69 &lt;+173&gt;:	jg     0x8048c71 &lt;phase_3+181&gt;	;M[0x18+esp]&gt;5则爆炸<br>   0x08048c6b &lt;+175&gt;:	cmp    0x1c(%esp),%eax<br>   0x08048c6f &lt;+179&gt;:	je     0x8048c76 &lt;phase_3+186&gt;	;eax=M[0X1c+esp]时跳转过关，否则爆炸<br>   0x08048c71 &lt;+181&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048c76 &lt;+186&gt;:	add    $0x2c,%esp<br>   0x08048c79 &lt;+189&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>从该汇编代码的<code>&lt;+156&gt;</code>到结束可知，我们需要经过跳转到达<code>0x08048c58 &lt;+156&gt;</code>,且输入的第一个数的值需要$&lt;&#x3D;5$,输入的第二个数需要等于eax。 </p>
+</li>
+<li><p>我们通过x指令，参照<code>jmp    *0x804a1e0(,%eax,4)	</code>的跳转表如下:</p>
+<p><img src="/bomblab/image-20210512084515692.png" srcset="/img/loading.gif" lazyload alt="image-20210512084515692"></p>
+</li>
+<li><p>上述汇编代码的注释输入的第一个数<code>M[0x18+esp]=1</code>为例，先跳转至<code>&lt;phase_3+67&gt;</code>：</p>
+<p>得到最终<code>M[0x1c+esp]</code>需要等于0xa，即十进制的10。故我们可以输入<code>1 10</code>过关：</p>
+<p><img src="/bomblab/image-20210512085729848.png" srcset="/img/loading.gif" lazyload alt="image-20210512085729848"></p>
+<ul>
+<li><p>同样可推知输入0—7对应的第二个数组合如下：</p>
+<p><code>0 586</code> 	<code>1 10</code> 	<code>2 661</code>	<code>3 -197</code>	<code>4 0</code>	<code>5 -197</code>	<code>6 0</code>	<code>7 197</code></p>
+</li>
+<li><p>同样输入0~5中的其他数以及经过运算得到的相对应的第二个数，也能过关。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-phase-4"><a href="#4-phase-4" class="headerlink" title="4. phase_4"></a>4. phase_4</h4><ul>
+<li><p>phase_4的汇编代码（调用<code>&lt;__isoc99_sscanf@plt&gt;</code>前的部分）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_4:<br>   0x08048cd7 &lt;+0&gt;:		sub    $0x2c,%esp				;栈指针esp减去0x2c<br>   0x08048cda &lt;+3&gt;:		lea    0x18(%esp),%eax			;eax=(0x18+esp)<br>   0x08048cde &lt;+7&gt;:		mov    %eax,0xc(%esp)			;M[0xc+esp]=eax=(0x18+esp)<br>   0x08048ce2 &lt;+11&gt;:	lea    0x1c(%esp),%eax			;eax=(0x1c+esp)<br>   0x08048ce6 &lt;+15&gt;:	mov    %eax,0x8(%esp)			;M[0x8+esp]=eax=(0x1c+esp)<br>   0x08048cea &lt;+19&gt;:	movl   $0x804a3cb,0x4(%esp)		;M[0x4+esp]=0x804a3cb<br>   0x08048cf2 &lt;+27&gt;:	mov    0x30(%esp),%eax			;eax=M[0x30+esp]<br>   0x08048cf6 &lt;+31&gt;:	mov    %eax,(%esp)				;M[esp]=eax=M[0x30+esp]<br>   0x08048cf9 &lt;+34&gt;:	call   0x8048870 &lt;__isoc99_sscanf@plt&gt;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>和phase_3相似，调用函数<code>&lt;__isoc99_sscanf@plt&gt;</code>将输入以地址<code>0x804a3cb</code>存储的形式保存：</p>
+<p><img src="/bomblab/image-20210512133109861.png" srcset="/img/loading.gif" lazyload alt="image-20210512133109861"></p>
+<p>可见输入为两个整型数据，分别保存在地址<code>0x1c+esp</code>和<code>0x18+esp</code>中。（要注意<code>0x1c+esp</code>是第三个参数，<code>0x18+esp</code>是第四个参数，表示输入数据存储的次序，和phase_3正好相反！）。</p>
+<p>函数返回值为输入数据的个数。</p>
+</li>
+</ul>
+</li>
+<li><p>phase_4的汇编代码（剩余部分）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">   0x08048cfe &lt;+39&gt;:	cmp    $0x2,%eax				;比较&lt;__isoc99_sscanf@plt&gt;的返回值和2<br>   0x08048d01 &lt;+42&gt;:	jne    0x8048d11 &lt;phase_4+58&gt;	;不相等则爆炸<br>   0x08048d03 &lt;+44&gt;:	mov    0x18(%esp),%eax			;eax=M[0x18+esp] 即输入的第二个整数<br>   0x08048d07 &lt;+48&gt;:	cmp    $0x1,%eax				;比较eax和1<br>   0x08048d0a &lt;+51&gt;:	jle    0x8048d11 &lt;phase_4+58&gt;	;eax&lt;=1则爆炸，故第二个整数要大于1<br>   0x08048d0c &lt;+53&gt;:	cmp    $0x4,%eax				;比较eax和4<br>   0x08048d0f &lt;+56&gt;:	jle    0x8048d16 &lt;phase_4+63&gt;	;eax&lt;=4则不会爆炸，故第二个整数小于等于4<br>   0x08048d11 &lt;+58&gt;:	call   0x80490e6 &lt;explode_bomb&gt;	<br>   0x08048d16 &lt;+63&gt;:	mov    0x18(%esp),%eax			;eax=M[0x18+esp],还是第二个整数<br>   0x08048d1a &lt;+67&gt;:	mov    %eax,0x4(%esp)			;M[0x4+esp]=eax=M[0x18+esp]<br>   0x08048d1e &lt;+71&gt;:	movl   $0x9,(%esp)				;M[esp]=9<br>   0x08048d25 &lt;+78&gt;:	call   0x8048c7a &lt;func4&gt;		;调用函数&lt;func4&gt;<br>   0x08048d2a &lt;+83&gt;:	cmp    0x1c(%esp),%eax			<br>   ;比较&lt;func4&gt;的返回值和M[esp+0x1c](即输入的第一个整数)的大小<br>   0x08048d2e &lt;+87&gt;:	je     0x8048d35 &lt;phase_4+94&gt;	;相等则过关<br>   0x08048d30 &lt;+89&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048d35 &lt;+94&gt;:	add    $0x2c,%esp<br>   0x08048d38 &lt;+97&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>故输入的第二个整数（大于1且小于等于4）会进入函数<code>&lt;func4&gt;</code>产生返回值，输入的第一个整数应该和该返回值相等</p>
+</li>
+<li><p>其中，<code>&lt;func4&gt;</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">;call调用函数，esp=esp-4。观察整个代码，有两个参数，设为x和y（初值为9和输入的第一个整数）<br>(gdb) disass func4<br>Dump of assembler code for function func4:<br>   0x08048c7a &lt;+0&gt;:		sub    $0x1c,%esp			;esp=esp-0x1c，开辟0x1c的栈帧空间<br>   0x08048c7d &lt;+3&gt;:		mov    %ebx,0x10(%esp)		<br>   0x08048c81 &lt;+7&gt;:		mov    %esi,0x14(%esp)		<br>   0x08048c85 &lt;+11&gt;:	mov    %edi,0x18(%esp)		;以上三行保存被调用寄存器的原值<br>   0x08048c89 &lt;+15&gt;:	mov    0x20(%esp),%esi		;esi=M[0x20+esp]=x<br>   0x08048c8d &lt;+19&gt;:	mov    0x24(%esp),%ebx		;ebx=M[0x24+esp]=y<br>   0x08048c91 &lt;+23&gt;:	test   %esi,%esi			<br>   0x08048c93 &lt;+25&gt;:	jle    0x8048cc0 &lt;func4+70&gt;	;ZF=1或SF!=OF时跳转<br>   						;test %esi,%esi后，若esi=0，则ZF=1;或esi为负数，SF!=OF  -&gt;return 0<br>   0x08048c95 &lt;+27&gt;:	cmp    $0x1,%esi			<br>   0x08048c98 &lt;+30&gt;:	je     0x8048cc5 &lt;func4+75&gt;	;x=1时跳转至&lt;func4+75&gt; -&gt;return y<br>   0x08048c9a &lt;+32&gt;:	mov    %ebx,0x4(%esp)		;M[0x4+esp]=ebx=y<br>   0x08048c9e &lt;+36&gt;:	lea    -0x1(%esi),%eax		;eax=(esi-1)=(x-1)<br>   0x08048ca1 &lt;+39&gt;:	mov    %eax,(%esp)			;M[esp]=eax=(esi-1)=(x-1)<br>   0x08048ca4 &lt;+42&gt;:	call   0x8048c7a &lt;func4&gt;	;递归调用func4(x-1,y)<br>   0x08048ca9 &lt;+47&gt;:	lea    (%eax,%ebx,1),%edi	;edi=(eax+ebx)=func4(x-1,y)+y;<br>   0x08048cac &lt;+50&gt;:	mov    %ebx,0x4(%esp)		;M[0x4+esp]=ebx=y<br>   0x08048cb0 &lt;+54&gt;:	sub    $0x2,%esi			;esi=(esi-2)=(x-2)<br>   0x08048cb3 &lt;+57&gt;:	mov    %esi,(%esp)			;M[esp]=esi=(x-2)<br>   0x08048cb6 &lt;+60&gt;:	call   0x8048c7a &lt;func4&gt;	;递归调用func4(x-2,y)<br>   0x08048cbb &lt;+65&gt;:	lea    (%edi,%eax,1),%ebx	;ebx=(edi+eax)=func4(x-1,y)+y+func4(x-2,y)<br>   0x08048cbe &lt;+68&gt;:	jmp    0x8048cc5 &lt;func4+75&gt;	<br>   						;跳转至&lt;func4+75&gt; -&gt;return func4(x-1,y)+y+func4(x-2,y)<br>   0x08048cc0 &lt;+70&gt;:	mov    $0x0,%ebx			<br>   0x08048cc5 &lt;+75&gt;:	mov    %ebx,%eax			;eax=ebx,即为返回值<br>   0x08048cc7 &lt;+77&gt;:	mov    0x10(%esp),%ebx		<br>   0x08048ccb &lt;+81&gt;:	mov    0x14(%esp),%esi<br>   0x08048ccf &lt;+85&gt;:	mov    0x18(%esp),%edi		;以上三行恢复被调用寄存器的值<br>   0x08048cd3 &lt;+89&gt;:	add    $0x1c,%esp<br>   0x08048cd6 &lt;+92&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>可以得到<code>func4</code>函数和主函数的C++代码如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C"><span class="hljs-type">int</span> <span class="hljs-title function_">func4</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span><br>&#123;<br>	<span class="hljs-keyword">if</span>(x&lt;=<span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span> y;<br>	<span class="hljs-keyword">else</span><br>		<span class="hljs-keyword">return</span> func4(x<span class="hljs-number">-1</span>,y)+y+func4(x<span class="hljs-number">-2</span>,y);<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;a&gt;&gt;b;<br>    <span class="hljs-keyword">if</span>(b&lt;=<span class="hljs-number">1</span>||b&gt;<span class="hljs-number">4</span>)<br>        explode_bomb();<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">if</span>(func4(<span class="hljs-number">9</span>,b)!=a)<br>            explode_bomb();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>另写代码输出func4得到的第二个整数（只能为2、3、4）对应的第一个整数：</li>
+</ul>
+<p><img src="/bomblab/image-20210512154349129.png" srcset="/img/loading.gif" lazyload alt="image-20210512154349129"></p>
+</li>
+<li><p>输入这3组整数都能过关。</p>
+<p><img src="/bomblab/image-20210512154529595.png" srcset="/img/loading.gif" lazyload alt="image-20210512154529595"></p>
+<p><img src="/bomblab/image-20210512155152270.png" srcset="/img/loading.gif" lazyload alt="image-20210512155152270"></p>
+<p><img src="/bomblab/image-20210512155207546.png" srcset="/img/loading.gif" lazyload alt="image-20210512155207546"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-phase-5"><a href="#5-phase-5" class="headerlink" title="5. phase_5"></a>5. phase_5</h4><ul>
+<li><p>phase_5的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_5:<br>   0x08048d39 &lt;+0&gt;:		push   %ebx						;保存ebx的原值<br>   0x08048d3a &lt;+1&gt;:		sub    $0x18,%esp				;esp=esp-0x18，预留0x18的栈帧空间	<br>   0x08048d3d &lt;+4&gt;:		mov    0x20(%esp),%ebx			;ebx=M[0x20+esp],为输入的字符串<br>   0x08048d41 &lt;+8&gt;:		mov    %ebx,(%esp)				;M[esp]=ebx<br>   0x08048d44 &lt;+11&gt;:	call   0x8048fbb &lt;string_length&gt;<br>   						;调用函数&lt;string_length&gt;(phase_1中出现过),返回值为输入字符串的长度<br>   0x08048d49 &lt;+16&gt;:	cmp    $0x6,%eax				<br>   0x08048d4c &lt;+19&gt;:	je     0x8048d53 &lt;phase_5+26&gt;	;若eax=6则跳转<br>   0x08048d4e &lt;+21&gt;:	call   0x80490e6 &lt;explode_bomb&gt;	;否则爆炸<br>   0x08048d53 &lt;+26&gt;:	mov    $0x0,%edx				;edx=0<br>   0x08048d58 &lt;+31&gt;:	mov    $0x0,%eax				;eax=0<br>   0x08048d5d &lt;+36&gt;:	movsbl (%ebx,%eax,1),%ecx		;ecx=M(ebx+eax),高位用符号位补齐<br>   0x08048d61 &lt;+40&gt;:	and    $0xf,%ecx				;保留ecx的低四位（字符的ASCII码对16取余）<br>   0x08048d64 &lt;+43&gt;:	add    0x804a200(,%ecx,4),%edx	;edx=edx+M[0x804a200+4*ecx]<br>   0x08048d6b &lt;+50&gt;:	add    $0x1,%eax				;eax=eax+1<br>   0x08048d6e &lt;+53&gt;:	cmp    $0x6,%eax				<br>   0x08048d71 &lt;+56&gt;:	jne    0x8048d5d &lt;phase_5+36&gt;	;eax不等于6则跳转至&lt;phase_5+36&gt;,执行循环<br>   0x08048d73 &lt;+58&gt;:	cmp    $0x2b,%edx				<br>   0x08048d76 &lt;+61&gt;:	je     0x8048d7d &lt;phase_5+68&gt;	;若edx=0x2b 则过关<br>   0x08048d78 &lt;+63&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048d7d &lt;+68&gt;:	add    $0x18,%esp<br>   0x08048d80 &lt;+71&gt;:	pop    %ebx<br>   0x08048d81 &lt;+72&gt;:	ret    	<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>可见输入的字符串长度为6。在循环中，依次取字符串的1个字符，ASCII码对16取余，保存于ecx中。每次edx加上M[0x804a200+4*ecx]，相当于0x804a200为数组，ecx为数组的索引。</p>
+</li>
+<li><p>循环执行次数为6次。结束循环后，edx的值需为0x2b（即43）。</p>
+<ul>
+<li><p>查看首地址为0x804a200的数组保存的数字，数组长度为16，如下：</p>
+<p><img src="/bomblab/image-20210512202614163.png" srcset="/img/loading.gif" lazyload alt="image-20210512202614163"></p>
+<ul>
+<li>需要在其中取6个数，和为43。可选择：13、10、12、4、3、1。（不唯一）</li>
+<li>对应索引分别为：15、1、4、8、7、3，分别对应字符ASCII码的余数。</li>
+</ul>
+</li>
+<li><p>对应字符可以为：O、A、D、H、G、C。（答案不唯一）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输入OADHGC，过关：</p>
+<p><img src="/bomblab/image-20210512203929992.png" srcset="/img/loading.gif" lazyload alt="image-20210512203929992"></p>
+</li>
+</ul>
+<h4 id="6-phase-6"><a href="#6-phase-6" class="headerlink" title="6. phase_6"></a>6. phase_6</h4><ul>
+<li><p>phase_6的汇编代码（分为多个部分）如下：</p>
+</li>
+<li><p>第一部分：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_6:<br>    0x08048d82 &lt;+0&gt;:	push   %esi							;esi入栈<br>    0x08048d83 &lt;+1&gt;:	push   %ebx							;ebx入栈<br>    0x08048d84 &lt;+2&gt;:	sub    $0x44,%esp					;esp=esp-0x44,栈帧预留0x44的空间<br>    0x08048d87 &lt;+5&gt;:	lea    0x10(%esp),%eax				;eax=(esp+0x10)<br>    0x08048d8b &lt;+9&gt;:	mov    %eax,0x4(%esp)				;M[0x4+esp]=eax <br>    0x08048d8f &lt;+13&gt;:	mov    0x50(%esp),%eax				;eax=M[0x50+esp]=输入<br>    0x08048d93 &lt;+17&gt;:	mov    %eax,(%esp)					;M[esp]=eax=输入<br>    0x08048d96 &lt;+20&gt;:	call   0x804921b &lt;read_six_numbers&gt;	<br>    ;调用函数&lt;read_six_numbers&gt;（phase_2中出现过），读入6个数，相当于读入首地址为(esp+0x10)的长度为6的int型数组	a[]<br>    0x08048d9b &lt;+25&gt;:	mov    $0x0,%esi					;esi=0<br>    0x08048da0 &lt;+30&gt;:	mov    0x10(%esp,%esi,4),%eax		;eax=M[0x10+(esp+4*esi)]<br>    0x08048da4 &lt;+34&gt;:	sub    $0x1,%eax					;eax=eax-1=M[eax]-1<br>    0x08048da7 &lt;+37&gt;:	cmp    $0x5,%eax					<br>    0x08048daa &lt;+40&gt;:	jbe    0x8048db1 &lt;phase_6+47&gt;		;若eax&lt;=5(无符号)，则跳转至&lt;phase_6+47&gt;<br>    0x08048dac &lt;+42&gt;:	call   0x80490e6 &lt;explode_bomb&gt;		;否则爆炸<br>    0x08048db1 &lt;+47&gt;:	add    $0x1,%esi					;esi=esi+1<br>    0x08048db4 &lt;+50&gt;:	cmp    $0x6,%esi					<br>    0x08048db7 &lt;+53&gt;:	je     0x8048dd4 &lt;phase_6+82&gt;		;esi=6则跳转至&lt;phase_6+82&gt;<br>    0x08048db9 &lt;+55&gt;:	mov    %esi,%ebx					;ebx=esi<br>    0x08048dbb &lt;+57&gt;:	mov    0x10(%esp,%ebx,4),%eax		;eax=M[0x10+(esp+4*ebx)]<br>    0x08048dbf &lt;+61&gt;:	cmp    %eax,0xc(%esp,%esi,4)		<br>    0x08048dc3 &lt;+65&gt;:	jne    0x8048dca &lt;phase_6+72&gt;		<br>    						;若M[0xc+(esp+4*esi)]和eax不相等，则跳转至&lt;phase_6+72&gt;<br>    0x08048dc5 &lt;+67&gt;:	call   0x80490e6 &lt;explode_bomb&gt;		;否则爆炸<br>    0x08048dca &lt;+72&gt;:	add    $0x1,%ebx					;ebx=ebx+1<br>    0x08048dcd &lt;+75&gt;:	cmp    $0x5,%ebx					<br>    0x08048dd0 &lt;+78&gt;:	jle    0x8048dbb &lt;phase_6+57&gt;		<br>    						;若ebx&lt;=5，则跳转至&lt;phase_6+57&gt; -&gt; eax=M[0x10+(esp+4*ebx)]=a[ebx]<br>    0x08048dd2 &lt;+80&gt;:	jmp    0x8048da0 &lt;phase_6+30&gt;		<br>    						;否则跳转至&lt;phase_6+30&gt; -&gt; eax=M[0x10+(esp+4*esi)]=a[esi]<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>在读入6个数后，根据汇编代码可以推得对应的C++代码（数组为a[]）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">5</span>;i++)<br>&#123;<br>	<span class="hljs-keyword">if</span>(a[i]<span class="hljs-number">-1</span>&gt;<span class="hljs-number">5</span>||a[i]<span class="hljs-number">-1</span>&lt;<span class="hljs-number">0</span>)<br>    	<span class="hljs-built_in">explode_bomb</span>();<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;=<span class="hljs-number">5</span>;j++)<br>            <span class="hljs-keyword">if</span>(a[j]==a[i])<br>               <span class="hljs-built_in">explode_bomb</span>();    <br>&#125;<br><span class="hljs-comment">//结束后跳转至&lt;phase_6+82&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>这个双重循环确保数组a[]中的6个整数不相等且范围为[1,6]。</li>
+</ul>
+</li>
+<li><p>第二部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">0x08048dd4 &lt;+82&gt;:	lea    0x10(%esp),%eax				;eax=(0x10+esp)<br>0x08048dd8 &lt;+86&gt;:	lea    0x28(%esp),%ebx				;ebx=(0x28+esp)<br>0x08048ddc &lt;+90&gt;:	mov    $0x7,%ecx					;ecx=7<br>0x08048de1 &lt;+95&gt;:	mov    %ecx,%edx					;edx=ecx=7<br>0x08048de3 &lt;+97&gt;:	sub    (%eax),%edx					;edx=edx-M[eax]=7-M[eax]<br>0x08048de5 &lt;+99&gt;:	mov    %edx,(%eax)					;M[eax]=edx<br>0x08048de7 &lt;+101&gt;:	add    $0x4,%eax					;eax=eax+4<br>0x08048dea &lt;+104&gt;:	cmp    %ebx,%eax					<br>0x08048dec &lt;+106&gt;:	jne    0x8048de1 &lt;phase_6+95&gt;		;若eax!=ebx，则回跳至&lt;phase_6+95&gt;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>这部分汇编代码写成C++代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;a[i]!=a[<span class="hljs-number">6</span>];i++)<br>&#123;<br>    a[i]=<span class="hljs-number">7</span>-a[i];<br>&#125;<br></code></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>第三部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">0x08048dee &lt;+108&gt;:	mov    $0x0,%ebx					;ebx=0；<br>0x08048df3 &lt;+113&gt;:	jmp    0x8048e0b &lt;phase_6+137&gt;		;跳转至&lt;phase_6+137&gt;<br>0x08048df5 &lt;+115&gt;:	mov    0x8(%edx),%edx				;edx=M[0x8+edx]			<br>0x08048df8 &lt;+118&gt;:	add    $0x1,%eax					;eax=eax+1<br>0x08048dfb &lt;+121&gt;:	cmp    %ecx,%eax					<br>0x08048dfd &lt;+123&gt;:	jne    0x8048df5 &lt;phase_6+115&gt;		;若eax!=ecx，回跳至&lt;phase_6+115&gt;<br>0x08048dff &lt;+125&gt;:	mov    %edx,0x28(%esp,%esi,4)		;M[0x28+esp+4*esi]=edx<br>0x08048e03 &lt;+129&gt;:	add    $0x1,%ebx					;ebx=ebx+1<br>0x08048e06 &lt;+132&gt;:	cmp    $0x6,%ebx<br>0x08048e09 &lt;+135&gt;:	je     0x8048e22 &lt;phase_6+160&gt;		;若ebx=6，跳转至&lt;phase_6+160&gt;（跳出循环）<br>0x08048e0b &lt;+137&gt;:	mov    %ebx,%esi					;esi=ebx<br>0x08048e0d &lt;+139&gt;:	mov    0x10(%esp,%ebx,4),%ecx		;ecx=M[0x10+esp+4*ebx]=a[ebx]<br>0x08048e11 &lt;+143&gt;:	mov    $0x1,%eax					;eax=1;<br>0x08048e16 &lt;+148&gt;:	mov    $0x804c13c,%edx				;edx=0x804c13c	<br>															;以上4行相当于初始化寄存器<br>0x08048e1b &lt;+153&gt;:	cmp    $0x1,%ecx					<br>0x08048e1e &lt;+156&gt;:	jg     0x8048df5 &lt;phase_6+115&gt;		;若a[ebx]&gt;1,跳转至&lt;phase_6+115&gt;<br>0x08048e20 &lt;+158&gt;:	jmp    0x8048dff &lt;phase_6+125&gt;		;否则跳转至&lt;phase_6+125&gt;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>以<code>edx=0x804c13c</code>和<code>edx=M[0x8+edx]	</code>为突破口，先查看<code>0x804c13c</code>存放的东西：</p>
+<p><img src="/bomblab/image-20210512225255740.png" srcset="/img/loading.gif" lazyload alt="image-20210512225255740"></p>
+<ul>
+<li>由node联想到结点类（结构体），且地址<code>0x8+edx</code>存储的为指向下一结点的地址。</li>
+</ul>
+</li>
+<li><p>依次查看结构体的信息如下，共有6个结构体：</p>
+<p><img src="/bomblab/image-20210512233328889.png" srcset="/img/loading.gif" lazyload alt="image-20210512233328889"></p>
+<ul>
+<li>可以观察到结构体有一个值（val）、编号（id）、下一节点的地址（*next）构成，形成链表结构。</li>
+</ul>
+</li>
+<li><p>可推成C++代码帮助理解，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span><br>&#123;<br>  <span class="hljs-type">int</span> val;<br>  <span class="hljs-type">int</span> id;<br>  node *next;<br>&#125;;  <br>node *n[<span class="hljs-number">6</span>];<br>ebx=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">do</span><br>&#123;<br>    esi=ebx;<br>	ecx=a[ebx];	<br>	eax=<span class="hljs-number">1</span>;<br>	edx=<span class="hljs-number">0x804c13c</span>	<span class="hljs-comment">//头结点的首地址	</span><br>    <span class="hljs-keyword">if</span>(a[ebx]&gt;<span class="hljs-number">1</span>)	<span class="hljs-comment">//数组a[]的范围为[1,6],只有a[ebx]等于1时不执行if内的循环。</span><br>    &#123;<br>        <span class="hljs-keyword">do</span><br>        &#123;<br>    		edx=M[<span class="hljs-number">0x8</span>+edx];	<span class="hljs-comment">//下一结点地址</span><br>        	eax++;<br>        &#125;<span class="hljs-keyword">while</span>(eax!=ecx);	<span class="hljs-comment">//直到eax=a[ebx]时跳出循环，故循环次数为a[ebx]的值</span><br>    &#125;<br>    node[esi]=edx;	<span class="hljs-comment">//故第i次循环是为了让原先的第a[i-1]个结点变为node[i-1]。 (i=ebx+1,esi=ebx)</span><br>    				<span class="hljs-comment">//其中a[i-1]=(7-输入的第i个值)</span><br>    ebx++;<br>&#125;<span class="hljs-keyword">while</span>(ebx&lt;<span class="hljs-number">6</span>) <span class="hljs-comment">//共执行循环6次</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>故根据数组a[]的值，给6个node节点重新排列：让原先的第a[i-1]个结点变为node[i-1]。其中a[i-1]&#x3D;(7-输入的第i个值)。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第四部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">   0x08048e22 &lt;+160&gt;:	mov    0x28(%esp),%ebx			;ebx=M[0x28+esp]	--node[0]的地址<br>   0x08048e26 &lt;+164&gt;:	mov    0x2c(%esp),%eax			;eax=M[0x2c+esp]	--node[1]的地址<br>   0x08048e2a &lt;+168&gt;:	mov    %eax,0x8(%ebx)			;M[ebx+0x8]=eax		--node[0].next=node[1]<br>   														;以下至&lt;+196&gt;都为连接结点、形成链表的操作<br>   0x08048e2d &lt;+171&gt;:	mov    0x30(%esp),%edx<br>   0x08048e31 &lt;+175&gt;:	mov    %edx,0x8(%eax)<br>   0x08048e34 &lt;+178&gt;:	mov    0x34(%esp),%eax<br>   0x08048e38 &lt;+182&gt;:	mov    %eax,0x8(%edx)<br>   0x08048e3b &lt;+185&gt;:	mov    0x38(%esp),%edx<br>   0x08048e3f &lt;+189&gt;:	mov    %edx,0x8(%eax)<br>   0x08048e42 &lt;+192&gt;:	mov    0x3c(%esp),%eax<br>   0x08048e46 &lt;+196&gt;:	mov    %eax,0x8(%edx)<br>   0x08048e49 &lt;+199&gt;:	movl   $0x0,0x8(%eax)			;M[0x8+eax]=0，node[5].next=0(空)<br>   0x08048e50 &lt;+206&gt;:	mov    $0x5,%esi				;esi=5<br>   0x08048e55 &lt;+211&gt;:	mov    0x8(%ebx),%eax			;eax=M[0x8+ebx]	--下一节点的地址<br>   0x08048e58 &lt;+214&gt;:	mov    (%eax),%edx				;edx=M[eax]		--下一结点的值<br>   0x08048e5a &lt;+216&gt;:	cmp    %edx,(%ebx)			<br>   0x08048e5c &lt;+218&gt;:	jge    0x8048e63 &lt;phase_6+225&gt;	<br>   						;若M[ebx]&gt;=edx，即某结点的值不小于其后一个结点的值,则不会爆炸<br>   0x08048e5e &lt;+220&gt;:	call   0x80490e6 &lt;explode_bomb&gt;	;否则爆炸<br>   0x08048e63 &lt;+225&gt;:	mov    0x8(%ebx),%ebx			;ebx=M[ebx+0x8]	--下一个结点的地址<br>   0x08048e66 &lt;+228&gt;:	sub    $0x1,%esi				;esi=esi-1 <br>   0x08048e69 &lt;+231&gt;:	jne    0x8048e55 &lt;phase_6+211&gt;	;当esi!=0时，回跳至&lt;phase_6+211&gt;,执行循环<br>   														;故执行&lt;+211&gt;到&lt;+231&gt;的次数为6。<br>   0x08048e6b &lt;+233&gt;:	add    $0x44,%esp				;恢复栈帧，过关。<br>   0x08048e6e &lt;+236&gt;:	pop    %ebx<br>   0x08048e6f &lt;+237&gt;:	pop    %esi<br> 0x08048e70 &lt;+238&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>故phase_6要求输入6个数，根据这6个数，对带值（val）的6个结点进行重新排序，使得结点的值降序排列。</p>
+</li>
+<li><p>根据之前查看的结点信息：</p>
+<p><img src="/bomblab/image-20210512233328889-1625373895945.png" srcset="/img/loading.gif" lazyload alt="image-20210512233328889"></p>
+<p>可以列表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">原结点编号</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">原值</td>
+<td align="center">0xdf</td>
+<td align="center">0x252</td>
+<td align="center">0x376</td>
+<td align="center">0xea</td>
+<td align="center">0x2fb</td>
+<td align="center">0xf3</td>
+</tr>
+<tr>
+<td align="center">目标编号</td>
+<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">2</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>让原先的第a[i]个结点变为node[i]，故数组<code>a[6]=&#123;3,5,2,6,4,1&#125;</code></p>
+</li>
+<li><p>故输入<code>（7-a[i]）</code>为<code>4 2 5 1 3 6</code>，过关截图如下：</p>
+<p><img src="/bomblab/image-20210513114343306.png" srcset="/img/loading.gif" lazyload alt="image-20210513114343306"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-phase-defused-含secret-phase"><a href="#7-phase-defused-含secret-phase" class="headerlink" title="7. phase_defused (含secret_phase)"></a>7. phase_defused (含secret_phase)</h4><ul>
+<li><p>看似结束了。但回到<code>bomb.c</code>，在生成炸弹后，和输入有关的函数中，我们还有两个函数还没查看汇编代码，分别为<code>read_line()</code>、<br><code>phase_defused()</code>。何况邪恶博士Dr. Evil还留下了这样一句话，好似幸灾乐祸：</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">/* Wow, they got it!  But isn&#x27;t something... missing?  Perhaps</span><br><span class="hljs-comment"> * something they overlooked?  Mua ha ha ha ha! */</span>	<br><span class="hljs-comment">//哇，他们明白了！ 但是，是不是……缺少了什么？ 也许他们忽略了什么？ 哇哈哈哈哈哈！</span><br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>先看了看<code>read_line()</code>，就是对一行输入进行花里胡哨的处理后保存在指定地址，没有什么特别之处。</p>
+</li>
+<li><p>而<code>phase_defused()</code>的汇编代码如下：</p>
+<ul>
+<li>第一部分：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function phase_defused:<br>   0x0804926b &lt;+0&gt;:		sub    $0x8c,%esp<br>   0x08049271 &lt;+6&gt;:		mov    %gs:0x14,%eax					;取gs:0x14处的值<br>   0x08049277 &lt;+12&gt;:	mov    %eax,0x7c(%esp)					;置于M[0x7c+esp]<br>   0x0804927b &lt;+16&gt;:	xor    %eax,%eax						;ZF=1<br>   0x0804927d &lt;+18&gt;:	cmpl   $0x6,0x804c3cc					;比较M[0x804c3cc]和6的值<br>   0x08049284 &lt;+25&gt;:	jne    0x80492f8 &lt;phase_defused+141&gt;	;不相等则跳过secret_phase，故我们要让其相等<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>猜测6和我们的关卡数量有关。故在进入每个关卡的函数的位置设断点，观察<code>0x804c3cc</code>的变化情况：</p>
+<ul>
+<li><p>进入关卡1前，<code>M[0x804c3cc]=0</code>： </p>
+<p><img src="/bomblab/image-20210513200430515.png" srcset="/img/loading.gif" lazyload alt="image-20210513200430515"></p>
+</li>
+<li><p>进入关卡1后，<code>M[0x804c3cc]=1</code>:</p>
+<p><img src="/bomblab/image-20210513200542728.png" srcset="/img/loading.gif" lazyload alt="image-20210513200542728"></p>
+</li>
+<li><p>进入关卡2后，<code>M[0x804c3cc]=2</code>:</p>
+<p><img src="/bomblab/image-20210513200748969.png" srcset="/img/loading.gif" lazyload alt="image-20210513200748969"></p>
+</li>
+<li><p>进入关卡3后，<code>M[0x804c3cc]=3</code>:</p>
+<p><img src="/bomblab/image-20210513200806250.png" srcset="/img/loading.gif" lazyload alt="image-20210513200806250"></p>
+</li>
+<li><p>进入关卡4后，<code>M[0x804c3cc]=4</code>:</p>
+<p><img src="/bomblab/image-20210513201243594.png" srcset="/img/loading.gif" lazyload alt="image-20210513201243594"></p>
+</li>
+<li><p>进入关卡5后，<code>M[0x804c3cc]=5</code>:</p>
+<p><img src="/bomblab/image-20210513201259639.png" srcset="/img/loading.gif" lazyload alt="image-20210513201259639"></p>
+</li>
+<li><p>进入关卡6后，<code>M[0x804c3cc]=6</code>:</p>
+<p><img src="/bomblab/image-20210513201315080.png" srcset="/img/loading.gif" lazyload alt="image-20210513201315080"></p>
+</li>
+</ul>
+</li>
+<li><p>显然只有在第6关之后，<code>M[0x804c3cc]=6</code>，才可能进入secret_phase。</p>
+</li>
+<li><p>第二部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">0x08049286 &lt;+27&gt;:	lea    0x2c(%esp),%eax					;eax=(0x2c+esp)<br>0x0804928a &lt;+31&gt;:	mov    %eax,0x10(%esp)					;M[0x10+esp]=eax=(0x2c+esp)<br>0x0804928e &lt;+35&gt;:	lea    0x28(%esp),%eax					;eax=(0x28+esp)<br>0x08049292 &lt;+39&gt;:	mov    %eax,0xc(%esp)					;M[0xc+esp]=eax=(0x28+esp)<br>0x08049296 &lt;+43&gt;:	lea    0x24(%esp),%eax					;eax=(0x24+esp)<br>0x0804929a &lt;+47&gt;:	mov    %eax,0x8(%esp)					;M[0x8+esp]=eax=(0x24+esp)<br>0x0804929e &lt;+51&gt;:	movl   $0x804a3d1,0x4(%esp)				;M[0x4+esp]=eax=0x804a3d1<br>0x080492a6 &lt;+59&gt;:	movl   $0x804c4d0,(%esp)				;M[esp]=0x804c4d0--从该位置读入<br>0x080492ad &lt;+66&gt;:	call   0x8048870 &lt;__isoc99_sscanf@plt&gt;	<br>0x080492b2 &lt;+71&gt;:	cmp    $0x3,%eax						;输入参数个数应等于3<br>0x080492b5 &lt;+74&gt;:	jne    0x80492ec &lt;phase_defused+129&gt;	;否则不会到达scret_phase<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>调用<code>&lt;__isoc99_sscanf@plt&gt;</code>从0x804c4d0读入参数。根据函数的参数可知，共读入3个参数分别保存在<code>(0x24+esp)</code>、<code>(0x28+esp)</code>、<code>(0x2c+esp)</code>。输入参数的格式为地址<code>0x804a3d1</code>所示：</p>
+<p><img src="/bomblab/image-20210513203029685.png" srcset="/img/loading.gif" lazyload alt="image-20210513203029685"></p>
+</li>
+</ul>
+</li>
+<li><p>第三部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">   0x080492b7 &lt;+76&gt;:	movl   $0x804a3da,0x4(%esp)				;M[0x4+esp]=0x804a3da<br>   0x080492bf &lt;+84&gt;:	lea    0x2c(%esp),%eax					;eax=(0x2c+esp)<br>   0x080492c3 &lt;+88&gt;:	mov    %eax,(%esp)						;M[esp]=eax=(0x2c+esp)<br>   0x080492c6 &lt;+91&gt;:	call   0x8048fd4 &lt;strings_not_equal&gt;	<br>   						;0x804a3da存储的字符串和(0x2c+esp)中的字符串的字符串进行比较。若相等则eax=0。<br>   						;0x804a3da存储的字符串为 &quot;DrEvil&quot; <br>   						;（0x2c+esp）存储的为&lt;__isoc99_sscanf@plt&gt;读入的第三个参数%s对应的字符串。<br>   0x080492cb &lt;+96&gt;:	test   %eax,%eax<br>   0x080492cd &lt;+98&gt;:	jne    0x80492ec &lt;phase_defused+129&gt;	;如果eax!=0，则会跳过secret_phase<br>   0x080492cf &lt;+100&gt;:	movl   $0x804a2a0,(%esp)				;M[esp]=0x804a2a0<br>   0x080492d6 &lt;+107&gt;:	call   0x8048800 &lt;puts@plt&gt;				<br>   ;查看0x804a2a0存储的值,得输出的字符串:&quot;Curses, you&#x27;ve found the secret phase!&quot;”<br>   0x080492db &lt;+112&gt;:	movl   $0x804a2c8,(%esp)				;;M[esp]=0x804a2c8<br>   0x080492e2 &lt;+119&gt;:	call   0x8048800 &lt;puts@plt&gt;<br>   ;查看0x804a2c8存储的值,得输出的字符串:&quot;But finding it and solving it are quite different...&quot;<br>   0x080492e7 &lt;+124&gt;:	call   0x8048ec2 &lt;secret_phase&gt;			;secret_phase:顾名思义，秘密关卡！<br>   0x080492ec &lt;+129&gt;:	movl   $0x804a300,(%esp)<br>   0x080492f3 &lt;+136&gt;:	call   0x8048800 &lt;puts@plt&gt;<br>   0x080492f8 &lt;+141&gt;:	mov    0x7c(%esp),%eax					;取出原%gs:0x14的值<br>   0x080492fc &lt;+145&gt;:	xor    %gs:0x14,%eax					;与现值异或<br>   0x08049303 &lt;+152&gt;:	je     0x804930a &lt;phase_defused+159&gt;	<br>   						;异或结果为0，栈保护者canary未被非法篡改，安全退出程序<br>   0x08049305 &lt;+154&gt;:	call   0x80487d0 &lt;__stack_chk_fail@plt&gt; <br>   						;否则ZF=0,调用__stack_chk_fail，退出程序<br>   0x0804930a &lt;+159&gt;:	add    $0x8c,%esp<br>   0x08049310 &lt;+165&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>此时需要找到地址0x804c4d0存储的是什么，哪来的<code>%d %d %s</code>。</p>
+</li>
+<li><p>故在进入每个关卡的函数的位置设断点，观察地址<code>0x804c4d0</code>存储值的变化，进行调试：</p>
+<ul>
+<li><p>进入前三关，皆无变化：</p>
+<p><img src="/bomblab/image-20210513204703675.png" srcset="/img/loading.gif" lazyload alt="image-20210513204703675"></p>
+</li>
+<li><p>进入第4关，变化来了：</p>
+<p><img src="/bomblab/image-20210513204722687.png" srcset="/img/loading.gif" lazyload alt="image-20210513204722687"></p>
+</li>
+<li><p>故<code>0x804c4d0</code>存储的是第4关的输入。</p>
+</li>
+</ul>
+</li>
+<li><p>我们在第4关的输入后增加字符串”DrEvil” ，即可打开秘密关卡secret_phase：</p>
+<p><img src="/bomblab/image-20210513205050635.png" srcset="/img/loading.gif" lazyload alt="image-20210513205050635"></p>
+<p><img src="/bomblab/image-20210513205105128.png" srcset="/img/loading.gif" lazyload alt="image-20210513205105128"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="secret-phase"><a href="#secret-phase" class="headerlink" title="secret_phase"></a>secret_phase</h5><ul>
+<li><p>汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function secret_phase:<br>   0x08048ec2 &lt;+0&gt;:		push   %ebx							;ebx入栈<br>   0x08048ec3 &lt;+1&gt;:		sub    $0x18,%esp					;esp=esp-0x18，开辟栈帧空间<br>   0x08048ec6 &lt;+4&gt;:		call   0x804910d &lt;read_line&gt;		;读取一行，保存在eax中<br>   0x08048ecb &lt;+9&gt;:		movl   $0xa,0x8(%esp)				;M[0x8+esp]=0xa=10	--strtol的第3个参数<br>   0x08048ed3 &lt;+17&gt;:	movl   $0x0,0x4(%esp)				;M[0x4+esp]=0		--strtol的第2个参数<br>   0x08048edb &lt;+25&gt;:	mov    %eax,(%esp)					;M[esp]=eax			--strtol的第1个参数<br>   0x08048ede &lt;+28&gt;:	call   0x80488e0 &lt;strtol@plt&gt;		<br>   						;strtol将eax存储的字符串转化为10进制整数(使结果没有&quot;&quot;)，结束符为空字符。<br>   						;返回值10进制整数保存在eax<br>   0x08048ee3 &lt;+33&gt;:	mov    %eax,%ebx					;ebx=eax<br>   0x08048ee5 &lt;+35&gt;:	lea    -0x1(%eax),%eax				;eax=eax-1;<br>   0x08048ee8 &lt;+38&gt;:	cmp    $0x3e8,%eax					;比较eax和0x3e8<br>   0x08048eed &lt;+43&gt;:	jbe    0x8048ef4 &lt;secret_phase+50&gt;	;若eax&lt;=0x3e8，则不爆炸<br>   0x08048eef &lt;+45&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048ef4 &lt;+50&gt;:	mov    %ebx,0x4(%esp)				;M[0x4+esp]=ebx<br>   0x08048ef8 &lt;+54&gt;:	movl   $0x804c088,(%esp)			;M[esp]=0x804c088<br>   0x08048eff &lt;+61&gt;:	call   0x8048e71 &lt;fun7&gt;				<br>   						;调用函数fun7(0x804c088,ebx)，返回值保存在eax<br>   0x08048f04 &lt;+66&gt;:	cmp    $0x4,%eax					<br>   0x08048f07 &lt;+69&gt;:	je     0x8048f0e &lt;secret_phase+76&gt;	;若eax=4，则不爆炸且过关<br>   0x08048f09 &lt;+71&gt;:	call   0x80490e6 &lt;explode_bomb&gt;<br>   0x08048f0e &lt;+76&gt;:	movl   $0x804a240,(%esp)			;M[esp]=0x804a240<br>   0x08048f15 &lt;+83&gt;:	call   0x8048800 &lt;puts@plt&gt;			<br>   						;输出：&quot;Wow! You&#x27;ve defused the secret stage!&quot;<br>   0x08048f1a &lt;+88&gt;:	call   0x804926b &lt;phase_defused&gt;	;退出秘密关卡<br>   0x08048f1f &lt;+93&gt;:	add    $0x18,%esp<br>   0x08048f22 &lt;+96&gt;:	pop    %ebx<br>   0x08048f23 &lt;+97&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>其中，<code>fun7</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function fun7:<br>   0x08048e71 &lt;+0&gt;:		push   %ebx					;ebx入栈<br>   0x08048e72 &lt;+1&gt;:		sub    $0x18,%esp			;esp=esp-0x18，开辟栈帧空间<br>   0x08048e75 &lt;+4&gt;:		mov    0x20(%esp),%edx		;edx=M[0x20+esp]	--第一个参数<br>   0x08048e79 &lt;+8&gt;:		mov    0x24(%esp),%ecx		;ecx=M[0x24+esp]	--第二个参数<br>   0x08048e7d &lt;+12&gt;:	test   %edx,%edx			<br>   0x08048e7f &lt;+14&gt;:	je     0x8048eb8 &lt;fun7+71&gt;	;如果edx=0 跳转-&gt;return 0xffffffff<br>   0x08048e81 &lt;+16&gt;:	mov    (%edx),%ebx			;ebx=M[edx]<br>   0x08048e83 &lt;+18&gt;:	cmp    %ecx,%ebx			<br>   0x08048e85 &lt;+20&gt;:	jle    0x8048e9a &lt;fun7+41&gt;	;如果ebx&lt;=ecx(有符号数)，跳转至&lt;fun7+41&gt;<br>   0x08048e87 &lt;+22&gt;:	mov    %ecx,0x4(%esp)		;M[0x4+esp]=ecx<br>   0x08048e8b &lt;+26&gt;:	mov    0x4(%edx),%eax		;eax=M[0x4+edx]<br>   0x08048e8e &lt;+29&gt;:	mov    %eax,(%esp)			;M[esp]=eax=M[0x4+edx]<br>   0x08048e91 &lt;+32&gt;:	call   0x8048e71 &lt;fun7&gt;		;递归调用函数fun7(M[0x4+edx],ecx)<br>   0x08048e96 &lt;+37&gt;:	add    %eax,%eax			;eax=2*fun7(M[0x4+edx],ecx)<br>   0x08048e98 &lt;+39&gt;:	jmp    0x8048ebd &lt;fun7+76&gt;	;跳转-&gt; return 2*fun7(M[0x4+edx],ecx);<br>   0x08048e9a &lt;+41&gt;:	mov    $0x0,%eax			;eax=0<br>   0x08048e9f &lt;+46&gt;:	cmp    %ecx,%ebx			<br>   0x08048ea1 &lt;+48&gt;:	je     0x8048ebd &lt;fun7+76&gt;	;如果ebx=ecx，跳转-&gt; return 0；	<br>   0x08048ea3 &lt;+50&gt;:	mov    %ecx,0x4(%esp)		;M[0x4+esp]=ecx<br>   0x08048ea7 &lt;+54&gt;:	mov    0x8(%edx),%eax		;eax=M[0x8+edx]<br>   0x08048eaa &lt;+57&gt;:	mov    %eax,(%esp)			;M[esp]=eax<br>   0x08048ead &lt;+60&gt;:	call   0x8048e71 &lt;fun7&gt;		;递归调用函数fun7(M[0x8+edx],ecx)<br>   0x08048eb2 &lt;+65&gt;:	lea    0x1(%eax,%eax,1),%eax;return eax=2*fun7(M[0x8+edx],ecx)+1<br>   0x08048eb6 &lt;+69&gt;:	jmp    0x8048ebd &lt;fun7+76&gt;<br>   0x08048eb8 &lt;+71&gt;:	mov    $0xffffffff,%eax<br>   0x08048ebd &lt;+76&gt;:	add    $0x18,%esp			<br>   0x08048ec0 &lt;+79&gt;:	pop    %ebx<br>   0x08048ec1 &lt;+80&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>显然fun7是个含2个参数的递归函数，C++代码可如下表示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fun7</span><span class="hljs-params">(<span class="hljs-type">int</span> *p,<span class="hljs-type">int</span> m)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span>(p==<span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		<span class="hljs-keyword">if</span>(*p&lt;m)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*<span class="hljs-built_in">fun7</span>(*(p+<span class="hljs-number">2</span>),m)+<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(*p==m)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>		<span class="hljs-keyword">else</span><br>			<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*<span class="hljs-built_in">fun7</span>(*(p+<span class="hljs-number">1</span>),m);<br>	&#125; <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>这个递归的返回值为0时结束递归，对于每个返回值，根据与m的大小关系，有两个递归分支，分别是$2<em>fun7(</em>(p+2),m)+1$和$2<em>fun7(</em>(p+1),m)$。</p>
+</li>
+<li><p>fun7最终的返回值为4，故<code>0-&gt;1-&gt;2-&gt;4</code>为递归返回的路径，则递归调用时地址的增量为0x4,0x4,0x8。</p>
+<p><img src="/bomblab/image-20210514111858675.png" srcset="/img/loading.gif" lazyload alt="image-20210514111858675"></p>
+</li>
+<li><p>故<code>m=7</code>，使得在最后一层递归返回0。整个过程如下：</p>
+<ol>
+<li><code>*p=24&gt;m,return 2*fun7(*(p+1),m)</code></li>
+<li><code>*p=8&gt;m,return 2*fun7(*(p+1),m)</code></li>
+<li><code>*p=6&lt;m,return 2*fun7(*(p+1),m)+1</code></li>
+<li><code>*p=7=m,return 0</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输入7，fun7得到返回值4，通关：</p>
+<p><img src="/bomblab/image-20210514112742119.png" srcset="/img/loading.gif" lazyload alt="image-20210514112742119"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/bomblab/image-20210514112928319.png" srcset="/img/loading.gif" lazyload alt="image-20210514112928319"></p>
+<p><img src="/bomblab/image-20210514112906727.png" srcset="/img/loading.gif" lazyload alt="image-20210514112906727"></p>
+<h2 id="实验心得"><a href="#实验心得" class="headerlink" title="实验心得"></a>实验心得</h2><ol>
+<li><p>这次实验的各个关卡对汇编语言实现的功能各有侧重：</p>
+<p>phase_1：字符串在内存地址中的存放、访问，字符串长度的获取与字符串的比较。</p>
+<p>phase_2：利用循环得到存储等比数列的数组。</p>
+<p>phase_3：实现switch语句，需要查看跳转表。</p>
+<p>phase_4：递归函数的实现。</p>
+<p>phase_5：数组及其索引。</p>
+<p>phase_6：链表及其重组。</p>
+<p>secret_phase：通过含指针参数的递归函数实现地址跳转。</p>
+<p>通过学习、理解汇编代码在该实验中实现的各种功能，我对汇编代码的各种指令，如比较、跳转、调用指令等有了更深的理解。当遇到难以直接明白其功能的地方，我会尝试把汇编语言转换成自己编写的C++代码帮助理解，从而对汇编的功能实现有了更全面的认识。</p>
+</li>
+<li><p>在实验过程中难免需要对汇编代码进行调试，查看某个寄存器或在某个地址内存的值及其变化。所以gdb工具的使用是不可或缺的。正是通过完成这次实验，我对gdb工具的使用愈发熟练。</p>
+</li>
+<li><p>在进行函数调用时，栈帧的变化格外重要。通过这次实验对汇编代码的调试，思考在何处保存函数的参数、何处保存临时变量等，我对栈帧的结构有了更深刻的认识。</p>
+</li>
+<li><p>进行实验，细心和耐心也是很重要的品质。有时候会因为不够细心而耽误时间，如phase_4中我看反了两个输入参数的位置，但好在能够及时发现并改正。在遭遇比较复杂的结构，如phase_6中重构链表的双重循环，则需要耐心分析汇编语句。有了细心和耐心的加持，才能更好地闯关一个个关卡，收获知识，提升技能。</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSAPP-LAB/">CSAPP-LAB</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均为博客作者本人编写整理，转载请联系作者！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/01/buflab/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSAPP-buflab</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-8gj7evx1e18b463f","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>Copyrights © 2021 Yuhan</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>Xiayan</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://lib.baomitu.com/mathjax/3.2.0/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6da93a2e5d7f160e0f40b273ddbbddac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

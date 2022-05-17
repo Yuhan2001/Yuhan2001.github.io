@@ -1,0 +1,1720 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wu Yuhan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《深入理解计算机系统》第3版课本笔记（1—6章），供个人整理复习使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解计算机系统》第3版课本笔记（1—6章）">
+<meta property="og:url" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Yuhan&#39;s blog">
+<meta property="og:description" content="《深入理解计算机系统》第3版课本笔记（1—6章），供个人整理复习使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606185900541.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210606220545835.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210606221113545.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221257531.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210606221506397.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221615091.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210606222029334.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210606222335649.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222829047.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606223232436.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210607230607757.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210607235940694.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608000105612.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608181810596.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608181837956.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608181943455.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608182836509.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608183201953.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608183234799.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608184712172.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608184746355.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185221135.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185326409.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185436962.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185503997.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185633585.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185706207.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185846184.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608185940296.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190016605.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190049598.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190306482.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190332236.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190507561.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190820347.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190839402.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608190931912.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608191005986.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608191148416.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191808690.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608191905833.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210608192611586.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608194502658.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609161646145.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609161946987.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609162219218.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609163308333.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609163410428.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210609163900487.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164424857.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164517185.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164615864.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210610230126901.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611140345510.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210611141336406.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611141452316.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611142314421.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611143139222.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611144432716.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611145504797.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611145521279.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611204545720.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611223513165.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611223834526.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611224958080.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611225008702.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611225934057.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611231843282.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613202922594.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210613203039064.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203151849.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203202598.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203734649-1623587856033.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203926808.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613204007526.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613204444726.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613214617247.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613215006549.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210613215437594.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613231550850.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210613232257891.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210614233612112.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234326400.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234414936.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210614234545156.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615161512541.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615163503654.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615162138941.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170347062.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170401671.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615171808860.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615172402478.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174054455.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210615174443162.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210615174459503.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174625772.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174643305.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/深入理解计算机系统/image-20210615174710471.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174928908.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174941992.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174954523.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175049542.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175559948.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616163626300.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170418768.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170449047.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170616488.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170911598.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616171526017.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194008217.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194515993-1623843917008.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194750930.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616195057182.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616195108596.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200705881.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200719291.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200750144.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200804495.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201410777.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201749638.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201856220.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201910591.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202352188.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202616055.png">
+<meta property="og:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202634465.png">
+<meta property="article:published_time" content="2021-05-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:18:16.428Z">
+<meta property="article:author" content="Wu Yuhan">
+<meta property="article:tag" content="深入理解计算机系统">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yuhan2001.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606185900541.png">
+  
+  
+  <title>《深入理解计算机系统》第3版课本笔记（1—6章） - Yuhan&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yuhan2001.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6da93a2e5d7f160e0f40b273ddbbddac","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yuhan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/3.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="《深入理解计算机系统》第3版课本笔记（1—6章）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-01 00:00" pubdate>
+        2021年6月1日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      23k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      196 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">《深入理解计算机系统》第3版课本笔记（1—6章）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="深入理解计算机系统"><a href="#深入理解计算机系统" class="headerlink" title="深入理解计算机系统"></a>深入理解计算机系统</h1><h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><h3 id="1-1-信息就是位-上下文"><a href="#1-1-信息就是位-上下文" class="headerlink" title="1.1 信息就是位+上下文"></a>1.1 信息就是位+上下文</h3><h5 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h5><ul>
+<li>源程序实际上就是一个由值0和1组成的位（又称为比特）序列，8个位被组织成一组，称为<code>字节</code>。	</li>
+<li>大部分的现代计算机系统都使用ASCII标准来表示文本字符，这种方式实际上就是用一个唯一的单字节大小的整数值来表示每个字符。</li>
+</ul>
+<h5 id="文本文件和二进制文件"><a href="#文本文件和二进制文件" class="headerlink" title="文本文件和二进制文件"></a>文本文件和二进制文件</h5><ul>
+<li>像hello.c这样只由ASCII字符构成的文件称为<code>文本文件</code>，所有其他文件都称为<code>二进制文件</code>。</li>
+</ul>
+<h3 id="1-2-程序被其他程序翻译成不同的格式"><a href="#1-2-程序被其他程序翻译成不同的格式" class="headerlink" title="1.2 程序被其他程序翻译成不同的格式"></a>1.2 程序被其他程序翻译成不同的格式</h3><ul>
+<li>为了在系统上运行hello.c程序，每条C语句都必须被其他程序转化为一系列低级<code>机器语言</code>指令。然后这些指令按照一种称为<code>可执行目标程序</code>的格式打好包，并以二进制磁盘文件的形式存放起来。目标程序也被称为<code>可执行目标文件</code>。</li>
+</ul>
+<h5 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h5><ul>
+<li><p>执行这四个阶段的程序（<strong>预处理器</strong>、<strong>编译器</strong>、<strong>汇编器</strong>、<strong>链接器</strong>）一起构成了<strong>编译系统</strong>（compilation system）。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606185900541.png" srcset="/img/loading.gif" lazyload alt="image-20210606185900541"></p>
+<ul>
+<li><code>预处理</code>阶段。预处理器（cpp）根据以字符#开头的命令，修改原始的C程序。(<code>gcc -E test.c -o test.i</code>)</li>
+<li><code>编译</code>阶段。编译器（ccl）将文本文件hello.i翻译成文本文件hello.s，它包含一个<code>汇编语言</code>程序。(<code>gcc -S test.i -o test.s</code>)</li>
+<li><code>汇编</code>阶段。接下来，汇编器（as）将hello.s翻译成机器语言指令，把这些指令打包成一种叫做<code>可重定位目标程序</code>（relocatable object program）的格式，并将结果保存在目标文件hello.o中。(<code>gcc -c test.s -o test.o</code>)</li>
+<li><code>链接</code>阶段。printf函数存在于一个名为printf.o的单独的预编译好了的目标文件中，而这个文件必须以某种方式合并到我们的hello.o的程序中。链接器（ld）就负责处理这种合并。(<code>gcc test.o -o test</code>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-了解编译系统如何工作是大有益处的"><a href="#1-3-了解编译系统如何工作是大有益处的" class="headerlink" title="1.3 了解编译系统如何工作是大有益处的"></a>1.3 了解编译系统如何工作是大有益处的</h3><h3 id="1-4-处理器读并解释储存在内存中的指令"><a href="#1-4-处理器读并解释储存在内存中的指令" class="headerlink" title="1.4 处理器读并解释储存在内存中的指令"></a>1.4 处理器读并解释储存在内存中的指令</h3><h5 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h5><ul>
+<li>shell是一个命令解释器，它输出一个提示符，等待输入一个命令行，然后执行这个命令。如果该命令的第一个单词不是内置的shell命令，那么shell就会假设这是一个可执行文件的名字，它将加载并运行这个文件。</li>
+</ul>
+<h4 id="1-4-1-系统的硬件组成"><a href="#1-4-1-系统的硬件组成" class="headerlink" title="1.4.1 系统的硬件组成"></a>1.4.1 系统的硬件组成</h4><h5 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h5><ul>
+<li>通常总线被设计成传输定长的字节块，也就是<code>字</code>（word）。字中的字节数（即<code>字长</code>）是一个基本的系统参数，各个系统中都不尽相同。</li>
+</ul>
+<h5 id="I-x2F-O设备"><a href="#I-x2F-O设备" class="headerlink" title="I&#x2F;O设备"></a>I&#x2F;O设备</h5><img src="深入理解计算机系统/image-20210606220545835.png" srcset="/img/loading.gif" lazyload alt="image-20210606220545835" style="zoom:67%;" />
+
+<h5 id="主存"><a href="#主存" class="headerlink" title="主存"></a>主存</h5><ul>
+<li><strong>主存</strong>是一个临时存储设备，在处理器执行程序时，用来存放程序和程序处理的数据。</li>
+</ul>
+<h5 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h5><ul>
+<li><p><strong>中央处理单元(CPU)<strong>，简称</strong>处理器</strong>，是解释（或执行）存储在主存中指令的引擎。处理器的核心是一个大小为一个字的存储设备（或寄存器），称为<strong>程序计数器</strong>。在任何时刻，PC都指向主存中的某条机器语言指令（即含有该条指令的地址）。</p>
+</li>
+<li><p>寄存器文件是一个小的存储设备，由一些单个字长的寄存器组成，每个寄存器都有唯一的名字。ALU计算新的数据和地址值。</p>
+</li>
+<li><p>CPU在指令的要求下可能会执行这些操作：</p>
+<img src="深入理解计算机系统/image-20210606221113545.png" srcset="/img/loading.gif" lazyload alt="image-20210606221113545" style="zoom:67%;" /></li>
+</ul>
+<h4 id="1-4-2-运行hello程序"><a href="#1-4-2-运行hello程序" class="headerlink" title="1.4.2 运行hello程序"></a>1.4.2 运行hello程序</h4><h3 id="1-5-高速缓存至关重要"><a href="#1-5-高速缓存至关重要" class="headerlink" title="1.5 高速缓存至关重要"></a>1.5 高速缓存至关重要</h3><h3 id="1-6-存储设备形成层次结构"><a href="#1-6-存储设备形成层次结构" class="headerlink" title="1.6 存储设备形成层次结构"></a>1.6 存储设备形成层次结构</h3><h5 id="一个存储器层次结构的示例"><a href="#一个存储器层次结构的示例" class="headerlink" title="一个存储器层次结构的示例"></a>一个存储器层次结构的示例</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221257531.png" srcset="/img/loading.gif" lazyload alt="image-20210606221257531"></p>
+<ul>
+<li>存储器层次结构的主要思想是上一层的存储器作为低一层存储器的高速缓存。</li>
+</ul>
+<h3 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h3><h5 id="计算机系统的分层视图"><a href="#计算机系统的分层视图" class="headerlink" title="计算机系统的分层视图"></a>计算机系统的分层视图</h5><img src="深入理解计算机系统/image-20210606221506397.png" srcset="/img/loading.gif" lazyload alt="image-20210606221506397" style="zoom:67%;" />
+
+<ul>
+<li>我们可以把操作系统看作是应用程序与硬件之前插入的一层软件。</li>
+</ul>
+<h5 id="操作系统提供的抽象表示"><a href="#操作系统提供的抽象表示" class="headerlink" title="操作系统提供的抽象表示"></a>操作系统提供的抽象表示</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221615091.png" srcset="/img/loading.gif" lazyload alt="image-20210606221615091"></p>
+<ul>
+<li>操作系统由两个基本功能：（1）防止硬件被失控的应用程序滥用；（2）向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。</li>
+<li>文件是对I&#x2F;O设备的抽象表示，虚拟内存是对主存和硬盘I&#x2F;O设备的抽象表示，进程则是对处理器、主存和I&#x2F;O设备的抽象表示。</li>
+</ul>
+<h4 id="1-7-1-进程"><a href="#1-7-1-进程" class="headerlink" title="1.7.1 进程"></a>1.7.1 进程</h4><ul>
+<li><code>进程</code>是操作系统对一个正在运行的程序的一种抽象。</li>
+</ul>
+<h5 id="进程的上下文切换"><a href="#进程的上下文切换" class="headerlink" title="进程的上下文切换"></a>进程的上下文切换</h5><img src="深入理解计算机系统/image-20210606222029334.png" srcset="/img/loading.gif" lazyload alt="image-20210606222029334" style="zoom:67%;" />
+
+<h4 id="1-7-2-线程"><a href="#1-7-2-线程" class="headerlink" title="1.7.2 线程"></a>1.7.2 线程</h4><ul>
+<li>一个进程实际上可以又多个称为<code>线程</code>的执行单元组成，每个线程都运行在进程的上下文中，并共享同样的代码和全局数据。</li>
+</ul>
+<h4 id="1-7-3-虚拟内存"><a href="#1-7-3-虚拟内存" class="headerlink" title="1.7.3 虚拟内存"></a>1.7.3 虚拟内存</h4><h5 id="虚拟地址空间"><a href="#虚拟地址空间" class="headerlink" title="虚拟地址空间"></a>虚拟地址空间</h5><ul>
+<li><p>每个进程看到的内存都是一致的，称为<code>虚拟地址空间</code>。</p>
+<img src="深入理解计算机系统/image-20210606222335649.png" srcset="/img/loading.gif" lazyload alt="image-20210606222335649" style="zoom:67%;" /></li>
+</ul>
+<h4 id="1-7-4-文件"><a href="#1-7-4-文件" class="headerlink" title="1.7.4 文件"></a>1.7.4 文件</h4><ul>
+<li><strong>文件</strong>就是字符序列。</li>
+</ul>
+<h3 id="1-8-系统之间利用网络通信"><a href="#1-8-系统之间利用网络通信" class="headerlink" title="1.8 系统之间利用网络通信"></a>1.8 系统之间利用网络通信</h3><h3 id="1-9-重要主题"><a href="#1-9-重要主题" class="headerlink" title="1.9 重要主题"></a>1.9 重要主题</h3><h4 id="1-9-1-Amdahl定律"><a href="#1-9-1-Amdahl定律" class="headerlink" title="1.9.1 Amdahl定律"></a>1.9.1 Amdahl定律</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222829047.png" srcset="/img/loading.gif" lazyload alt="image-20210606222829047"></p>
+<h4 id="1-9-2-并发和并行"><a href="#1-9-2-并发和并行" class="headerlink" title="1.9.2 并发和并行"></a>1.9.2 并发和并行</h4><ul>
+<li><strong>并发</strong>（concurrency）是一个通用的概念，指一个同时具有多个活动的系统；而术语<strong>并行</strong>（parallelism）指的是用并发来使一个系统运行得更快。</li>
+</ul>
+<h4 id="1-9-3-计算机系统中抽象的重要性"><a href="#1-9-3-计算机系统中抽象的重要性" class="headerlink" title="1.9.3 计算机系统中抽象的重要性"></a>1.9.3 计算机系统中抽象的重要性</h4><p><strong>文件</strong>是多I&#x2F;O设备的抽象，<strong>虚拟内存</strong>是对程序存储器的抽象，<strong>进程</strong>是对一个正在运行的程序的抽象，<strong>虚拟机</strong>是整个计算机的抽象，包括存储系统，处理器和程序。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606223232436.png" srcset="/img/loading.gif" lazyload alt="image-20210606223232436"></p>
+<h2 id="第2章-信息的表示和处理"><a href="#第2章-信息的表示和处理" class="headerlink" title="第2章 信息的表示和处理"></a>第2章 信息的表示和处理</h2><ul>
+<li>整数的表示虽然只能编码一个相对较小的数值范围，但是这种表示是精确的；而浮点数虽然可以编码一个较大的数值范围，但是这种表示只是近似的。</li>
+</ul>
+<h3 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h3><ul>
+<li>大多数计算机使用8位的块，或者<strong>字节</strong>（byte），作为最小的可寻址的内存单位。</li>
+</ul>
+<h4 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h4><h4 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h4><h5 id="字长"><a href="#字长" class="headerlink" title="字长"></a>字长</h5><ul>
+<li>每台计算机都有一个<strong>字长</strong>（word size），指明指针数据的标称大小（nominal size）。</li>
+<li>对于一个字长为$w$位的机器而言，虚拟地址的范围为$0$~$2^w-1$，程序最多访问$2^w$个字节。</li>
+</ul>
+<h5 id="向后兼容"><a href="#向后兼容" class="headerlink" title="向后兼容"></a>向后兼容</h5><ul>
+<li>当程序prog.c用如下伪指令编译后<code>linux&gt; gcc -m32 prog.c</code>，该程序就可以在32位或64位机器上正确运行。</li>
+<li>另一方面，若程序用下述伪指令编译<code>linux&gt; gcc -m64 prog.c</code>，那就只能在64位机器上运行。</li>
+</ul>
+<h4 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h4><ul>
+<li>在几乎所有的机器上，多字节对象都被存储为连续的字节序列，对象的地址为所用字节中最小的地址。</li>
+</ul>
+<h5 id="小端法和大端法"><a href="#小端法和大端法" class="headerlink" title="小端法和大端法"></a>小端法和大端法</h5><ul>
+<li><p>最低有效字节在最前面的方式，称为<strong>小端法</strong>（little endian）。</p>
+</li>
+<li><p>最高有效字节在最前面的方式，称为<strong>大端法</strong>（big endian）。</p>
+<img src="深入理解计算机系统/image-20210607230607757.png" srcset="/img/loading.gif" lazyload alt="image-20210607230607757" style="zoom:67%;" />
+</li>
+<li><p>一旦选择了特定操作系统，那么字节顺序也就固定下来。</p>
+</li>
+</ul>
+<h4 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h4><ul>
+<li>C语言中字符串被编码为一个以null（其值为0）字符结尾的字符数组。</li>
+</ul>
+<h4 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h4><h4 id="2-1-6-布尔代数简介"><a href="#2-1-6-布尔代数简介" class="headerlink" title="2.1.6 布尔代数简介"></a>2.1.6 布尔代数简介</h4><h4 id="2-1-7-C语言中的位级运算"><a href="#2-1-7-C语言中的位级运算" class="headerlink" title="2.1.7 C语言中的位级运算"></a>2.1.7 C语言中的位级运算</h4><ul>
+<li>位级运算的一个常见用法就是实现<strong>掩码</strong>运算<ul>
+<li>例子：位级运算<code>x&amp;0xFF</code>生成一个由x的最低有效字节组成的值。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-8-C语言中的逻辑运算"><a href="#2-1-8-C语言中的逻辑运算" class="headerlink" title="2.1.8 C语言中的逻辑运算"></a>2.1.8 C语言中的逻辑运算</h4><ul>
+<li>逻辑运算符&amp;&amp;和||与它们对应的位级运算&amp;和|之间第二个重要的区别是，如果对第一个参数求值就能确定表达式的结果，那么逻辑运算符就不会对第二个参数求值就能确定表达式的结果，那么逻辑运算符就不会对第二个参数求值。因此，例如，表达式<code>a&amp;&amp;5/a</code>将不会造成被零除，而表达式<code>p&amp;&amp;*p++</code>也不会导致间接引用空指针。</li>
+</ul>
+<h4 id="2-1-9-C语言中的移位运算"><a href="#2-1-9-C语言中的移位运算" class="headerlink" title="2.1.9 C语言中的移位运算"></a>2.1.9 C语言中的移位运算</h4><ul>
+<li>移位运算是从左至右可结合的。</li>
+<li>机器支持两种形式的右移：<strong>逻辑右移</strong>和<strong>算术右移</strong>。逻辑右移在左端补k个0，算术右移在左端补k个最高有效位的值。</li>
+<li>实际上，几乎所有的编译器&#x2F;机器组合都对有符号数使用算术右移。</li>
+<li>另一方面，对于无符号数，右移必须是逻辑的。</li>
+</ul>
+<h5 id="若-k-大于-w-位"><a href="#若-k-大于-w-位" class="headerlink" title="若$k$大于$w$位"></a>若$k$大于$w$位</h5><p>位移量通过计算$k$mod$w$得到。</p>
+<ul>
+<li>加法和减法的优先级比移位运算要高。</li>
+</ul>
+<h3 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h3><p>B：二进制；</p>
+<p>T：补码；</p>
+<p>U：无符号。</p>
+<h5 id="整数的数据与算术操作术语，下标-w-表示数据表示中的位数"><a href="#整数的数据与算术操作术语，下标-w-表示数据表示中的位数" class="headerlink" title="整数的数据与算术操作术语，下标$w$表示数据表示中的位数"></a>整数的数据与算术操作术语，下标$w$表示数据表示中的位数</h5><img src="深入理解计算机系统/image-20210607235940694.png" srcset="/img/loading.gif" lazyload alt="image-20210607235940694" style="zoom:67%;" />
+
+<h4 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h4><h5 id="C语言整型数据类型的典型取值范围"><a href="#C语言整型数据类型的典型取值范围" class="headerlink" title="C语言整型数据类型的典型取值范围"></a>C语言整型数据类型的典型取值范围</h5><img src="深入理解计算机系统/image-20210608000105612.png" srcset="/img/loading.gif" lazyload alt="image-20210608000105612" style="zoom:67%;" />
+
+<img src="深入理解计算机系统/image-20210608181810596.png" srcset="/img/loading.gif" lazyload alt="image-20210608181810596" style="zoom:67%;" />
+
+<img src="深入理解计算机系统/image-20210608181837956.png" srcset="/img/loading.gif" lazyload alt="image-20210608181837956" style="zoom:67%;" />
+
+<h4 id="2-2-无符号数的编码"><a href="#2-2-无符号数的编码" class="headerlink" title="2.2 无符号数的编码"></a>2.2 无符号数的编码</h4><h5 id="无符号数编码的定义"><a href="#无符号数编码的定义" class="headerlink" title="无符号数编码的定义"></a>无符号数编码的定义</h5><img src="深入理解计算机系统/image-20210608181943455.png" srcset="/img/loading.gif" lazyload alt="image-20210608181943455" style="zoom:67%;" />
+
+<ul>
+<li>函数$B2U_w$能够被定义为一个映射：$B2U_w：\lbrace0,1\rbrace^w \to \lbrace 0,…,2^w-1 \rbrace$。</li>
+</ul>
+<h5 id="无符号数编码的唯一性"><a href="#无符号数编码的唯一性" class="headerlink" title="无符号数编码的唯一性"></a>无符号数编码的唯一性</h5><img src="深入理解计算机系统/image-20210608182836509.png" srcset="/img/loading.gif" lazyload alt="image-20210608182836509" style="zoom:67%;" />
+
+<h4 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h4><h5 id="补码编码的定义"><a href="#补码编码的定义" class="headerlink" title="补码编码的定义"></a>补码编码的定义</h5><img src="深入理解计算机系统/image-20210608183201953.png" srcset="/img/loading.gif" lazyload alt="image-20210608183201953" style="zoom:67%;" />
+
+<h5 id="补码编码的唯一性"><a href="#补码编码的唯一性" class="headerlink" title="补码编码的唯一性"></a>补码编码的唯一性</h5><img src="深入理解计算机系统/image-20210608183234799.png" srcset="/img/loading.gif" lazyload alt="image-20210608183234799" style="zoom:67%;" />
+
+<ul>
+<li><p>补码的范围是不对称的：$|TMin|&#x3D;|TMax|+1$。</p>
+</li>
+<li><p>最大的无符号数值刚好比补码的最大值的两倍的大一点：$UMax_w&#x3D;2TMax_w+1$。</p>
+<p>注意$-1$和$UMax$由同样的位表示——一个全1的串。</p>
+</li>
+</ul>
+<h4 id="2-2-4-有符号数与无符号数之间的转换"><a href="#2-2-4-有符号数与无符号数之间的转换" class="headerlink" title="2.2.4 有符号数与无符号数之间的转换"></a>2.2.4 有符号数与无符号数之间的转换</h4><ul>
+<li>假设变量x声明位int，u声明为unsigned，表达式(unsigned)x会将x的值转换成一个无符号数值，而(int)u将u的值转换成一个有符号整数。</li>
+</ul>
+<h5 id="补码转换为无符号数："><a href="#补码转换为无符号数：" class="headerlink" title="补码转换为无符号数："></a>补码转换为无符号数：</h5><img src="深入理解计算机系统/image-20210608184712172.png" srcset="/img/loading.gif" lazyload alt="image-20210608184712172" style="zoom:67%;" />
+
+<h5 id="无符号数转化为补码"><a href="#无符号数转化为补码" class="headerlink" title="无符号数转化为补码"></a>无符号数转化为补码</h5><img src="深入理解计算机系统/image-20210608184746355.png" srcset="/img/loading.gif" lazyload alt="image-20210608184746355" style="zoom:67%;" />
+
+<h4 id="2-2-5-C语言中的有符号数与无符号数"><a href="#2-2-5-C语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C语言中的有符号数与无符号数"></a>2.2.5 C语言中的有符号数与无符号数</h4><ul>
+<li>如果它的一个运算数是有符号而另一个是无符号的，那么C语言会隐式地将有符号参数强制类型转换为无符号数。</li>
+</ul>
+<h4 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h4><h5 id="零扩展"><a href="#零扩展" class="headerlink" title="零扩展"></a>零扩展</h5><ul>
+<li><p>要将一个无符号数转换为一个更大的数据类型，我们只要简单的在表示的开头添加0。这种运算被称为<strong>零扩展</strong>（zero extension）</p>
+<img src="深入理解计算机系统/image-20210608185221135.png" srcset="/img/loading.gif" lazyload alt="image-20210608185221135" style="zoom:67%;" /></li>
+</ul>
+<h5 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h5><ul>
+<li><p>要将一个补码数字转换为一个更大的数据类型，可以执行一个<strong>符号扩展</strong>（sign extension）</p>
+<img src="深入理解计算机系统/image-20210608185326409.png" srcset="/img/loading.gif" lazyload alt="image-20210608185326409" style="zoom:67%;" /></li>
+</ul>
+<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><h5 id="截断无符号数"><a href="#截断无符号数" class="headerlink" title="截断无符号数"></a>截断无符号数</h5><img src="深入理解计算机系统/image-20210608185436962.png" srcset="/img/loading.gif" lazyload alt="image-20210608185436962" style="zoom:67%;" />
+
+<h5 id="截断补码数值"><a href="#截断补码数值" class="headerlink" title="截断补码数值"></a>截断补码数值</h5><img src="深入理解计算机系统/image-20210608185503997.png" srcset="/img/loading.gif" lazyload alt="image-20210608185503997" style="zoom:67%;" />
+
+<h4 id="2-2-8-关于有符号数与无符号数的建议"><a href="#2-2-8-关于有符号数与无符号数的建议" class="headerlink" title="2.2.8 关于有符号数与无符号数的建议"></a>2.2.8 关于有符号数与无符号数的建议</h4><h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><img src="深入理解计算机系统/image-20210608185633585.png" srcset="/img/loading.gif" lazyload alt="image-20210608185633585" style="zoom:67%;" />
+
+<h5 id="检测无符号数中加法的溢出"><a href="#检测无符号数中加法的溢出" class="headerlink" title="检测无符号数中加法的溢出"></a>检测无符号数中加法的溢出</h5><img src="深入理解计算机系统/image-20210608185706207.png" srcset="/img/loading.gif" lazyload alt="image-20210608185706207" style="zoom:67%;" />
+
+<h5 id="无符号数求反"><a href="#无符号数求反" class="headerlink" title="无符号数求反"></a>无符号数求反</h5><img src="深入理解计算机系统/image-20210608185846184.png" srcset="/img/loading.gif" lazyload alt="image-20210608185846184" style="zoom:67%;" />
+
+<h4 id="2-3-2-补码加法"><a href="#2-3-2-补码加法" class="headerlink" title="2.3.2 补码加法"></a>2.3.2 补码加法</h4><img src="深入理解计算机系统/image-20210608185940296.png" srcset="/img/loading.gif" lazyload alt="image-20210608185940296" style="zoom:67%;" />
+
+<h5 id="检测补码加法中的溢出"><a href="#检测补码加法中的溢出" class="headerlink" title="检测补码加法中的溢出"></a>检测补码加法中的溢出</h5><img src="深入理解计算机系统/image-20210608190016605.png" srcset="/img/loading.gif" lazyload alt="image-20210608190016605" style="zoom:67%;" />
+
+<h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><img src="深入理解计算机系统/image-20210608190049598.png" srcset="/img/loading.gif" lazyload alt="image-20210608190049598" style="zoom:67%;" />
+
+<h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><img src="深入理解计算机系统/image-20210608190306482.png" srcset="/img/loading.gif" lazyload alt="image-20210608190306482" style="zoom:67%;" />
+
+<h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><img src="深入理解计算机系统/image-20210608190332236.png" srcset="/img/loading.gif" lazyload alt="image-20210608190332236" style="zoom:67%;" />
+
+<h5 id="无符号和补码乘法的位级等价性"><a href="#无符号和补码乘法的位级等价性" class="headerlink" title="无符号和补码乘法的位级等价性"></a>无符号和补码乘法的位级等价性</h5><img src="深入理解计算机系统/image-20210608190507561.png" srcset="/img/loading.gif" lazyload alt="image-20210608190507561" style="zoom:67%;" />
+
+<h4 id="2-3-6-乘以常数"><a href="#2-3-6-乘以常数" class="headerlink" title="2.3.6 乘以常数"></a>2.3.6 乘以常数</h4><ul>
+<li><p>编译器使用了一项重要的优化，试着用移位和加法运算的组合来代替乘以常数因子的乘法。</p>
+<img src="深入理解计算机系统/image-20210608190820347.png" srcset="/img/loading.gif" lazyload alt="image-20210608190820347" style="zoom:67%;" />
+
+<img src="深入理解计算机系统/image-20210608190839402.png" srcset="/img/loading.gif" lazyload alt="image-20210608190839402" style="zoom:67%;" /></li>
+</ul>
+<h4 id="2-3-7-除以2的幂"><a href="#2-3-7-除以2的幂" class="headerlink" title="2.3.7 除以2的幂"></a>2.3.7 除以2的幂</h4><img src="深入理解计算机系统/image-20210608190931912.png" srcset="/img/loading.gif" lazyload alt="image-20210608190931912" style="zoom:67%;" />
+
+<img src="深入理解计算机系统/image-20210608191005986.png" srcset="/img/loading.gif" lazyload alt="image-20210608191005986" style="zoom:67%;" />
+
+<ul>
+<li><p>我们可以通过在移位前”偏置（biasing）”这个值，来修正这种不合适的舍入。</p>
+<img src="深入理解计算机系统/image-20210608191148416.png" srcset="/img/loading.gif" lazyload alt="image-20210608191148416" style="zoom:67%;" />
+</li>
+<li><p>同乘法不同，我们不能用除以2的幂的除法来表示除以任何常数K的除法。</p>
+</li>
+</ul>
+<h4 id="2-3-8-关于整数运算的最后思考"><a href="#2-3-8-关于整数运算的最后思考" class="headerlink" title="2.3.8 关于整数运算的最后思考"></a>2.3.8 关于整数运算的最后思考</h4><h3 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h3><h4 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h4><h4 id="2-4-2-IEEE浮点表示"><a href="#2-4-2-IEEE浮点表示" class="headerlink" title="2.4.2 IEEE浮点表示"></a>2.4.2 IEEE浮点表示</h4><ul>
+<li><p>IEEE浮点标准用$V&#x3D;(-1)^s<em>M</em>2^E$的形式来表示一个数：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191808690.png" srcset="/img/loading.gif" lazyload alt="image-20210608191808690"></p>
+</li>
+</ul>
+<h5 id="标准浮点格式"><a href="#标准浮点格式" class="headerlink" title="标准浮点格式"></a>标准浮点格式</h5><img src="深入理解计算机系统/image-20210608191905833.png" srcset="/img/loading.gif" lazyload alt="image-20210608191905833" style="zoom:67%;" />
+
+<h5 id="单精度浮点数值的分类"><a href="#单精度浮点数值的分类" class="headerlink" title="单精度浮点数值的分类"></a>单精度浮点数值的分类</h5><img src="深入理解计算机系统/image-20210608192611586.png" srcset="/img/loading.gif" lazyload alt="image-20210608192611586" style="zoom:67%;" />
+
+<h5 id="情况1：规格化的值"><a href="#情况1：规格化的值" class="headerlink" title="情况1：规格化的值"></a>情况1：规格化的值</h5><ul>
+<li><p>阶码的值$E&#x3D;e-Bias$，其中$e$是无符号数，其位表示为$e_{k-1}…e_1e_0$，而$Bias$是一个等于$2^{k-1}-1$（单精度是127，双精度是1023）的偏置值。由此产生指数的取值范围，对于单精度是$-126$<del>$+127$，而对于双精度是$-1022$</del>$+1023$，</p>
+</li>
+<li><p>小数字段frac被解释为描述小数值$f$，其中$0\leq f&lt; 1$，其二进制表示为0，$f_{n-1}…f_1f_0$，也就是二进制小数点在最高有效位的左边。尾数定义为$M&#x3D;1+f$。有时，这种方式也叫做<strong>隐含</strong>的以1开头的（implied leading 1）表示。</p>
+</li>
+</ul>
+<h5 id="情况2：非规格化的值"><a href="#情况2：非规格化的值" class="headerlink" title="情况2：非规格化的值"></a>情况2：非规格化的值</h5><ul>
+<li><p>阶码值是$E&#x3D;1-Bias$，而尾数的值是$M&#x3D;f$，也就是小数字段的值，不包含隐含的开头的1</p>
+</li>
+<li><p>符号位是0，阶码字段全为0（表明是一个非规格化值），而小数域也全为0，这就得到$M&#x3D;f&#x3D;0$。令人奇怪的是，当符号位为1，而其他域全为0时，我们得到值$-0.0$。</p>
+</li>
+</ul>
+<h5 id="情况3：特殊值"><a href="#情况3：特殊值" class="headerlink" title="情况3：特殊值"></a>情况3：特殊值</h5><ul>
+<li>最后一类数值时当指阶码全为1的时候出现的。当小数域全为0时，得到的值表示无穷，当$s&#x3D;0$时是$+\infty$，或者当$s&#x3D;1$时是$-\infty$。当我们把两个非常大的数相乘，或者除以零时，无穷能够表示<strong>溢出</strong>的结果。当小数域为非零时，结果值被称为“NaN”，即“不是一个数（Not a Number）”的缩写。</li>
+</ul>
+<h4 id="2-4-3-数字示例"><a href="#2-4-3-数字示例" class="headerlink" title="2.4.3 数字示例"></a>2.4.3 数字示例</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608194502658.png" srcset="/img/loading.gif" lazyload alt="image-20210608194502658"></p>
+<h4 id="2-4-4-舍入"><a href="#2-4-4-舍入" class="headerlink" title="2.4.4 舍入"></a>2.4.4 舍入</h4><ul>
+<li>向偶数舍入在大多数现实情况中避免了这种统计误差。在50%的时间里，它将向上舍入，而在50%的时间里，它将向下舍入。</li>
+<li>在我们不想舍入到整数时，也可以使用向偶数舍入。我们只是简单地考虑最低有效数字是奇数还是偶数。</li>
+<li>相似地，向偶数舍入法能够运用在二进制小数上，我们将最低有效位的值0认为是偶数，值1认为是奇数。</li>
+</ul>
+<h4 id="2-4-5-浮点运算"><a href="#2-4-5-浮点运算" class="headerlink" title="2.4.5 浮点运算"></a>2.4.5 浮点运算</h4><h5 id="浮点加法"><a href="#浮点加法" class="headerlink" title="浮点加法"></a>浮点加法</h5><ul>
+<li>浮点加法不具有结合性，这是缺少的最重要的群属性。</li>
+<li>另一方面，浮点加法满足了单调性属性。</li>
+</ul>
+<h5 id="浮点乘法"><a href="#浮点乘法" class="headerlink" title="浮点乘法"></a>浮点乘法</h5><ul>
+<li>它是可交换的。</li>
+<li>它不具有可结合性。</li>
+<li>在加法上不具备分配性。</li>
+</ul>
+<h4 id="2-4-6-C语言中的浮点数"><a href="#2-4-6-C语言中的浮点数" class="headerlink" title="2.4.6 C语言中的浮点数"></a>2.4.6 C语言中的浮点数</h4><h3 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h3><h2 id="第3章-程序的机器级表示"><a href="#第3章-程序的机器级表示" class="headerlink" title="第3章 程序的机器级表示"></a>第3章 程序的机器级表示</h2><ul>
+<li>计算机执行<strong>机器代码</strong>，用字节序列编码低级的操作。</li>
+</ul>
+<h3 id="3-1-历史观点"><a href="#3-1-历史观点" class="headerlink" title="3.1 历史观点"></a>3.1 历史观点</h3><h3 id="3-2-程序编码"><a href="#3-2-程序编码" class="headerlink" title="3.2 程序编码"></a>3.2 程序编码</h3><ul>
+<li>假设一个C程序，有两个文件p1.c和p2.c。我们用Unix命令行编译这些代码：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_">linux&gt; </span><span class="language-bash">gcc -Og -o p p1.c p2.c</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>命令gcc指的就是GCC C编译器。因为这是Linux上默认的编译器，我们也可以简单地用cc来启动它。编译选项-Og告诉编译器使用会生成符合C代码整体结构的机器代码优化等级。使用较高级别优化产生的代码会严重变形，以至于产生的机器代码和初始源代码之间的关系非常难以理解。</li>
+</ul>
+<h4 id="3-2-1-机器级代码"><a href="#3-2-1-机器级代码" class="headerlink" title="3.2.1 机器级代码"></a>3.2.1 机器级代码</h4><ul>
+<li><p>汇编代码表示非常接近于机器代码。与机器代码的二进制格式相比，汇编代码的主要特点是它用可读性更好的文本格式表示。</p>
+<p>x86-64的机器代码与原始C代码的差别非常大。一些通常对C语言程序员隐藏的处理器状态都是可见的：</p>
+<ul>
+<li>程序计数器（通常称为“PC”，在x86-64中用%rip表示）给出将要执行的下一条指令在内存中的地址。</li>
+<li>整数<strong>寄存器</strong>文件包含16个命名的位置，分别存储64位的值。这些寄存器可以存储地址（对应于C语言的指针）或整数数据。有的寄存器被用来记录某些重要的程序状态，而其他的寄存器用来保存临时数据，例如过程的参数和局部变量，以及函数的返回值。</li>
+<li>条件码寄存器保存着最近执行的算术或逻辑指令的状态信息。它们用来实现控制或数据流中的条件变化，比如说用来实现if和while语句。</li>
+<li>一组向量寄存器可以存放一个或多个整数或浮点数值。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-2-代码示例"><a href="#3-2-2-代码示例" class="headerlink" title="3.2.2 代码示例"></a>3.2.2 代码示例</h4><ul>
+<li><p>要查看机器代码文件的内容，有一类称为<strong>反汇编器</strong>（disassembler）的程序非常有用。这些程序根据机器代码产生一种类似于汇编代码的格式。在Linux系统中，带‘-d’命令行标志的程序OBJDUMP（表示”object dump”）可以充当这个角色。</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_">linux&gt; </span><span class="language-bash">objdump -d test.o</span><br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>其中一些关于机器代码和它的反汇编特性值得注意：</p>
+<img src="深入理解计算机系统/image-20210609161646145.png" srcset="/img/loading.gif" lazyload alt="image-20210609161646145" style="zoom:67%;" /></li>
+</ul>
+<h4 id="3-2-3-关于格式的注解"><a href="#3-2-3-关于格式的注解" class="headerlink" title="3.2.3 关于格式的注解"></a>3.2.3 关于格式的注解</h4><h3 id="3-3-数据格式"><a href="#3-3-数据格式" class="headerlink" title="3.3 数据格式"></a>3.3 数据格式</h3><ul>
+<li>由于是从16位体系结构扩展成32位的，Intel用术语“字（word）”表示16位数据类型。因此，称32位数为”双字（double word）”，称64位数为“四字（quad word）”。</li>
+</ul>
+<h5 id="C语言数据类型在x86-64中的大小"><a href="#C语言数据类型在x86-64中的大小" class="headerlink" title="C语言数据类型在x86-64中的大小"></a>C语言数据类型在x86-64中的大小</h5><img src="深入理解计算机系统/image-20210609161946987.png" srcset="/img/loading.gif" lazyload alt="image-20210609161946987" style="zoom:67%;" />
+
+<ul>
+<li>大多数GCC指令都有一个字符的后缀，表明操作数的大小。</li>
+</ul>
+<h3 id="3-4-访问信息"><a href="#3-4-访问信息" class="headerlink" title="3.4 访问信息"></a>3.4 访问信息</h3><ul>
+<li><p>一个x86-64的中央处理单元（CPU）包含一组16个存储64位值的<strong>通用目的寄存器</strong>。这些寄存器用来存储整数数据和指针。</p>
+<img src="深入理解计算机系统/image-20210609162219218.png" srcset="/img/loading.gif" lazyload alt="image-20210609162219218" style="zoom:67%;" />
+</li>
+<li><p>指令可以对这16个寄存器的低位字节中存放的不同大小的数据进行操作。</p>
+</li>
+<li><p>生成1字节和2字节的数字的指令会保持剩下的字节不变；生成4字节数字的指令会把高位4个字节置为0。</p>
+</li>
+</ul>
+<h4 id="3-4-1-操作数指示符"><a href="#3-4-1-操作数指示符" class="headerlink" title="3.4.1 操作数指示符"></a>3.4.1 操作数指示符</h4><ul>
+<li>大多数指令有一个或多个<strong>操作数</strong>（operand），指示出执行一个操作中要使用的源数据值，以及放置结果的目的位置。</li>
+<li>各种不同的操作数的可能性被分为三种类型：<ul>
+<li><strong>立即数</strong>（immediate），立即数的书写方式是’$‘后面跟一个用标准C表示法表示的整数。</li>
+<li><strong>寄存器</strong>（register）。我们用符号$r_a$表示任意寄存器$a$，用引用$R[r_a]$来表示它的值，这是将寄存器集合看出一个数字R，用寄存器表示符作为索引。</li>
+<li><strong>内存</strong>引用。$M_b[Addr]$。</li>
+</ul>
+</li>
+</ul>
+<h5 id="操作数格式"><a href="#操作数格式" class="headerlink" title="操作数格式"></a>操作数格式</h5><img src="深入理解计算机系统/image-20210609163308333.png" srcset="/img/loading.gif" lazyload alt="image-20210609163308333" style="zoom:67%;" />
+
+<h4 id="3-4-2-数据传送指令"><a href="#3-4-2-数据传送指令" class="headerlink" title="3.4.2 数据传送指令"></a>3.4.2 数据传送指令</h4><h5 id="最简单形式的数据传送指令——MOV类"><a href="#最简单形式的数据传送指令——MOV类" class="headerlink" title="最简单形式的数据传送指令——MOV类"></a>最简单形式的数据传送指令——MOV类</h5><img src="深入理解计算机系统/image-20210609163410428.png" srcset="/img/loading.gif" lazyload alt="image-20210609163410428" style="zoom: 80%;" />
+
+<ul>
+<li>源操作数指定的值是一个立即数，存储在寄存器中或内存中。目的操作数指定一个位置，要么是一个寄存器或者是一个内存地址。</li>
+<li>x86-64加了一条限制，传送指令的两个操作数不能都指向内存位置。寄存器部分的大小必须与指令最后一个字符（’b‘，’w‘，’l‘或’q‘）指定的大小匹配。</li>
+<li>任何为寄存器生成32位值的指令都会把该寄存器的高位部分置成0.</li>
+</ul>
+<h5 id="零扩展和符号扩展数据传送指令"><a href="#零扩展和符号扩展数据传送指令" class="headerlink" title="零扩展和符号扩展数据传送指令"></a>零扩展和符号扩展数据传送指令</h5><img src="深入理解计算机系统/image-20210609163900487.png" srcset="/img/loading.gif" lazyload alt="image-20210609163900487" style="zoom:67%;" />
+
+<h4 id="3-4-3-数据传送示例"><a href="#3-4-3-数据传送示例" class="headerlink" title="3.4.3 数据传送示例"></a>3.4.3 数据传送示例</h4><ul>
+<li>我们看到C语言中所谓的“指针”其实就是地址。间接引用指针就是将该指针放在一个寄存器中，然后在内存引用中使用这个寄存器。其次，像x这样的局部变量通常是保存在寄存器中，而不是内存中。</li>
+<li>访问寄存器比访问内存快得多。</li>
+</ul>
+<h4 id="3-4-4-压入和弹出栈数据"><a href="#3-4-4-压入和弹出栈数据" class="headerlink" title="3.4.4 压入和弹出栈数据"></a>3.4.4 压入和弹出栈数据</h4><ul>
+<li><p>栈可以实现位一个数组，总是从数组的一段插入和删除元素。这一端被称为<strong>栈顶</strong>。</p>
+</li>
+<li><p>栈向下增长。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164424857.png" srcset="/img/loading.gif" lazyload alt="image-20210609164424857"></p>
+</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164517185.png" srcset="/img/loading.gif" lazyload alt="image-20210609164517185"></p>
+<ul>
+<li>无论如何，%rsp指向的地址总是栈顶。</li>
+</ul>
+<h3 id="3-5-算术和逻辑操作"><a href="#3-5-算术和逻辑操作" class="headerlink" title="3.5 算术和逻辑操作"></a>3.5 算术和逻辑操作</h3><h5 id="整数算术操作"><a href="#整数算术操作" class="headerlink" title="整数算术操作"></a>整数算术操作</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609164615864.png" srcset="/img/loading.gif" lazyload alt="image-20210609164615864"></p>
+<h4 id="3-5-1-加载有效地址"><a href="#3-5-1-加载有效地址" class="headerlink" title="3.5.1 加载有效地址"></a>3.5.1 加载有效地址</h4><ul>
+<li><strong>加载有效地址</strong>（load吗effective address）指令leaq实际上是movq指令的变形。</li>
+<li>我们用C语言的地址操作符&amp;S说明这种计算。</li>
+<li>它还可以简洁地描述普通的算术操作。例如如果寄存器%rdx的值为x，那么指令leaq 7(%rdx,%rdx,4),%rax将设置寄存器%rax的值为5x+7。</li>
+</ul>
+<h4 id="3-5-2-一元和二元操作"><a href="#3-5-2-一元和二元操作" class="headerlink" title="3.5.2 一元和二元操作"></a>3.5.2 一元和二元操作</h4><ul>
+<li>一元操作只有一个操作数，即是源又是目的。这个操作数可以是一个寄存器，也可以是一个内存位置。</li>
+<li>二元操作的第一个操作数可以是立即数，寄存器或是内存地址。第二个操作数可以是寄存器或是内存位置。</li>
+</ul>
+<h4 id="3-5-3-移位操作"><a href="#3-5-3-移位操作" class="headerlink" title="3.5.3 移位操作"></a>3.5.3 移位操作</h4><ul>
+<li>移位量可以是一个立即数，或是放在单字节寄存器%cl中。（这些指令很特别，因为只允许以这个特定发的寄存器作为操作数。）</li>
+<li>x86-64中，移位操作对$w$位长的数据值进行操作，移位量由%cl寄存器的低$m$决定的，这里$2^m&#x3D;w$。高位会被忽略。</li>
+<li>移位操作的目的操作数可以是一个寄存器或是一个内存位置。</li>
+</ul>
+<h4 id="3-5-4-讨论"><a href="#3-5-4-讨论" class="headerlink" title="3.5.4 讨论"></a>3.5.4 讨论</h4><h4 id="3-5-5-特殊的算术操作"><a href="#3-5-5-特殊的算术操作" class="headerlink" title="3.5.5 特殊的算术操作"></a>3.5.5 特殊的算术操作</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210610230126901.png" srcset="/img/loading.gif" lazyload alt="image-20210610230126901"></p>
+<ul>
+<li>这两条指令都要求一个参数必须在寄存器%rax中，而另一个作为指令的源操作数给出。然后乘积存放在寄存器%rdx（高64位）和%rax（低64位）中。</li>
+<li>有符号出发指令idivl将寄存器%rdx（高64位）和%rax（低64位）中的128位数作为被除数，而除数作为指令的操作数给出。指令将商存储在寄存器%rax中，将余数存储在寄存器%rdx中。</li>
+</ul>
+<h3 id="3-6-控制"><a href="#3-6-控制" class="headerlink" title="3.6 控制"></a>3.6 控制</h3><ul>
+<li>机器代码提供两种基本的低级机制来实现有条件的行为：测试数据值，然后根据测试的结果来改变控制流或者数据流。</li>
+</ul>
+<h4 id="3-6-1-条件码"><a href="#3-6-1-条件码" class="headerlink" title="3.6.1 条件码"></a>3.6.1 条件码</h4><ul>
+<li><p>除了整数寄存器，CPU还维护着一组单个位的<strong>条件码</strong>（condition code）寄存器。</p>
+</li>
+<li><p>最常用的条件码有：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611140345510.png" srcset="/img/loading.gif" lazyload alt="image-20210611140345510"></p>
+</li>
+<li><p>leaq指令不改变任何条件码，因为它是用来进行地址计算的。除此之外，图3-10中列出的所有指令都会设置条件码。</p>
+</li>
+<li><p>对于逻辑操作，例如XOR，进位标志和溢出标志会设置为0。</p>
+</li>
+<li><p>对于移位操作，进位标志将设置为最后一个被移出的位，而溢出标志设置为0。</p>
+</li>
+<li><p>INC和DEC指令会设置溢出和零标志，但是不会改变进位标志。</p>
+</li>
+<li><p>还有两类指令（有8、16、32和64位形式），它们只设置条件码而不改变任何其他寄存器；如图3-13所示。</p>
+</li>
+<li><p>CMP指令根据两个操作数的差来设置条件码。除了只设置条件码而不更新目的寄存器之外，CMP指令与SUB指令的行为是一样的。</p>
+</li>
+<li><p>TEST指令的行为和AND指令一样，除了它们只设置条件码而不改变目的寄存器的值。典型的用法是，两个操作数是一样的（例如，testq %rax，%rax用来检查%rax是负数、零还是正数），或其中的一个操作数是一个掩码，用来指示哪些位应该被测试。</p>
+</li>
+</ul>
+<h4 id="3-6-2-访问条件码"><a href="#3-6-2-访问条件码" class="headerlink" title="3.6.2 访问条件码"></a>3.6.2 访问条件码</h4><ul>
+<li><p>条件码通常不会直接读取，常用的使用方法有三种：</p>
+<ul>
+<li>1）可以根据条件码的某种组合，将一个字节设置为0或者1</li>
+<li>2）可以条件跳转到程序的某个其他部分</li>
+<li>3）可以有条件地传送数据</li>
+</ul>
+</li>
+<li><p>对于第一种情况，我们将这一整类指令称为SET指令</p>
+</li>
+<li><p>一条SET指令的目的操作数是低位字节寄存器元素（图3-2）之一，或是一个字节的内存位置，指令会将这个字节设置成0或者1。</p>
+<img src="深入理解计算机系统/image-20210611141336406.png" srcset="/img/loading.gif" lazyload alt="image-20210611141336406" style="zoom:67%;" />
+
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611141452316.png" srcset="/img/loading.gif" lazyload alt="image-20210611141452316"></p>
+</li>
+<li><p>注意cmpq指令的比较顺序（第2行）。虽然参数列出的顺序先是%rsi（b）再是%rdi（a），实际上比较的是a和b。还要记得，正如在3.4.2节种讨论过的那样，movzbl指令不仅会把%eax的高3个字节清零，还会把整个寄存器%rax的高4个字节都清零。</p>
+</li>
+<li><p>图3-15列举了不同的跳转指令。jmp指令是无条件跳转，它可以是<strong>直接</strong>跳转，即跳转目标作为指令的一部分编码；也可以是<strong>间接</strong>跳转，即跳转目标是从寄存器或内存位置中读出的。</p>
+</li>
+</ul>
+<h4 id="3-6-5-用条件控制来实现条件分支"><a href="#3-6-5-用条件控制来实现条件分支" class="headerlink" title="3.6.5 用条件控制来实现条件分支"></a>3.6.5 用条件控制来实现条件分支</h4><ul>
+<li>将条件表达式和语句从C语言翻译成机器代码，最常用的方式是结合有条件和无条件跳转。</li>
+</ul>
+<h4 id="3-6-6-用条件传送来实现条件分支"><a href="#3-6-6-用条件传送来实现条件分支" class="headerlink" title="3.6.6 用条件传送来实现条件分支"></a>3.6.6 用条件传送来实现条件分支</h4><ul>
+<li><p>实现条件操作的传统方法是通过使用<strong>控制</strong>的条件转移。当条件满足时，程序沿着一条执行路径执行，而当条件不满足时，就走另一条路径。这种机制简单而通用，但是在现代处理器上，它可能会非常低效。</p>
+</li>
+<li><p>一种替代策略是使用<strong>数据</strong>的条件转移。这种方法计算一个条件操作的两种结果，然后再根据条件是否满足从中选取一个。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611142314421.png" srcset="/img/loading.gif" lazyload alt="image-20210611142314421"></p>
+</li>
+<li><p>处理器通过使用<strong>流水线</strong>（pipelining）来获取高性能。</p>
+</li>
+<li><p>当机器遇到条件跳转（也称为“分支”）时，只有当分支条件求值完成之后，才能决定分支往哪边走。处理器采用非常精密的<strong>分支预测逻辑</strong>来猜测每条跳转指令是否会执行。只要它的猜测还比较可靠，指令流水线中就会充满着指令。另一方面，错误预测一个跳转，要求处理器丢掉它为该跳转指令后所有指令已做的工作，然后再开始用从正确位置处起始的指令去填充流水线。</p>
+</li>
+<li><p>汇编器可以从目标寄存器的名字推断出条件传送指令的操作数长度，所以对所有的操作数长度，都可以使用同一个的指令名字。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611143139222.png" srcset="/img/loading.gif" lazyload alt="image-20210611143139222"></p>
+<ul>
+<li>同条件跳转不同，处理器无需预测测试的结果就可以执行条件传送。</li>
+</ul>
+</li>
+<li><p>编译器必须考虑浪费的计算和由于分支预测错误所造成的性能出发之间的相对性能。说实话，编译器并不具有足够的信息来做出可靠的决定。</p>
+<ul>
+<li>对GCC的实验表明，只有当两个表达式都很容易计算时，例如表达式分别都只是一个加法指令，它才会使用条件传送。</li>
+<li>即时许多分支预测错误的开销会超过更复杂的计算，GCC还是会使用条件控制转移。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-6-7-循环"><a href="#3-6-7-循环" class="headerlink" title="3.6.7 循环"></a>3.6.7 循环</h4><h5 id="1-do-while循环"><a href="#1-do-while循环" class="headerlink" title="1.do-while循环"></a>1.do-while循环</h5><h5 id="2-while循环"><a href="#2-while循环" class="headerlink" title="2.while循环"></a>2.while循环</h5><h5 id="3-for循环"><a href="#3-for循环" class="headerlink" title="3.for循环"></a>3.for循环</h5><h4 id="3-6-8-switch语句"><a href="#3-6-8-switch语句" class="headerlink" title="3.6.8 switch语句"></a>3.6.8 switch语句</h4><ul>
+<li>switch（开关）语句可以根据一个整数索引值进行多重分支（multiway branching）。</li>
+<li>在处理具有多种可能结果的测试时，这种语句特别有用。它们不仅提高了C代码的可读性，而且通过<strong>跳转表</strong>（jump table）这种数据结果使得实现更加高效。</li>
+</ul>
+<h3 id="3-7-过程"><a href="#3-7-过程" class="headerlink" title="3.7 过程"></a>3.7 过程</h3><ul>
+<li>过程P调用过程Q，Q执行后返回到P。这些动作包括下面一个或多个机制：<ul>
+<li><strong>传递控制</strong>。在进入过程Q的时候，程序计数器必须被设置为Q的代码的起始地址，然后在返回时，要把程序计数器设置为P中调用Q后面那条指令的地址。</li>
+<li><strong>传递数据</strong>。P必须能够向Q提供一个或多个参数，Q必须能够向P返回一个值。</li>
+<li><strong>分配和释放内存</strong>。在开始时，Q可能需要为局部变量分配空间，而在返回前，又必须释放这些存储空间。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-7-1-运行时栈"><a href="#3-7-1-运行时栈" class="headerlink" title="3.7.1 运行时栈"></a>3.7.1 运行时栈</h4><ul>
+<li><p>当P调用Q时，控制和数据信息添加到栈尾。当P返回时，这些信息会被释放掉。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611144432716.png" srcset="/img/loading.gif" lazyload alt="image-20210611144432716"></p>
+</li>
+<li><p>通过寄存器，过程P可以传递最多6个整数值（也就是指针和整数），但是如果Q需要更多的参数，P可以在调用Q之前在栈帧里存储好这些参数。</p>
+</li>
+</ul>
+<h4 id="3-7-2-转移控制"><a href="#3-7-2-转移控制" class="headerlink" title="3.7.2 转移控制"></a>3.7.2 转移控制</h4><ul>
+<li><p>这个信息是用指令call Q调用过程Q来记录的。该指令会把地址A压入栈中，并将PC设置为Q的起始地址。压入的地址A称为返回地址，是紧跟在call指令后面的那条指令的地址。对应的指令ret会从栈中弹出地址A，并将PC设置为A。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611145504797.png" srcset="/img/loading.gif" lazyload alt="image-20210611145504797"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611145521279.png" srcset="/img/loading.gif" lazyload alt="image-20210611145521279"></p>
+</li>
+</ul>
+<h4 id="3-7-3-数据传送"><a href="#3-7-3-数据传送" class="headerlink" title="3.7.3 数据传送"></a>3.7.3 数据传送</h4><ul>
+<li>通过栈传递参数时，所有的数据大小都向8的倍数对齐。</li>
+<li>过程Q可以通过寄存器访问参数，有必要的话可以通过栈访问。相应地，如果Q也调用了某个有超过6个参数的函数，它也需要在自己的栈帧中为超过6个的部分参数分配空间。</li>
+</ul>
+<h4 id="3-7-4栈上的局部存储"><a href="#3-7-4栈上的局部存储" class="headerlink" title="3.7.4栈上的局部存储"></a>3.7.4栈上的局部存储</h4><h4 id="3-7-5-寄存器中的局部存储空间"><a href="#3-7-5-寄存器中的局部存储空间" class="headerlink" title="3.7.5 寄存器中的局部存储空间"></a>3.7.5 寄存器中的局部存储空间</h4><ul>
+<li>根据惯例，寄存器%rbx、%rbp和%r12~%r15被划分为<strong>被调用者保存</strong>寄存器。当过程P调用过程Q时，Q必须保存这些寄存器的值，保证它们的值在Q返回到P时与Q被调用时是一样的。过程Q保存一个寄存器的值不变，要么就是根本不去改变它，要么就是把原始值压入栈中，改变寄存器的值，然后在返回前从栈中弹出旧值。</li>
+<li>所有其他的寄存器，除了栈指针%rsp，都分类为<strong>调用者</strong>保存寄存器。这就意味着任何函数都能修改它们。</li>
+</ul>
+<h4 id="3-7-6-递归过程"><a href="#3-7-6-递归过程" class="headerlink" title="3.7.6 递归过程"></a>3.7.6 递归过程</h4><h3 id="3-8数组的分配和访问"><a href="#3-8数组的分配和访问" class="headerlink" title="3.8数组的分配和访问"></a>3.8数组的分配和访问</h3><h4 id="3-8-1-基本原则"><a href="#3-8-1-基本原则" class="headerlink" title="3.8.1 基本原则"></a>3.8.1 基本原则</h4><ul>
+<li>对于数据类型T和整型常数N，声明如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C">T A[N];<br></code></pre></div></td></tr></table></figure>
+
+<p>起始位置表示为$x_A$。这个声明有两个效果。首先，它在内存中分配一个$L*N$字节的连续区域，这里$L$是数据类型T的大小（单位为字节）。</p>
+<p>其次，它引入了标识符A，可以用A来作为指向数组开头的指针，这个指针的值就是$x_A$。可以用0~N-1的整数索引来访问该数组元素。数组元素$i$会被存放在地址为$x_A+L*i$的地方。</p>
+<h4 id="3-8-2-指针运算"><a href="#3-8-2-指针运算" class="headerlink" title="3.8.2 指针运算"></a>3.8.2 指针运算</h4><ul>
+<li><p>C语言允许对指针进行运算，而计算出来的值会根据该指针引用的数据类型的大小进行伸缩。也就是说，如果$p$是一个指向类型为$T$的数据的指针，$p$的值为$x_p$,那么表达式$p+i$的值为$x_p+L*i$，这里$L$是数据类型$T$的大小。</p>
+</li>
+<li><p>单操作数操作符’&amp;’和‘*’可以产生指针和间接引用指针。也就是，对于一个表示某个对象的表达式Expr，&amp;Expr是给出该对象地址的一个指针。对于一个表示地址的表达式AExpr，*AExpr给出该地址处的值。因此，表达式Expr与*&amp;Expr是等价的。可以对数组和指针应用数组下标的操作。数组引用A[i]等同于表达式*(A+i)。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611204545720.png" srcset="/img/loading.gif" lazyload alt="image-20210611204545720"></p>
+</li>
+</ul>
+<h4 id="3-8-3-嵌套的数组"><a href="#3-8-3-嵌套的数组" class="headerlink" title="3.8.3 嵌套的数组"></a>3.8.3 嵌套的数组</h4><ul>
+<li><p>当我们创建数组的数组时，数组分配和引用的一般原则也是成立的。例如，声明</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> A[<span class="hljs-number">5</span>][<span class="hljs-number">3</span>];<br></code></pre></div></td></tr></table></figure></li>
+</ul>
+<p>等价于下面的声明</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> <span class="hljs-type">row3_t</span>[<span class="hljs-number">3</span>];<br><span class="hljs-type">row3_t</span> A[<span class="hljs-number">5</span>];<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>通常来说，对于一个声明如下的数组：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c">T D[R][C];<br></code></pre></div></td></tr></table></figure>
+
+<p>它的数组元素$D[i][j]$的内存地址为</p>
+<p>D[i][j]&#x3D;$x_D+L(C*i+j)$</p>
+<h4 id="3-8-4-定长数组"><a href="#3-8-4-定长数组" class="headerlink" title="3.8.4 定长数组"></a>3.8.4 定长数组</h4><h4 id="3-8-5-变长数组"><a href="#3-8-5-变长数组" class="headerlink" title="3.8.5 变长数组"></a>3.8.5 变长数组</h4><h3 id="3-9-异质的数据结构"><a href="#3-9-异质的数据结构" class="headerlink" title="3.9 异质的数据结构"></a>3.9 异质的数据结构</h3><ul>
+<li>C语言提供了两种将不同类型的对象组合到一起创建数据类型的机制：<strong>结构</strong>（structure），用关键字struct来声明，将多个对象集合到一个单位中；<strong>联合</strong>（union），用关键字union来声明，允许使用几种不同的类型来引用一个对象。</li>
+</ul>
+<h4 id="3-9-1-结构"><a href="#3-9-1-结构" class="headerlink" title="3.9.1 结构"></a>3.9.1 结构</h4><ul>
+<li>类似于数组的实现，结构的所有组成部分都存放在内存中一段连续的区域内，而指向结构的指针就是结构第一个字节的地址。</li>
+</ul>
+<h4 id="3-9-2-联合"><a href="#3-9-2-联合" class="headerlink" title="3.9.2 联合"></a>3.9.2 联合</h4><ul>
+<li>联合声明的语法与结构的语法一样，只不过语义相差比较大。它们是用不同的字段来引用相同的内存块。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611223513165.png" srcset="/img/loading.gif" lazyload alt="image-20210611223513165"></p>
+<ul>
+<li><p>对于类型union U3 * 的指针p，p-&gt;c、p-&gt;i[0]和p-&gt;v引用的都是数据结构的起始位置。还可以观察到，一个联合的总的大小等于它最大字段的大小。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611223834526.png" srcset="/img/loading.gif" lazyload alt="image-20210611223834526"></p>
+</li>
+<li><p>在这段代码中，我们以一个数据类型来存储联合中的参数，又以另一种数据类型来访问它。结果会是u具有和d一样的位表示，包括符号位字段、指数和尾数。</p>
+</li>
+</ul>
+<h4 id="3-9-3-数据对齐"><a href="#3-9-3-数据对齐" class="headerlink" title="3.9.3 数据对齐"></a>3.9.3 数据对齐</h4><ul>
+<li><p>许多计算机系统对基本数据类型的合法地址做出了一些限制，要求某种类型对象的地址必须是某个值K（通常是2、4或8）的倍数。这种<strong>对齐限制</strong>简化了形成处理器和内存系统之间的硬件设计。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611224958080.png" srcset="/img/loading.gif" lazyload alt="image-20210611224958080"><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611225008702.png" srcset="/img/loading.gif" lazyload alt="image-20210611225008702"></p>
+</li>
+</ul>
+<h3 id="3-10-在机器级程序中将控制和数据结合起来"><a href="#3-10-在机器级程序中将控制和数据结合起来" class="headerlink" title="3.10 在机器级程序中将控制和数据结合起来"></a>3.10 在机器级程序中将控制和数据结合起来</h3><h4 id="3-10-1-理解指针"><a href="#3-10-1-理解指针" class="headerlink" title="3.10.1 理解指针"></a>3.10.1 理解指针</h4><ul>
+<li>每个指针都对应一个类型。</li>
+<li>每个指针都有一个值。这个值是某个指定类型的对象的地址。特殊的NULL(0)值表示该指针没有指向任何地方。</li>
+<li>指针用‘&amp;’运算创建。</li>
+<li>操作符用于间接引用指针。其结果是一个值，它的类型与该指针的类型一致。</li>
+<li>数组与指针紧密联系。一个数组的名字可以像一个指针变量一样引用（但是不可以修改）。数组引用（例如a[3]）与指针运算和间接引用（例如*(a+3)）有一样的效果。</li>
+<li>将指针从一种类型转换成另一种类型，只改变它的类型，而不改变它的值。<ul>
+<li>如果p是一个char*类型的指针，它的值为p，那么表达式（int*）p+7计算为p+28，而（int*）(p+7)计算为p+7。（强制类型转换的优先级高于加法）</li>
+</ul>
+</li>
+<li>指针也可以指向函数。<ul>
+<li>函数指针的值是该函数机器代码表示中第一条指令的地址。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-10-2-应用：使用GDB调试器"><a href="#3-10-2-应用：使用GDB调试器" class="headerlink" title="3.10.2 应用：使用GDB调试器"></a>3.10.2 应用：使用GDB调试器</h4><h5 id="GDB命令示例"><a href="#GDB命令示例" class="headerlink" title="GDB命令示例"></a>GDB命令示例</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611225934057.png" srcset="/img/loading.gif" lazyload alt="image-20210611225934057"></p>
+<h4 id="3-10-3-内存越界引用和缓冲区溢出"><a href="#3-10-3-内存越界引用和缓冲区溢出" class="headerlink" title="3.10.3 内存越界引用和缓冲区溢出"></a>3.10.3 内存越界引用和缓冲区溢出</h4><ul>
+<li>C对于数组引用不进行任何边界检查，而且局部变量和状态信息都存放在栈中。</li>
+</ul>
+<h5 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h5><ul>
+<li>一种特别常见的状态破坏称为<strong>缓冲区溢出</strong>（buffer overflow）。</li>
+<li>我们的echo代码很简单，但是有点太随意了。更好一点的版本是使用fgets函数，它包括一个参数，限制待读入的最大字节数。<ul>
+<li>使用gets或其他任何能导致存储溢出的函数，都是不好的编程习惯。不幸的是，很多常用的库函数，包括strcpy、strcat和sprintf，都有一个属性——不需要告诉它们目标缓冲区的大小，就产生一个字节序列[97]。这样的情况就会导致缓冲区溢出。</li>
+</ul>
+</li>
+<li>通常，输入给程序一个字符串，这个字符串包含一些可执行代码的字节编码，称为<strong>攻击代码</strong>（exploit code）。</li>
+</ul>
+<h4 id="3-10-4-对抗缓冲区溢出攻击"><a href="#3-10-4-对抗缓冲区溢出攻击" class="headerlink" title="3.10.4 对抗缓冲区溢出攻击"></a>3.10.4 对抗缓冲区溢出攻击</h4><h5 id="1-栈随机化"><a href="#1-栈随机化" class="headerlink" title="1.栈随机化"></a>1.栈随机化</h5><ul>
+<li>栈随机化的思想使得栈的位置在程序每次运行时都有变化。因此，即使许多机器都运行同样的代码，它们的栈地址都是不同的。实现的方式是：程序开始时，在栈上分配一段0~n字节之间的随机大小的空间。<ul>
+<li>例如，使用分配函数alloca在栈上分配指定字节数量的空间。程序不使用这段空间，但是它会导致程序每次执行时后续的栈位置发生了变化。</li>
+</ul>
+</li>
+<li>分配的范围n必须足够大，才能获得足够多的栈地址变化，但是又要足够小，不至于浪费程序太多的空间。</li>
+</ul>
+<p>一个执着的攻击者总是能够用蛮力克服随机化。</p>
+<ul>
+<li>一种常见的把戏就是在实际的攻击代码前插入很长的一段nop（读作”no op“，no operation的缩写）指令。执行这种指令除了对程序计数器加一，使之指向下一条指令外，没有任何效果。只要攻击者能够猜中这段序列的某个地址，程序就会经过这个序列，到达攻击代码。这个序列常用的术语是”<strong>空操作雪橇</strong>（nop sled）“[97]，意思是程序会”滑过“这个序列。</li>
+</ul>
+<h5 id="2-栈破坏检测"><a href="#2-栈破坏检测" class="headerlink" title="2.栈破坏检测"></a>2.栈破坏检测</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611231843282.png" srcset="/img/loading.gif" lazyload alt="image-20210611231843282"></p>
+<h5 id="3-限制可执行代码区域"><a href="#3-限制可执行代码区域" class="headerlink" title="3. 限制可执行代码区域"></a>3. 限制可执行代码区域</h5><ul>
+<li><p>最后一招是消除攻击者向系统中插入可执行代码的能力。一种方法是限制哪些内存区域能够存放可执行代码。在典型的程序中，只有保存编译器产生的代码的的那部分内存才需要是可执行的。其他部分可以被限制为只允许读和写。</p>
+</li>
+<li><p>变长数组意味着在编译时无法确定栈帧的大小。</p>
+<p>为了管理变长栈帧，x86-64代码使用寄存器%rbp作为<strong>帧指针</strong>（frame pointer）（有时称为<strong>基指针</strong>（base pointer））。</p>
+<p>然后在函数的整个执行过程中，都使得%rbp指向那个时刻栈的位置，然后用固定长度的局部变量（例如i）相对于%rbp的偏移量来引用它们。</p>
+</li>
+</ul>
+<h3 id="3-11-浮点代码"><a href="#3-11-浮点代码" class="headerlink" title="3.11 浮点代码"></a>3.11 浮点代码</h3><ul>
+<li><p>如图3-45所示，AVX浮点体系结构允许数据存储在16个YMM寄存器中，它们的名字为%ymm0<del>%ymm15。每个YMM寄存器都是256位（32字节）。当对标量数据操作时，这些寄存器只保存浮点数，而且只使用低32位（对于float）或64位（对于double）。汇编代码用寄存器SSE XMM寄存器名字%xmm0</del>%xmm15来引用它们，每个XMM寄存器都对应的YMM寄存器的低128位（16字节）。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613202922594.png" srcset="/img/loading.gif" lazyload alt="image-20210613202922594"></p>
+</li>
+</ul>
+<h4 id="3-11-1-浮点传送和转换操作"><a href="#3-11-1-浮点传送和转换操作" class="headerlink" title="3.11.1 浮点传送和转换操作"></a>3.11.1 浮点传送和转换操作</h4><h5 id="浮点传送指令"><a href="#浮点传送指令" class="headerlink" title="浮点传送指令"></a>浮点传送指令</h5><img src="深入理解计算机系统/image-20210613203039064.png" srcset="/img/loading.gif" lazyload alt="image-20210613203039064" style="zoom:80%;" />
+
+<h5 id="双操作浮点转换指令"><a href="#双操作浮点转换指令" class="headerlink" title="双操作浮点转换指令"></a>双操作浮点转换指令</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203151849.png" srcset="/img/loading.gif" lazyload alt="image-20210613203151849"></p>
+<h5 id="三操作数浮点转换指令"><a href="#三操作数浮点转换指令" class="headerlink" title="三操作数浮点转换指令"></a>三操作数浮点转换指令</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203202598.png" srcset="/img/loading.gif" lazyload alt="image-20210613203202598"></p>
+<h4 id="3-11-2-过程中的浮点代码"><a href="#3-11-2-过程中的浮点代码" class="headerlink" title="3.11.2 过程中的浮点代码"></a>3.11.2 过程中的浮点代码</h4><ul>
+<li>XMM寄存器用来向函数传递浮点参数，可以看到如下规则：<ul>
+<li>XMM寄存器%xmm0~%xmm7最多可以传递8个浮点参数。按照参数列出的顺序使用这些寄存器，可以通过栈传递额外的浮点参数。</li>
+<li>函数使用寄存器%xmm0来传递浮点值。</li>
+<li>所有的XMM寄存器都是调用者保存的。被调用者可以不用保存就覆盖这些寄存器中任意一个。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-11-3-浮点运算操作"><a href="#3-11-3-浮点运算操作" class="headerlink" title="3.11.3 浮点运算操作"></a>3.11.3 浮点运算操作</h4><ul>
+<li><p>每条指令有一个（$S_1$）或两个（$S_1,S_2$）源操作数，和一个目的操作数$D$。第一个源操作数$S_1$可以是一个XMM寄存器或一个内存位置。第二个源操作数和目的操作数都必须是XMM寄存器。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203734649-1623587856033.png" srcset="/img/loading.gif" lazyload alt="image-20210613203734649"></p>
+</li>
+</ul>
+<h4 id="3-11-4-定义和使用浮点常数"><a href="#3-11-4-定义和使用浮点常数" class="headerlink" title="3.11.4 定义和使用浮点常数"></a>3.11.4 定义和使用浮点常数</h4><ul>
+<li>和整数运算操作不同，AVX浮点操作不能以立即数值作为操作数。相反，编译器必须为所有的常量值分配和初始化存储空间。</li>
+</ul>
+<h4 id="3-11-5-在浮点代码中使用位级操作"><a href="#3-11-5-在浮点代码中使用位级操作" class="headerlink" title="3.11.5 在浮点代码中使用位级操作"></a>3.11.5 在浮点代码中使用位级操作</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203926808.png" srcset="/img/loading.gif" lazyload alt="image-20210613203926808"></p>
+<h4 id="3-11-6-浮点比较操作"><a href="#3-11-6-浮点比较操作" class="headerlink" title="3.11.6 浮点比较操作"></a>3.11.6 浮点比较操作</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613204007526.png" srcset="/img/loading.gif" lazyload alt="image-20210613204007526"></p>
+<ul>
+<li><p>它们遵循以相反顺序列出操作数的ATT格式惯例。参数$S_2$必须在XMM寄存器中，而$S_1$可以在XMM寄存器中，也可以在内存中。</p>
+</li>
+<li><p>浮点比较指令设置三个条件码：零标志位ZF、进位标志位CF和奇偶标志位PF。</p>
+</li>
+<li><p>对于整数操作，当最近的一次算术或逻辑运算产生的值的最低位字节是偶校验的（即这个字节中有偶数个1），那么就会设置这个标志位。不过对于浮点比较，当两个操作数中任一个是NaN时，会设置该位。</p>
+</li>
+<li><p>条件码的设置条件如下：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613204444726.png" srcset="/img/loading.gif" lazyload alt="image-20210613204444726"></p>
+<p>当任一操作数为NaN时，就会出现<strong>无序的</strong>情况。可以通过奇偶标志位发现这种情况。通常jp(jump on parity)指令时条件跳转，条件就是浮点比较得到一个无序的结果。</p>
+</li>
+</ul>
+<h4 id="3-11-7-对浮点代码的观察结论"><a href="#3-11-7-对浮点代码的观察结论" class="headerlink" title="3.11.7 对浮点代码的观察结论"></a>3.11.7 对浮点代码的观察结论</h4><h3 id="3-12-小结"><a href="#3-12-小结" class="headerlink" title="3.12 小结"></a>3.12 小结</h3><h2 id="第4章-处理器体系结构"><a href="#第4章-处理器体系结构" class="headerlink" title="第4章 处理器体系结构"></a>第4章 处理器体系结构</h2><p>跳过</p>
+<h2 id="第5章-优化程序性能"><a href="#第5章-优化程序性能" class="headerlink" title="第5章 优化程序性能"></a>第5章 优化程序性能</h2><ul>
+<li>编写高效程序需要做到以下几点：<ul>
+<li>第一，我们必须选择一组适当的算法和数据结构。</li>
+<li>第二，我们必须编写出编译器能够有效优化以转换成高效可执行代码的源代码</li>
+</ul>
+</li>
+<li>然而，即使时最好的编译器也会受到<strong>妨碍优化的因素</strong>（optimization blocker）的阻碍，妨碍优化的因素就是程序行为中那些严重依赖于执行环境的方面。</li>
+<li>程序优化的第一步就是消除不必要的工作，让代码尽可能有效的执行所期望的任务。</li>
+<li>了解了处理器的运作，我们就可以进行程序优化的第二步，利用处理器提供的<strong>指令级并行</strong>（instruction-level parallelism）能力，同时执行多条指令。</li>
+<li>正如我们会看到，常常通过确认关键路径（critical path）来决定执行一个循环所需要的时间（或者说，至少是一个时间下界）。所谓关键路径是在循环的反复执行过程中的数据相关链。</li>
+</ul>
+<h3 id="5-1-优化编译器的能力和局限性"><a href="#5-1-优化编译器的能力和局限性" class="headerlink" title="5.1 优化编译器的能力和局限性"></a>5.1 优化编译器的能力和局限性</h3><ul>
+<li>最简单的控制是指定<strong>优化级别</strong>。</li>
+<li>编译器必须很小心地对程序只使用<strong>安全的</strong>优化，也就是说对于程序可能遇到的所有可能的情况，在C语言标准提供的保证之下，优化后得到的程序和未优化的版本有一样的行为。</li>
+<li>两个指针可能指向同一个内存位置的情况称为<strong>内存别名使用</strong>（memory aliasing）。在只执行安全的优化中，编译器必须假设不同的指针可能会指向内存中的同一个位置。<ul>
+<li>这造成了一个主要的<strong>妨碍优化的因素</strong>。</li>
+</ul>
+</li>
+<li>第二个妨碍优化的因素是函数调用。<ul>
+<li>包含函数调用的代码可以用一个称为<strong>内联函数替换</strong>（inline substitution，或者简称”内联（inlining）“）的过程进行优化，此时将函数调用替换为函数体。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-表示程序的性能"><a href="#5-2-表示程序的性能" class="headerlink" title="5.2 表示程序的性能"></a>5.2 表示程序的性能</h3><ul>
+<li><p>我们引入度量标准<strong>每元素的周期数</strong>（Cycles Per Element，CPE），作为一种表示程序性能并指导我们改进代码的方法。</p>
+</li>
+<li><p>函数psum1每次迭代计算结果向量的一个元素。第二个函数使用<strong>循环展开</strong>（loop unrolling）的技术，每次迭代计算两个元素。</p>
+</li>
+</ul>
+<h3 id="5-3-程序示例"><a href="#5-3-程序示例" class="headerlink" title="5.3 程序示例"></a>5.3 程序示例</h3><h3 id="5-4-消除循环的低效率"><a href="#5-4-消除循环的低效率" class="headerlink" title="5.4 消除循环的低效率"></a>5.4 消除循环的低效率</h3><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613214617247.png" srcset="/img/loading.gif" lazyload alt="image-20210613214617247"></p>
+<ul>
+<li>这个优化是一类常见的优化的一个例子，称为<strong>代码移动</strong>（code motion）。这类优化包括识别要多次执行（例如在循环里）但是计算结果不会改变的计算。因而可以将计算移动到代码前面不会被多次求值的部分。</li>
+</ul>
+<h3 id="5-5-减少过程的调用"><a href="#5-5-减少过程的调用" class="headerlink" title="5.5 减少过程的调用"></a>5.5 减少过程的调用</h3><h3 id="5-6-消除不必要的内存引用"><a href="#5-6-消除不必要的内存引用" class="headerlink" title="5.6 消除不必要的内存引用"></a>5.6 消除不必要的内存引用</h3><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613215006549.png" srcset="/img/loading.gif" lazyload alt="image-20210613215006549"></p>
+<ul>
+<li><p>按照图5-10中combine4所示的方式重写代码。引入一个临时变量acc，它在循环中用来累积计算出来的值。只有在循环完成之后结果才存放在dest中。正如下面的汇编代码所示，编译器现在可以用寄存器%xmm0来保存累计值。与combine3中的循环相比，我们将每次迭代的内存操作从两次读和一次写减少到只需要一次读。</p>
+<img src="深入理解计算机系统/image-20210613215437594.png" srcset="/img/loading.gif" lazyload alt="image-20210613215437594" style="zoom:67%;" /></li>
+</ul>
+<h3 id="5-7-理解现代处理器"><a href="#5-7-理解现代处理器" class="headerlink" title="5.7 理解现代处理器"></a>5.7 理解现代处理器</h3><ul>
+<li>当一系列操作必须按照严格顺序执行时，就会遇到<strong>延迟界限</strong>（latency bound），因为在下一条指令开始之前，这条指令必须结束。当代码中的数据相关限制了处理器利用指令级并行的能力时，延迟界限能够限制程序性能。</li>
+<li><strong>吞吐量界限</strong>（throughput bound）刻画了处理器功能单元的原始计算能力。这个界限是程序性能的终极限制。</li>
+</ul>
+<h4 id="5-7-1-整体操作"><a href="#5-7-1-整体操作" class="headerlink" title="5.7.1 整体操作"></a>5.7.1 整体操作</h4><ul>
+<li><p>整个设计有两个主要部分：<strong>指令控制单元</strong>（ Instruction Control Unit，ICU）和<strong>执行单元</strong>（Execution Unit，EU）。前者负责从内存中读出指令序列，并根据这些指令序列生成一组针对程序数据的基本操作；而后者执行这些操作。</p>
+</li>
+<li><p>ICU从<strong>指令高速缓存</strong>（instruction cache）中读取指令，指令高速缓存是一个特殊的高速存储器，它包含最近访问的指令。</p>
+</li>
+<li><p>现代处理器采用了一种称为<strong>分支预测</strong>（branch predication）的技术，处理器会猜测是否会选择分支，同时还预测分支的目标地址。使用<strong>投机执行</strong>（speculative execution）的技术，处理器会开始取出位于它预测的分支会跳到的地方的指令，并对指令译码，甚至在它确定分支预测是否正确之前就开始取出位于它预测的分支会跳到的地方的指令，并对指令译码，甚至在它确定分支预测是否正确之前就开始执行这些操作。如果过后确定分支预测错误，会将状态重新设置到分支点的状态，并开始取出和执行另一方向上的指令。标记为<strong>取值控制</strong>的块包括分支预测，以完成确定取哪些指令的任务。</p>
+</li>
+<li><p>EU接收来自取指单元的操作。</p>
+</li>
+<li><p>读写内存是由加载和存储单元实现的。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613231550850.png" srcset="/img/loading.gif" lazyload alt="image-20210613231550850"></p>
+</li>
+<li><p>我们可以看出功能单元的这种组合具有同时执行多个同类型操作的潜力。它有4个功能单元可以执行整数操作，2个单元能执行加载操作，2个单元能执行浮点乘法。</p>
+</li>
+<li><p>在ICU中，<strong>退役单元</strong>（retirement unit）记录正在进行的处理，并确保它遵守机器级程序的顺序语义。</p>
+<ul>
+<li>首先，一旦一条指令的操作完成了，而且所有引起这条指令的分支点也都被确认为预测正确，那么这条指令就可以<strong>退役</strong>（retire）了，所有对程序寄存器的更新都可以被实际执行了。另一方面，如果引起该指令的某个分支点预测错误，这条指令就会被<strong>清空</strong>（flushed），丢弃所有计算出来的结果。通过这种方法，预测错误就不会改变程序的状态了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-7-2-功能单元的性能"><a href="#5-7-2-功能单元的性能" class="headerlink" title="5.7.2 功能单元的性能"></a>5.7.2 功能单元的性能</h4><ul>
+<li><p>每个运算都是由以下数值来刻画的：</p>
+<ul>
+<li>一个是<strong>延迟</strong>（latency），它表示完成运算所需要的总时间；</li>
+<li>另一个是<strong>发射时间</strong>（issue time），它表示两个连续的同类型的运算之间需要的最小时钟周期数；</li>
+<li>还有一个是<strong>容量</strong>（capacity），它表示能够执行该运算的功能单元的数量。</li>
+</ul>
+<img src="深入理解计算机系统/image-20210613232257891.png" srcset="/img/loading.gif" lazyload alt="image-20210613232257891" style="zoom:80%;" />
+</li>
+<li><p>发射时间为1的功能单元被称为<strong>完全流水线化的</strong>（fully pipelined)；每个时钟周期可以开始一个新的运算。出现容量大于1的运算是由于有多个功能单元。</p>
+</li>
+<li><p>除法器的发射时间等于它的延迟。</p>
+</li>
+<li><p>表达发射时间的一种更常见的方法是指明这个功能单元的最大<strong>吞吐量</strong>，定义为发射时间的倒数。一个完全流水线化的功能单元有最大的吞吐量，每个时钟周期一个运算。</p>
+<ul>
+<li>对一个容量为C，发射时间为I的操作来说，处理器可能获得的吞吐量为每时钟周期C&#x2F;I个操作。</li>
+</ul>
+</li>
+<li><p>我们用CPE值的两个基本界限来描述这种影响：</p>
+<ul>
+<li><strong>延迟界限</strong>给出了任何必须按照严格顺序完成合并运算的函数所需要的最小CPE值。</li>
+<li><strong>吞吐量界限</strong>给出了CPE的最小界限。</li>
+</ul>
+</li>
+<li><p>另一方面，四个功能单元都可以执行整数加法，处理器就有可能持续每个周期执行4个操作的速率。不幸的是，因为需要从内存读数据，这造成了另一个吞吐量界限。两个加载单元限制了处理器每个时钟周期最多只能读取两个数据值。</p>
+</li>
+</ul>
+<h4 id="5-7-3-处理器操作的抽象类型"><a href="#5-7-3-处理器操作的抽象类型" class="headerlink" title="5.7.3 处理器操作的抽象类型"></a>5.7.3 处理器操作的抽象类型</h4><ul>
+<li>我们会使用程序的<strong>数据流</strong>（data-flow）表示，这是一种图形化的表示方法，展现了不同操作之间的数据相关时如何限制它们的执行顺序的。这些限制形成了图中的<strong>关键路径</strong>（critical path），这是执行一组机器指令所需时钟周期数的一个下界。</li>
+</ul>
+<h5 id="1-从机器级代码到数据流图"><a href="#1-从机器级代码到数据流图" class="headerlink" title="1.从机器级代码到数据流图"></a>1.从机器级代码到数据流图</h5><img src="深入理解计算机系统/image-20210614233612112.png" srcset="/img/loading.gif" lazyload alt="image-20210614233612112" style="zoom: 80%;" />
+
+<ul>
+<li><p>对于形成循环的代码片段，我们可以将访问到的寄存器分为四类：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234326400.png" srcset="/img/loading.gif" lazyload alt="image-20210614234326400"></p>
+</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234414936.png" srcset="/img/loading.gif" lazyload alt="image-20210614234414936"></p>
+<ul>
+<li><p>在图5-14b中，表明的是由于循环的一次迭代在循环寄存器中形成的数据相关。</p>
+<img src="深入理解计算机系统/image-20210614234545156.png" srcset="/img/loading.gif" lazyload alt="image-20210614234545156" style="zoom:67%;" /></li>
+</ul>
+<h5 id="其他性能因素"><a href="#其他性能因素" class="headerlink" title="其他性能因素"></a>其他性能因素</h5><ul>
+<li>数据流表示中的关键路径提供的只是程序需要周期数的<strong>下界</strong>。还有其他一些因素会限制性能。</li>
+</ul>
+<h3 id="5-8-循环展开"><a href="#5-8-循环展开" class="headerlink" title="5.8 循环展开"></a>5.8 循环展开</h3><ul>
+<li>循环展开是一种程序变换，通过增加每次迭代计算的元素的数量，减少循环的迭代次数。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615161512541.png" srcset="/img/loading.gif" lazyload alt="image-20210615161512541"></p>
+<ul>
+<li>每条vmulsd指令被翻译成两个操作：一个操作是从内存中加载一个数组元素，另一个是把这个值乘以已有的累积值。</li>
+</ul>
+<h3 id="5-9-提高并行性"><a href="#5-9-提高并行性" class="headerlink" title="5.9 提高并行性"></a>5.9 提高并行性</h3><ul>
+<li>执行加法和乘法的功能单元是完全流水线化的，这意味着它们可以每个时钟周期开始一个新操作，并且有些操作可以被多个功能单元执行。</li>
+</ul>
+<h4 id="5-9-1-多个累积变量"><a href="#5-9-1-多个累积变量" class="headerlink" title="5.9.1 多个累积变量"></a>5.9.1 多个累积变量</h4><ul>
+<li>对于一个可结合和可交换的合并运算来说，比如说整数加法或乘法，我们可以通过将一组合并运算分割成两个或更多的部分，并在最后合并结果来提高性能。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615163503654.png" srcset="/img/loading.gif" lazyload alt="image-20210615163503654"></p>
+<ul>
+<li><p>可以看到，现在有两条关键路径，一条对应于计算索引为偶数的元素的乘积（程序值acc0），另一条对应于计算索引为奇数的元素的乘积（程序值acc1）。</p>
+<ul>
+<li>每条关键路径只包含n&#x2F;2个操作。</li>
+<li>对于不同的数据类型和合并运算的组合，延迟为L的操作的CPE等于L&#x2F;2。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615162138941.png" srcset="/img/loading.gif" lazyload alt="image-20210615162138941"></p>
+</li>
+<li><p>对于大多数应用程序来说，使性能翻倍要比冒对奇怪的数据模式产生不同的结果的风险更重要。</p>
+</li>
+</ul>
+<h4 id="5-9-2-重新结合变换"><a href="#5-9-2-重新结合变换" class="headerlink" title="5.9.2 重新结合变换"></a>5.9.2 重新结合变换</h4><ul>
+<li><p>在combnie5中，合并是以下面这条语句来实现的</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c">acc = (acc OP data[i]) OP data[i+<span class="hljs-number">1</span>];<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>而在combine7中，合并是以这条语句来实现的</p>
+<figure class="highlight haskell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs haskell"><span class="hljs-title">acc</span> = acc <span class="hljs-type">OP</span> (<span class="hljs-class"><span class="hljs-keyword">data</span>[i] <span class="hljs-type">OP</span> <span class="hljs-keyword">data</span>[i+1]);</span><br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>差别仅在于两个括号是如何放置的，我们称之为<strong>重新结合变换</strong>（rreassociation transformation)，因为括号改变了向量元素与累计值acc的合并顺序，产生了我们称为“2x1a”的循环展开形式。</p>
+</li>
+<li><p>每次迭代内的第一个乘法都不需要等待前一次迭代的累计值就可以执行。因此，最小可能的CPE减小了2倍。</p>
+</li>
+<li><p>总的来说，重新结合变换能够减少计算中关键路径上操作的数量，通过更好地利用功能单元的流水线能力得到更好的性能。</p>
+</li>
+<li><p>大多数编译器不会尝试对浮点运算重新结合，因为这些运算不保证是可结合的。</p>
+</li>
+</ul>
+<h3 id="5-10-优化合并代码的结果小结"><a href="#5-10-优化合并代码的结果小结" class="headerlink" title="5.10 优化合并代码的结果小结"></a>5.10 优化合并代码的结果小结</h3><h3 id="5-11-一些限制因素"><a href="#5-11-一些限制因素" class="headerlink" title="5.11 一些限制因素"></a>5.11 一些限制因素</h3><ul>
+<li>关键路径指明了执行该程序所需时间的一个基本的下界。也就是说，如果程序中有某条数据相关链，这条链上的所有延迟之和等于T，那么这个程序至少需要T个周期才能执行完。</li>
+<li>我们还看到功能单元的吞吐量界限也是程序执行时间的一个下界。也就是说，假设一个程序一共需要N个某种运算的计算，而微处理器只有C个能执行这个操作的功能单元，并且这些单元的发射时间为I。那么这个程序的执行至少需要N*I&#x2F;C个周期。</li>
+</ul>
+<h4 id="5-11-1-寄存器溢出"><a href="#5-11-1-寄存器溢出" class="headerlink" title="5.11.1 寄存器溢出"></a>5.11.1 寄存器溢出</h4><ul>
+<li>如果我们的并行度p超过了可用的寄存器数量，那么编译器会<strong>溢出</strong>（spilling），将某些临时值存放到内存中，通常是在运行时堆栈上分配空间。</li>
+</ul>
+<h4 id="5-11-2-分支预测和预测错误处罚"><a href="#5-11-2-分支预测和预测错误处罚" class="headerlink" title="5.11.2 分支预测和预测错误处罚"></a>5.11.2 分支预测和预测错误处罚</h4><h5 id="不要过分关心可预测的分支"><a href="#不要过分关心可预测的分支" class="headerlink" title="不要过分关心可预测的分支"></a>不要过分关心可预测的分支</h5><h3 id="5-12-理解内存性能"><a href="#5-12-理解内存性能" class="headerlink" title="5.12 理解内存性能"></a>5.12 理解内存性能</h3><h4 id="5-12-1-加载的性能"><a href="#5-12-1-加载的性能" class="headerlink" title="5.12.1 加载的性能"></a>5.12.1 加载的性能</h4><ul>
+<li>对两个加载单元而言，其每个时钟周期只能启动一条加载操作，所以CPE不可能小于0.50，对于每个被计算的元素必须加载k个值的应用，我们不可能获得低于k&#x2F;2的CPE。</li>
+</ul>
+<h4 id="5-12-2-存储的性能"><a href="#5-12-2-存储的性能" class="headerlink" title="5.12.2 存储的性能"></a>5.12.2 存储的性能</h4><ul>
+<li><p>与加载操作一样，在大多数情况中，存储操作能够在完全流水化的模式中工作，每个周期开始一条新的存储。</p>
+</li>
+<li><p>与到目前为止我们已经考虑过的其他操作不同，存储操作并不影响任何寄存器的值。因此，就其本性来说，一系列存储操作不会产生数据相关。只有加载操作会受存储操作结果的影响，因为只有加载操作能从由存储操作写的那个位置读回值。</p>
+<ul>
+<li>在图5-33的示例A中，参数src是一个指向数组元素a[0]的指针，而dest是一个指向数组元素a[1]的指针。从src读出的结果不受对dest的写的影响。在较大次数的迭代上测试这个示例得到CPE等于1.3。</li>
+<li>在图5-33的示例B中，参数src和dest都是指向数组元素a[0]的指针。在这种情况中，指针引用*src的每次加载都会得到指针引用*dest的前次执行存储的值。一个内存读的结果依赖于一个最近的内存写。我们的性能测试表明示例B的CPE为7.3。写&#x2F;读相关导致处理速度下降约6个时钟周期。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170347062.png" srcset="/img/loading.gif" lazyload alt="image-20210615170347062"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170401671.png" srcset="/img/loading.gif" lazyload alt="image-20210615170401671"></p>
+</li>
+<li><p>这张图中s_data和load操作之间由虚弧线。这个数据相关是有条件的：如果两个地址相同，load操作必须等待直到s_data将它的结果存放到存储缓冲区中，但是如果两个地址不同，两个操作就可以独立地进行。</p>
+</li>
+</ul>
+<h3 id="5-13-应用：性能提高技术"><a href="#5-13-应用：性能提高技术" class="headerlink" title="5.13 应用：性能提高技术"></a>5.13 应用：性能提高技术</h3><ul>
+<li><ol>
+<li>高级设计。为遇到的问题选择适当的算法和数据结构。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>基本编码原则。避免限制优化的元素，这样编译器就能产生高效的代码。</li>
+</ol>
+<ul>
+<li>消除连续的函数调用。</li>
+<li>消除不必要的内存引用。</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>低级优化。</li>
+</ol>
+<ul>
+<li>展开循环</li>
+<li>通过使用例如多个累积变量和重新结合等技术，找到方法提高指令级并行。</li>
+<li>用功能性的风格重写条件操作，使得编译采用条件数据传送。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-14-确认和消除性能瓶颈"><a href="#5-14-确认和消除性能瓶颈" class="headerlink" title="5.14 确认和消除性能瓶颈"></a>5.14 确认和消除性能瓶颈</h3><h4 id="5-14-1-程序剖析"><a href="#5-14-1-程序剖析" class="headerlink" title="5.14.1 程序剖析"></a>5.14.1 程序剖析</h4><h4 id="5-14-2-使用剖析程序来指导优化"><a href="#5-14-2-使用剖析程序来指导优化" class="headerlink" title="5.14.2 使用剖析程序来指导优化"></a>5.14.2 使用剖析程序来指导优化</h4><h3 id="5-15-小结"><a href="#5-15-小结" class="headerlink" title="5.15 小结"></a>5.15 小结</h3><h2 id="第6章-存储器层次结构"><a href="#第6章-存储器层次结构" class="headerlink" title="第6章 存储器层次结构"></a>第6章 存储器层次结构</h2><ul>
+<li><strong>存储器系统</strong>（memory system）是一个具有不同容量、成本和访问时间的存储设备的层次结构。CPU寄存器保持着最常用的数据。靠近CPU的小的、快速的<strong>高速缓存存储器</strong>（cache memory）作为一部分存储在相对慢速的主存储器（main memory）中数据和指令的缓冲区域。</li>
+<li>计算机系统中一个基本而持久的思想：如果你理解了系统是如何将数据在存储器层次结构中上上下下移动的，那么你就可以编写自己的应用程序，使得它们的数据项存储在层次结构中较高的地方，在那里CPU能更快地访问到它们。</li>
+<li>这个思想围绕着计算机程序的一个称为<strong>局部性</strong>（locality）的基本属性。</li>
+</ul>
+<h3 id="6-1-存储技术"><a href="#6-1-存储技术" class="headerlink" title="6.1 存储技术"></a>6.1 存储技术</h3><h4 id="6-1-1-随机访问存储器"><a href="#6-1-1-随机访问存储器" class="headerlink" title="6.1.1 随机访问存储器"></a>6.1.1 随机访问存储器</h4><ul>
+<li><p><strong>随机访问存储器</strong>（Random-Access Memory，RAM）分为两类：静态的和动态的。<strong>静态RAM（SRAM）</strong>比<strong>动态RAM（DRAM）</strong>更快，但也贵很多。</p>
+<ol>
+<li><p>静态RAM</p>
+</li>
+<li><p>动态RAM</p>
+</li>
+</ol>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615171808860.png" srcset="/img/loading.gif" lazyload alt="image-20210615171808860"></p>
+<ol start="3">
+<li><p>传统的DRAM</p>
+<p>DRAM芯片中的单元（位）被分成$d$个<strong>超单元</strong>（supercell），每个超单元都由$w$个DRAM单元组成，一个$d\times w$的DRAM总共存储了$dw$位信息。超单元被组织成一个$r$行$c$列的长方形阵列，这里$rc&#x3D;d$。每个超单元有形如$(i,j)$的地址，这里$i$表示行，而$j$表示列。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615172402478.png" srcset="/img/loading.gif" lazyload alt="image-20210615172402478"></p>
+<p>每个DRAM芯片被连接到某个称为<strong>内存控制器</strong>（memory controller）的电路，这个电路可以一次传送$w$位到每个DRAM芯片或一次从每个DRAM芯片传出$w$位。为了读出超单元（$i,j$）的内容，内存控制器将行地址$i$发送到DRAM，然后是列地址$j$。DRAM把超单元$(i,j)$的内容发回给控制器作为响应。行地址$i$称为RAS（Row Access Strobe，行访问选通脉冲）请求。列地址$j$称为CAS（Column Access Strobe，列访问选通脉冲）请求。注意，RAS和CAS请求共享相同的DRAM地址引脚。</p>
+</li>
+</ol>
+<ul>
+<li>要取出内存地址A处的一个字，内存控制器将A转换成一个超单元地址$(i,j)$，并将它发送到内存模块，然后内存模块再将$i$和$j$广播道每个DRAM。作为响应，每个DRAM输出它的$(i,j)$超单元的8位内容。模块中的电路手机这些输出，并把它们合并成一个64位字，再返回给内存控制器。</li>
+</ul>
+<ol start="5">
+<li><p>增强的DRAM</p>
+<ul>
+<li>快页模式DRAM（Fast Page Mode DRAM，FPM DRAM）。</li>
+<li>扩展数据输出DRAM（Extended Data Out DRAM，EDO DRAM）。FPM DRAM的一个增强的形式。</li>
+<li>同步DRAM（Synchronous DRAM，SDRAM）。</li>
+<li>双倍数据速率同步DRAM（Double Data-Rate Synchronous DRAM，DDR SDRAM），是对SDRAM的一种增强。</li>
+<li>视频RAM（Video RAM，VRAM）。</li>
+</ul>
+</li>
+<li><p>非易失性存储器</p>
+<ul>
+<li>PROM（Programmable ROM，可编程ROM）只能被编程一次。</li>
+<li>可擦写可编程ROM（Erasable Programmable ROM，EPROM）。</li>
+<li>电子可擦除PROM（Electrically Erasable PROM，EEPROM）类似于EPROM，但是它不需要一个物理上独立的编程设备，</li>
+<li><strong>闪存</strong>（flash memory）是一类非易失性存储器，基于EEPROM，它已经成为了一种重要的存储技术。</li>
+<li>存储在ROM设备中的程序通常被称为<strong>固件</strong>（firmware）</li>
+</ul>
+</li>
+<li><p>访问内存</p>
+</li>
+</ol>
+<ul>
+<li>数据流通过称为<strong>总线</strong>（bus）的共享电子电路在处理器和DRAM主存之间来来回回。每次CPU和主存之间的数据传送都是通过一系列步骤来完成的，这些步骤称为<strong>总线事务</strong>（bus transaction）。<ul>
+<li><strong>读事务</strong>（read transaction）从主存传送数据到CPU。</li>
+<li><strong>写事务</strong>（write transaction）从CPU传送数据到主存。</li>
+</ul>
+</li>
+</ul>
+<p>   <img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174054455.png" srcset="/img/loading.gif" lazyload alt="image-20210615174054455"></p>
+</li>
+</ul>
+<h4 id="6-1-2-磁盘存储"><a href="#6-1-2-磁盘存储" class="headerlink" title="6.1.2 磁盘存储"></a>6.1.2 磁盘存储</h4><ul>
+<li><strong>磁盘</strong>是广为应用的保存大量数据的存储设备，存储数据的数量级可以达到几百到几千兆字节，而基于RAM的存储器只能有几百或几千兆字节。不过，从磁盘上读信息的时间为毫秒级，比从DRAM读慢了10万倍，比从SRAM读慢了100万倍。</li>
+</ul>
+<h5 id="1-磁盘构造"><a href="#1-磁盘构造" class="headerlink" title="1.磁盘构造"></a>1.磁盘构造</h5><img src="深入理解计算机系统/image-20210615174443162.png" srcset="/img/loading.gif" lazyload alt="image-20210615174443162" style="zoom:80%;" />
+
+
+
+  <img src="深入理解计算机系统/image-20210615174459503.png" srcset="/img/loading.gif" lazyload alt="image-20210615174459503" style="zoom:80%;" />
+
+<h5 id="2-磁盘容量"><a href="#2-磁盘容量" class="headerlink" title="2. 磁盘容量"></a>2. 磁盘容量</h5><ul>
+<li>一个磁盘上可以记录的最大位数称为它的<strong>最大容量</strong>，或者简称为<strong>容量</strong>。磁盘容量是由以下技术因素决定的：<br><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174625772.png" srcset="/img/loading.gif" lazyload alt="image-20210615174625772"></li>
+<li><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174643305.png" srcset="/img/loading.gif" lazyload alt="image-20210615174643305"></li>
+</ul>
+<h5 id="3-磁盘操作"><a href="#3-磁盘操作" class="headerlink" title="3.磁盘操作"></a>3.磁盘操作</h5><img src="深入理解计算机系统/image-20210615174710471.png" srcset="/img/loading.gif" lazyload alt="image-20210615174710471" style="zoom:80%;" />
+
+<ul>
+<li><p>磁盘以扇区大小的块来读写数据。对扇区的<strong>访问时间</strong>（access time）有三个主要的部分：<strong>寻道时间</strong>（seek time）、<strong>旋转时间</strong>（rotational latency）和<strong>传送时间</strong>（transfer time）：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174928908.png" srcset="/img/loading.gif" lazyload alt="image-20210615174928908"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174941992.png" srcset="/img/loading.gif" lazyload alt="image-20210615174941992"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174954523.png" srcset="/img/loading.gif" lazyload alt="image-20210615174954523"></p>
+</li>
+<li><p>我们可以估计访问一个磁盘扇区内容的平均时间为平均寻道时间、平均旋转延迟和平均传送时间之和。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175049542.png" srcset="/img/loading.gif" lazyload alt="image-20210615175049542"></p>
+</li>
+</ul>
+<h5 id="4-逻辑磁盘块"><a href="#4-逻辑磁盘块" class="headerlink" title="4.逻辑磁盘块"></a>4.逻辑磁盘块</h5><ul>
+<li>一个B个扇区大小的<strong>逻辑块</strong>的序列，编号为0，1，…，B-1。磁盘封装中有一个小小的硬件&#x2F;固件设备，称为<strong>磁盘控制器</strong>，维护者逻辑块号和实际（物理）磁盘扇区之间的映射关系。</li>
+<li>当操作系统想要执行一个I&#x2F;O操作时，例如读一个磁盘扇区的数据到主存，操作系统会发送一个命令到磁盘控制器，让它读某个逻辑块号。控制器上的固件执行一个快速表查找，将一个逻辑块号翻译成一个（盘面，磁道，扇区）的三元组，这个三元组唯一地标识了对应的物理扇区。</li>
+</ul>
+<h5 id="5-连接I-x2F-O设备"><a href="#5-连接I-x2F-O设备" class="headerlink" title="5. 连接I&#x2F;O设备"></a>5. 连接I&#x2F;O设备</h5><h5 id="6-访问磁盘"><a href="#6-访问磁盘" class="headerlink" title="6. 访问磁盘"></a>6. 访问磁盘</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175559948.png" srcset="/img/loading.gif" lazyload alt="image-20210615175559948"></p>
+<h4 id="6-1-3-固态硬盘"><a href="#6-1-3-固态硬盘" class="headerlink" title="6.1.3 固态硬盘"></a>6.1.3 固态硬盘</h4><ul>
+<li>读SSD比写要块。随机读和写的性能差别是由底层闪存基本属性决定的。</li>
+<li>如图6-13所示，一个闪存由B个块的序列组成，每个块由P页组成。</li>
+<li>只有在一页所属的块整个<strong>被擦除</strong>之后，才能写这一页（通常是指该块中的所有位都被设置为1）。</li>
+</ul>
+<h3 id="6-2-局部性"><a href="#6-2-局部性" class="headerlink" title="6.2 局部性"></a>6.2 局部性</h3><ul>
+<li>一个编写良好的计算机程序常常具有良好的<strong>局部性</strong>（locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。这种倾向性，被称为<strong>局部性原理</strong>（principle of locality）。</li>
+<li>局部性通常有两种不同的形式：<strong>时间局部性</strong>（temporal locality）和<strong>空间局部性</strong>（spatial locality）。<ul>
+<li>在一个具有良心时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用。</li>
+<li>再一个具有良好的空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能再不远的将来引用附近的一个内存位置。</li>
+</ul>
+</li>
+<li>一般而言，有<strong>良好局部性的程序比局部性差的程序运行得更快</strong>。</li>
+</ul>
+<h4 id="6-2-1-对程序数据引用的局部性"><a href="#6-2-1-对程序数据引用的局部性" class="headerlink" title="6.2.1 对程序数据引用的局部性"></a>6.2.1 对程序数据引用的局部性</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616163626300.png" srcset="/img/loading.gif" lazyload alt="image-20210616163626300"></p>
+<ul>
+<li><p>像sumvec这样顺序访问一个向量每个元素的函数，具有<strong>步长为1</strong>的<strong>引用模式</strong>（stride-1 reference pattern)（相对于元素的大小）。有时我们称步长为1的引用模式为<strong>顺序引用模式</strong>（sequential reference pattern）。一个连续向量中，每隔k个元素进行访问，就称为<strong>步长为k的引用模式</strong>（stride-k reference pattern）。步长为1的引用模式是程序中空间局部性常见和重要的来源。一般而言，随着步长的增加，空间局部性下降。</p>
+</li>
+<li><p>考虑图6-18a中的函数sumarrayrows，它对一个二维数组的元素求和。双重嵌套循环按照<strong>行优先顺序</strong>（row-major order）读数组的元素。</p>
+<ul>
+<li>其结果是得到一个很好的步长为1的引用模式，具有良好的空间局部性。</li>
+</ul>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170418768.png" srcset="/img/loading.gif" lazyload alt="image-20210616170418768"></p>
+</li>
+<li><p>交换了i和j的循环，局部性变得很差：</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170449047.png" srcset="/img/loading.gif" lazyload alt="image-20210616170449047"></p>
+</li>
+</ul>
+<h4 id="6-2-2-取指令的局部性"><a href="#6-2-2-取指令的局部性" class="headerlink" title="6.2.2 取指令的局部性"></a>6.2.2 取指令的局部性</h4><h4 id="6-2-3-局部性小结"><a href="#6-2-3-局部性小结" class="headerlink" title="6.2.3 局部性小结"></a>6.2.3 局部性小结</h4><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170616488.png" srcset="/img/loading.gif" lazyload alt="image-20210616170616488"></p>
+<h3 id="6-3-存储器层次结构"><a href="#6-3-存储器层次结构" class="headerlink" title="6.3 存储器层次结构"></a>6.3 存储器层次结构</h3><ul>
+<li><p>硬件和软件的这些基本属性互相补充得很完美。它们这种相互补充的性质使人联像到一种组织存储器系统的方法，称为<strong>存储器层次结构</strong>（memory hierarchy）。</p>
+</li>
+<li><p>一般而言，从高层往底层走，存储设备变得更慢、更便宜和更大。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616170911598.png" srcset="/img/loading.gif" lazyload alt="image-20210616170911598"></p>
+</li>
+</ul>
+<h4 id="6-3-1-存储器层次结构中的缓存"><a href="#6-3-1-存储器层次结构中的缓存" class="headerlink" title="6.3.1 存储器层次结构中的缓存"></a>6.3.1 存储器层次结构中的缓存</h4><ul>
+<li><p>一般而言，<strong>高速缓存</strong>（cache,读作“cash”）是一个小而快速的存储设备，它作为存储在更大、也更慢的设备中的数据对象的缓冲区域。</p>
+</li>
+<li><p>使用高速缓存的过程称为<strong>缓存</strong>（caching，读作“cashing”）。</p>
+</li>
+<li><p>存储器层次结构的中心思想是，对于每个k，位于k层的更小更快的存储设备作为位于k+1层的更大更慢的存储设备的缓存。</p>
+</li>
+<li><p>图6-22展示了存储器层次结构中缓存的一般性概念。第k+1层的存储器被划分成连续的数据对象组块（chunk），称为<strong>块</strong>（block）。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616171526017.png" srcset="/img/loading.gif" lazyload alt="image-20210616171526017"></p>
+</li>
+<li><p>数据总是以块大小为<strong>传送单元</strong>（transfer unit）在第k层和第k+1层之间来回复制的。</p>
+</li>
+</ul>
+<h5 id="1-缓存命中"><a href="#1-缓存命中" class="headerlink" title="1.缓存命中"></a>1.缓存命中</h5><ul>
+<li>当程序需要第k+1层的某个数据对象d时，它首先在当前存储在第k层的一个块中查找d。如果d刚好缓存在第k层中，那么就是我们所说的<strong>缓存命中</strong>（cache hit）。</li>
+</ul>
+<h5 id="2-缓存不命中"><a href="#2-缓存不命中" class="headerlink" title="2.缓存不命中"></a>2.缓存不命中</h5><ul>
+<li>另一方面，如果第k层中没有缓存数据对象d，那么就是我们所说的<strong>缓存不命中</strong>（cache miss)。</li>
+<li>当发生缓存不命中时，第k层的缓存从第k+1层缓存中取出包含d的那个块，如果第k层的缓存已经满了，可能就会覆盖一个现存的块。</li>
+<li>覆盖一个现存的块的过程称为<strong>替换</strong>（replace）或<strong>驱逐</strong>（evicting）这个块。被驱逐的这个块有时也称为<strong>牺牲块</strong>（victim block）。决定该替换哪个块是由缓存的<strong>替换策略</strong>（replacement policy）来控制的。例如，一个具有<strong>随机替换策略</strong>的缓存会随机选择一个牺牲块。一个具有最近最少被使用（LRU）替换策略的缓存会选择那个最后被访问的时间距现在最远的块。</li>
+</ul>
+<h5 id="3-缓存不命中的种类"><a href="#3-缓存不命中的种类" class="headerlink" title="3.缓存不命中的种类"></a>3.缓存不命中的种类</h5><ul>
+<li>如果第k层的缓存时空的，那么对任何数据对象的访问都不会命中。一个空的缓存有时被称为<strong>冷缓存</strong>（cold cache），此类不命中被称为<strong>强制性不命中</strong>（compulsory miss）或<strong>冷不命中</strong>（cold miss）。</li>
+<li>只要发生了不命中，第k层的缓存就必须执行某个<strong>放置策略</strong>（placement policy）。</li>
+<li>硬件缓存通常使用的是更严格的放置策略。</li>
+<li>限制性的放置策略会引起一种不命中，称为<strong>冲突不命中</strong>（conflict miss）。</li>
+</ul>
+<h5 id="4-缓存管理"><a href="#4-缓存管理" class="headerlink" title="4.缓存管理"></a>4.缓存管理</h5><h3 id="6-4-高速缓存存储器"><a href="#6-4-高速缓存存储器" class="headerlink" title="6.4 高速缓存存储器"></a>6.4 高速缓存存储器</h3><h5 id="高速缓存存储器的典型总线结构"><a href="#高速缓存存储器的典型总线结构" class="headerlink" title="高速缓存存储器的典型总线结构"></a>高速缓存存储器的典型总线结构</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194008217.png" srcset="/img/loading.gif" lazyload alt="image-20210616194008217"></p>
+<h4 id="6-4-1-通用的高速缓存存储器组织结构"><a href="#6-4-1-通用的高速缓存存储器组织结构" class="headerlink" title="6.4.1 通用的高速缓存存储器组织结构"></a>6.4.1 通用的高速缓存存储器组织结构</h4><ul>
+<li><p>考虑一个计算机系统，其中每个存储器地址有$m$位，形成$M&#x3D;2^m$个不同的地址。如图6-25a所示，这样一个机器的高速缓存被组织成一个有$S&#x3D;2^s$个<strong>高速缓存组</strong>（cache set）的数组。每个组包含$E$个<strong>高速缓存行</strong>（cache line）。每个行是由一个$B&#x3D;2^b$字节的数据块（block）组成的。一个<strong>有效位</strong>（valid bit）指明这个行是否包含由意义的信息，还有$t&#x3D;m-(b+s)$个<strong>标记位</strong>（tag bit）（   集），它们唯一地标识存储在这个高速缓存行的块。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194515993-1623843917008.png" srcset="/img/loading.gif" lazyload alt="image-20210616194515993"></p>
+</li>
+<li><p>一般而言，高速缓存的结构可以用元组$(S,E,B,m)$来描述。高速缓存的大小（或容量）$C$指的是所有块的大小的和。标记位和有效位不包括在内。因此，$C&#x3D;S\times E \times B$。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194750930.png" srcset="/img/loading.gif" lazyload alt="image-20210616194750930"></p>
+</li>
+</ul>
+<h4 id="6-4-2-直接映射高速缓存"><a href="#6-4-2-直接映射高速缓存" class="headerlink" title="6.4.2 直接映射高速缓存"></a>6.4.2 直接映射高速缓存</h4><ul>
+<li><p>每个组只有一行（$E&#x3D;1$）的高速缓存被称为<strong>直接映射</strong>高速缓存（direct-mapped cache）。</p>
+</li>
+<li><p>抽取初被请求的字的过程，分为三步：</p>
+<ol>
+<li>组选择</li>
+<li>行匹配</li>
+<li>字抽取</li>
+</ol>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616195057182.png" srcset="/img/loading.gif" lazyload alt="image-20210616195057182"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616195108596.png" srcset="/img/loading.gif" lazyload alt="image-20210616195108596"></p>
+</li>
+<li><p>“抖动”：高速缓存反复地加载和驱逐相同的高速缓存块的组。</p>
+</li>
+<li><p>如果高位用做索引，那么一些连续的内存块就会映射到相同的高速缓存块。</p>
+<ul>
+<li>相较而言，以中间位作为索引，相邻的块总是映射到不同的高速缓存行。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-4-3-组相连高速缓存"><a href="#6-4-3-组相连高速缓存" class="headerlink" title="6.4.3 组相连高速缓存"></a>6.4.3 组相连高速缓存</h4><ul>
+<li><p><strong>组相连高速缓存</strong>（set associative cache）每个组都有保存由多于一个的高速缓存行。</p>
+</li>
+<li><p>它的<strong>组选择</strong>与直接映射高速缓存的组选择一样，组索引位标识组。</p>
+</li>
+<li><p>组相连高速缓存的<strong>行匹配</strong>比直接映射高速缓存中的更复杂，因为它必须检查多行的标记位和有效位，以确定所请求的字是否在集合中。</p>
+<p>​	<img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200705881.png" srcset="/img/loading.gif" lazyload alt="image-20210616200705881"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200719291.png" srcset="/img/loading.gif" lazyload alt="image-20210616200719291"></p>
+</li>
+</ul>
+<h5 id="组相连高速缓存中不命中时的行替换"><a href="#组相连高速缓存中不命中时的行替换" class="headerlink" title="组相连高速缓存中不命中时的行替换"></a>组相连高速缓存中不命中时的行替换</h5><ul>
+<li><p>最简单的替换策略时随机选择要替换的行。</p>
+</li>
+<li><p>其他更复杂发策略利用了局部性原理，以使在比较近的将来引用被替换的行的概率最小。例如，</p>
+<ul>
+<li><strong>最不常使用</strong>（Least-Frequently-Used，LFU）策略会替换在过去某个时间窗口内引用次数最少的那一行。</li>
+<li><strong>最近最少使用</strong>（Least-Recently-Used，LRU）策略会替换最后一次访问时间最久远的那一行。</li>
+</ul>
+<p>所有这些策略都需要额外的时间和硬件。</p>
+</li>
+</ul>
+<h4 id="6-4-4-全相联高速缓存"><a href="#6-4-4-全相联高速缓存" class="headerlink" title="6.4.4 全相联高速缓存"></a>6.4.4 全相联高速缓存</h4><ul>
+<li><p><strong>全相联高速缓存</strong>（fully associative cache）是由一个包含所有高速缓存行的组（即$E&#x3D;C&#x2F;B$）组成的。</p>
+</li>
+<li><p>全相联高速缓存中的组选择非常简单，因为只有一个组，地址中没有组索引位，地址只被划分成了一个标记和一个块偏移。</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200750144.png" srcset="/img/loading.gif" lazyload alt="image-20210616200750144"></p>
+<p>​	<img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200804495.png" srcset="/img/loading.gif" lazyload alt="image-20210616200804495"></p>
+</li>
+<li><p>全相联高速缓存只适合做小的高速缓存。</p>
+</li>
+</ul>
+<h4 id="6-4-5-有关写的问题"><a href="#6-4-5-有关写的问题" class="headerlink" title="6.4.5 有关写的问题"></a>6.4.5 有关写的问题</h4><ul>
+<li>高速缓存关于读的操作非常简单。首先，在高速缓存中查找所需字$w$的副本。如果命中，立即返回字$w$给CPU。如果不命中，从存储器层次结构中较低层中取出包含字$w$的块，将这个块存储到某个高速缓存行中（可能会驱逐一个有效的行，然后返回字$w$）。</li>
+</ul>
+<h5 id="写的情况就要复杂一些了："><a href="#写的情况就要复杂一些了：" class="headerlink" title="写的情况就要复杂一些了："></a>写的情况就要复杂一些了：</h5><p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201410777.png" srcset="/img/loading.gif" lazyload alt="image-20210616201410777"></p>
+<h4 id="6-4-6-一个真实的高速缓存层次结构的解剖"><a href="#6-4-6-一个真实的高速缓存层次结构的解剖" class="headerlink" title="6.4.6 一个真实的高速缓存层次结构的解剖"></a>6.4.6 一个真实的高速缓存层次结构的解剖</h4><ul>
+<li>既保存指令又包括数据的高速缓存称为<strong>统一的高速缓存</strong>（unified cache)</li>
+</ul>
+<h4 id="6-4-7-高速缓存参数的性能影响"><a href="#6-4-7-高速缓存参数的性能影响" class="headerlink" title="6.4.7 高速缓存参数的性能影响"></a>6.4.7 高速缓存参数的性能影响</h4><ul>
+<li>有许多指标来衡量高速缓存的性能：<br><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201749638.png" srcset="/img/loading.gif" lazyload alt="image-20210616201749638"></li>
+</ul>
+<ol>
+<li>高速缓存大小的影响</li>
+</ol>
+<p>   <img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201856220.png" srcset="/img/loading.gif" lazyload alt="image-20210616201856220"></p>
+<ol start="2">
+<li><p>块大小的影响</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201910591.png" srcset="/img/loading.gif" lazyload alt="image-20210616201910591"></p>
+</li>
+<li><p>相联度的影响</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202352188.png" srcset="/img/loading.gif" lazyload alt="image-20210616202352188"></p>
+</li>
+<li><p>写策略的影响</p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202616055.png" srcset="/img/loading.gif" lazyload alt="image-20210616202616055"></p>
+<p><img src="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616202634465.png" srcset="/img/loading.gif" lazyload alt="image-20210616202634465"></p>
+</li>
+</ol>
+<h3 id="6-5-编写高速缓存友好的代码"><a href="#6-5-编写高速缓存友好的代码" class="headerlink" title="6.5 编写高速缓存友好的代码"></a>6.5 编写高速缓存友好的代码</h3><ul>
+<li><strong>让最常见的情况运行得快。</strong></li>
+<li><strong>尽量减小每个循环内部的缓存不命中数量。</strong></li>
+</ul>
+<h3 id="6-6-综合：高速缓存对程序性能的影响"><a href="#6-6-综合：高速缓存对程序性能的影响" class="headerlink" title="6.6 综合：高速缓存对程序性能的影响"></a>6.6 综合：高速缓存对程序性能的影响</h3><h4 id="6-6-1-存储器山"><a href="#6-6-1-存储器山" class="headerlink" title="6.6.1 存储器山"></a>6.6.1 存储器山</h4><h4 id="6-6-2-重新排列循环以提高空间局部性"><a href="#6-6-2-重新排列循环以提高空间局部性" class="headerlink" title="6.6.2 重新排列循环以提高空间局部性"></a>6.6.2 重新排列循环以提高空间局部性</h4><h4 id="6-6-3-在程序中利用局部性"><a href="#6-6-3-在程序中利用局部性" class="headerlink" title="6.6.3 在程序中利用局部性"></a>6.6.3 在程序中利用局部性</h4><h3 id="6-7-小结"><a href="#6-7-小结" class="headerlink" title="6.7 小结"></a>6.7 小结</h3><h2 id="第7章-链接"><a href="#第7章-链接" class="headerlink" title="第7章 链接"></a>第7章 链接</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">深入理解计算机系统</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均为博客作者本人编写整理，转载请联系作者！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/25/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8Lab1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Environment Variable and Set-UID Program Lab</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/01/buflab/">
+                        <span class="hidden-mobile">CSAPP-buflab</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-8gj7evx1e18b463f","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>Copyrights © 2021 Yuhan</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>Xiayan</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://lib.baomitu.com/mathjax/3.2.0/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6da93a2e5d7f160e0f40b273ddbbddac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
