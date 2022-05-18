@@ -169,7 +169,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://lib.baomitu.com/highlight.js/10.7.3/styles/vs2015.min.css" />
     
   
 
@@ -184,7 +184,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -333,7 +333,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      196 分钟
+      194 分钟
     </span>
   
 
@@ -366,7 +366,7 @@
             
             <div class="markdown-body">
               <h1 id="深入理解计算机系统"><a href="#深入理解计算机系统" class="headerlink" title="深入理解计算机系统"></a>深入理解计算机系统</h1><h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><h3 id="1-1-信息就是位-上下文"><a href="#1-1-信息就是位-上下文" class="headerlink" title="1.1 信息就是位+上下文"></a>1.1 信息就是位+上下文</h3><h5 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h5><ul>
-<li>源程序实际上就是一个由值0和1组成的位（又称为比特）序列，8个位被组织成一组，称为<code>字节</code>。	</li>
+<li>源程序实际上就是一个由值0和1组成的位（又称为比特）序列，8个位被组织成一组，称为<code>字节</code>。    </li>
 <li>大部分的现代计算机系统都使用ASCII标准来表示文本字符，这种方式实际上就是用一个唯一的单字节大小的整数值来表示每个字符。</li>
 </ul>
 <h5 id="文本文件和二进制文件"><a href="#文本文件和二进制文件" class="headerlink" title="文本文件和二进制文件"></a>文本文件和二进制文件</h5><ul>
@@ -392,44 +392,43 @@
 <h4 id="1-4-1-系统的硬件组成"><a href="#1-4-1-系统的硬件组成" class="headerlink" title="1.4.1 系统的硬件组成"></a>1.4.1 系统的硬件组成</h4><h5 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h5><ul>
 <li>通常总线被设计成传输定长的字节块，也就是<code>字</code>（word）。字中的字节数（即<code>字长</code>）是一个基本的系统参数，各个系统中都不尽相同。</li>
 </ul>
-<h5 id="I-x2F-O设备"><a href="#I-x2F-O设备" class="headerlink" title="I&#x2F;O设备"></a>I&#x2F;O设备</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606220545835.png" srcset="/img/loading.gif" lazyload alt="image-20210606220545835" style="zoom:67%;">
-
+<h5 id="I-O设备"><a href="#I-O设备" class="headerlink" title="I/O设备"></a>I/O设备</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606220545835.png" srcset="/img/loading.gif" lazyload alt="image-20210606220545835" style="zoom:67%;"></p>
 <h5 id="主存"><a href="#主存" class="headerlink" title="主存"></a>主存</h5><ul>
 <li><strong>主存</strong>是一个临时存储设备，在处理器执行程序时，用来存放程序和程序处理的数据。</li>
 </ul>
 <h5 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h5><ul>
-<li><p><strong>中央处理单元(CPU)<strong>，简称</strong>处理器</strong>，是解释（或执行）存储在主存中指令的引擎。处理器的核心是一个大小为一个字的存储设备（或寄存器），称为<strong>程序计数器</strong>。在任何时刻，PC都指向主存中的某条机器语言指令（即含有该条指令的地址）。</p>
+<li><p><strong>中央处理单元(CPU)</strong>，简称<strong>处理器</strong>，是解释（或执行）存储在主存中指令的引擎。处理器的核心是一个大小为一个字的存储设备（或寄存器），称为<strong>程序计数器</strong>。在任何时刻，PC都指向主存中的某条机器语言指令（即含有该条指令的地址）。</p>
 </li>
 <li><p>寄存器文件是一个小的存储设备，由一些单个字长的寄存器组成，每个寄存器都有唯一的名字。ALU计算新的数据和地址值。</p>
 </li>
 <li><p>CPU在指令的要求下可能会执行这些操作：</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221113545.png" srcset="/img/loading.gif" lazyload alt="image-20210606221113545" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221113545.png" srcset="/img/loading.gif" lazyload alt="image-20210606221113545" style="zoom:67%;"></p>
+</li>
 </ul>
 <h4 id="1-4-2-运行hello程序"><a href="#1-4-2-运行hello程序" class="headerlink" title="1.4.2 运行hello程序"></a>1.4.2 运行hello程序</h4><h3 id="1-5-高速缓存至关重要"><a href="#1-5-高速缓存至关重要" class="headerlink" title="1.5 高速缓存至关重要"></a>1.5 高速缓存至关重要</h3><h3 id="1-6-存储设备形成层次结构"><a href="#1-6-存储设备形成层次结构" class="headerlink" title="1.6 存储设备形成层次结构"></a>1.6 存储设备形成层次结构</h3><h5 id="一个存储器层次结构的示例"><a href="#一个存储器层次结构的示例" class="headerlink" title="一个存储器层次结构的示例"></a>一个存储器层次结构的示例</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221257531.png" srcset="/img/loading.gif" lazyload alt="image-20210606221257531"></p>
 <ul>
 <li>存储器层次结构的主要思想是上一层的存储器作为低一层存储器的高速缓存。</li>
 </ul>
-<h3 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h3><h5 id="计算机系统的分层视图"><a href="#计算机系统的分层视图" class="headerlink" title="计算机系统的分层视图"></a>计算机系统的分层视图</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221506397.png" srcset="/img/loading.gif" lazyload alt="image-20210606221506397" style="zoom:67%;">
-
+<h3 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h3><h5 id="计算机系统的分层视图"><a href="#计算机系统的分层视图" class="headerlink" title="计算机系统的分层视图"></a>计算机系统的分层视图</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221506397.png" srcset="/img/loading.gif" lazyload alt="image-20210606221506397" style="zoom:67%;"></p>
 <ul>
 <li>我们可以把操作系统看作是应用程序与硬件之前插入的一层软件。</li>
 </ul>
 <h5 id="操作系统提供的抽象表示"><a href="#操作系统提供的抽象表示" class="headerlink" title="操作系统提供的抽象表示"></a>操作系统提供的抽象表示</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606221615091.png" srcset="/img/loading.gif" lazyload alt="image-20210606221615091"></p>
 <ul>
 <li>操作系统由两个基本功能：（1）防止硬件被失控的应用程序滥用；（2）向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。</li>
-<li>文件是对I&#x2F;O设备的抽象表示，虚拟内存是对主存和硬盘I&#x2F;O设备的抽象表示，进程则是对处理器、主存和I&#x2F;O设备的抽象表示。</li>
+<li>文件是对I/O设备的抽象表示，虚拟内存是对主存和硬盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</li>
 </ul>
 <h4 id="1-7-1-进程"><a href="#1-7-1-进程" class="headerlink" title="1.7.1 进程"></a>1.7.1 进程</h4><ul>
 <li><code>进程</code>是操作系统对一个正在运行的程序的一种抽象。</li>
 </ul>
-<h5 id="进程的上下文切换"><a href="#进程的上下文切换" class="headerlink" title="进程的上下文切换"></a>进程的上下文切换</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222029334.png" srcset="/img/loading.gif" lazyload alt="image-20210606222029334" style="zoom:67%;">
-
+<h5 id="进程的上下文切换"><a href="#进程的上下文切换" class="headerlink" title="进程的上下文切换"></a>进程的上下文切换</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222029334.png" srcset="/img/loading.gif" lazyload alt="image-20210606222029334" style="zoom:67%;"></p>
 <h4 id="1-7-2-线程"><a href="#1-7-2-线程" class="headerlink" title="1.7.2 线程"></a>1.7.2 线程</h4><ul>
 <li>一个进程实际上可以又多个称为<code>线程</code>的执行单元组成，每个线程都运行在进程的上下文中，并共享同样的代码和全局数据。</li>
 </ul>
 <h4 id="1-7-3-虚拟内存"><a href="#1-7-3-虚拟内存" class="headerlink" title="1.7.3 虚拟内存"></a>1.7.3 虚拟内存</h4><h5 id="虚拟地址空间"><a href="#虚拟地址空间" class="headerlink" title="虚拟地址空间"></a>虚拟地址空间</h5><ul>
 <li><p>每个进程看到的内存都是一致的，称为<code>虚拟地址空间</code>。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222335649.png" srcset="/img/loading.gif" lazyload alt="image-20210606222335649" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606222335649.png" srcset="/img/loading.gif" lazyload alt="image-20210606222335649" style="zoom:67%;"></p>
+</li>
 </ul>
 <h4 id="1-7-4-文件"><a href="#1-7-4-文件" class="headerlink" title="1.7.4 文件"></a>1.7.4 文件</h4><ul>
 <li><strong>文件</strong>就是字符序列。</li>
@@ -438,7 +437,7 @@
 <h4 id="1-9-2-并发和并行"><a href="#1-9-2-并发和并行" class="headerlink" title="1.9.2 并发和并行"></a>1.9.2 并发和并行</h4><ul>
 <li><strong>并发</strong>（concurrency）是一个通用的概念，指一个同时具有多个活动的系统；而术语<strong>并行</strong>（parallelism）指的是用并发来使一个系统运行得更快。</li>
 </ul>
-<h4 id="1-9-3-计算机系统中抽象的重要性"><a href="#1-9-3-计算机系统中抽象的重要性" class="headerlink" title="1.9.3 计算机系统中抽象的重要性"></a>1.9.3 计算机系统中抽象的重要性</h4><p><strong>文件</strong>是多I&#x2F;O设备的抽象，<strong>虚拟内存</strong>是对程序存储器的抽象，<strong>进程</strong>是对一个正在运行的程序的抽象，<strong>虚拟机</strong>是整个计算机的抽象，包括存储系统，处理器和程序。</p>
+<h4 id="1-9-3-计算机系统中抽象的重要性"><a href="#1-9-3-计算机系统中抽象的重要性" class="headerlink" title="1.9.3 计算机系统中抽象的重要性"></a>1.9.3 计算机系统中抽象的重要性</h4><p><strong>文件</strong>是多I/O设备的抽象，<strong>虚拟内存</strong>是对程序存储器的抽象，<strong>进程</strong>是对一个正在运行的程序的抽象，<strong>虚拟机</strong>是整个计算机的抽象，包括存储系统，处理器和程序。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210606223232436.png" srcset="/img/loading.gif" lazyload alt="image-20210606223232436"></p>
 <h2 id="第2章-信息的表示和处理"><a href="#第2章-信息的表示和处理" class="headerlink" title="第2章 信息的表示和处理"></a>第2章 信息的表示和处理</h2><ul>
 <li>整数的表示虽然只能编码一个相对较小的数值范围，但是这种表示是精确的；而浮点数虽然可以编码一个较大的数值范围，但是这种表示只是近似的。</li>
@@ -461,7 +460,7 @@
 <li><p>最低有效字节在最前面的方式，称为<strong>小端法</strong>（little endian）。</p>
 </li>
 <li><p>最高有效字节在最前面的方式，称为<strong>大端法</strong>（big endian）。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210607230607757.png" srcset="/img/loading.gif" lazyload alt="image-20210607230607757" style="zoom:67%;">
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210607230607757.png" srcset="/img/loading.gif" lazyload alt="image-20210607230607757" style="zoom:67%;"></p>
 </li>
 <li><p>一旦选择了特定操作系统，那么字节顺序也就固定下来。</p>
 </li>
@@ -481,7 +480,7 @@
 <h4 id="2-1-9-C语言中的移位运算"><a href="#2-1-9-C语言中的移位运算" class="headerlink" title="2.1.9 C语言中的移位运算"></a>2.1.9 C语言中的移位运算</h4><ul>
 <li>移位运算是从左至右可结合的。</li>
 <li>机器支持两种形式的右移：<strong>逻辑右移</strong>和<strong>算术右移</strong>。逻辑右移在左端补k个0，算术右移在左端补k个最高有效位的值。</li>
-<li>实际上，几乎所有的编译器&#x2F;机器组合都对有符号数使用算术右移。</li>
+<li>实际上，几乎所有的编译器/机器组合都对有符号数使用算术右移。</li>
 <li>另一方面，对于无符号数，右移必须是逻辑的。</li>
 </ul>
 <h5 id="若-k-大于-w-位"><a href="#若-k-大于-w-位" class="headerlink" title="若$k$大于$w$位"></a>若$k$大于$w$位</h5><p>位移量通过计算$k$mod$w$得到。</p>
@@ -491,112 +490,89 @@
 <h3 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h3><p>B：二进制；</p>
 <p>T：补码；</p>
 <p>U：无符号。</p>
-<h5 id="整数的数据与算术操作术语，下标-w-表示数据表示中的位数"><a href="#整数的数据与算术操作术语，下标-w-表示数据表示中的位数" class="headerlink" title="整数的数据与算术操作术语，下标$w$表示数据表示中的位数"></a>整数的数据与算术操作术语，下标$w$表示数据表示中的位数</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210607235940694.png" srcset="/img/loading.gif" lazyload alt="image-20210607235940694" style="zoom:67%;">
-
-<h4 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h4><h5 id="C语言整型数据类型的典型取值范围"><a href="#C语言整型数据类型的典型取值范围" class="headerlink" title="C语言整型数据类型的典型取值范围"></a>C语言整型数据类型的典型取值范围</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608000105612.png" srcset="/img/loading.gif" lazyload alt="image-20210608000105612" style="zoom:67%;">
-
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181810596.png" srcset="/img/loading.gif" lazyload alt="image-20210608181810596" style="zoom:67%;">
-
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181837956.png" srcset="/img/loading.gif" lazyload alt="image-20210608181837956" style="zoom:67%;">
-
-<h4 id="2-2-无符号数的编码"><a href="#2-2-无符号数的编码" class="headerlink" title="2.2 无符号数的编码"></a>2.2 无符号数的编码</h4><h5 id="无符号数编码的定义"><a href="#无符号数编码的定义" class="headerlink" title="无符号数编码的定义"></a>无符号数编码的定义</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181943455.png" srcset="/img/loading.gif" lazyload alt="image-20210608181943455" style="zoom:67%;">
-
+<h5 id="整数的数据与算术操作术语，下标-w-表示数据表示中的位数"><a href="#整数的数据与算术操作术语，下标-w-表示数据表示中的位数" class="headerlink" title="整数的数据与算术操作术语，下标$w$表示数据表示中的位数"></a>整数的数据与算术操作术语，下标$w$表示数据表示中的位数</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210607235940694.png" srcset="/img/loading.gif" lazyload alt="image-20210607235940694" style="zoom:67%;"></p>
+<h4 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h4><h5 id="C语言整型数据类型的典型取值范围"><a href="#C语言整型数据类型的典型取值范围" class="headerlink" title="C语言整型数据类型的典型取值范围"></a>C语言整型数据类型的典型取值范围</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608000105612.png" srcset="/img/loading.gif" lazyload alt="image-20210608000105612" style="zoom:67%;"></p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181810596.png" srcset="/img/loading.gif" lazyload alt="image-20210608181810596" style="zoom:67%;"></p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181837956.png" srcset="/img/loading.gif" lazyload alt="image-20210608181837956" style="zoom:67%;"></p>
+<h4 id="2-2-无符号数的编码"><a href="#2-2-无符号数的编码" class="headerlink" title="2.2 无符号数的编码"></a>2.2 无符号数的编码</h4><h5 id="无符号数编码的定义"><a href="#无符号数编码的定义" class="headerlink" title="无符号数编码的定义"></a>无符号数编码的定义</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608181943455.png" srcset="/img/loading.gif" lazyload alt="image-20210608181943455" style="zoom:67%;"></p>
 <ul>
 <li>函数$B2U_w$能够被定义为一个映射：$B2U_w：\lbrace0,1\rbrace^w \to \lbrace 0,…,2^w-1 \rbrace$。</li>
 </ul>
-<h5 id="无符号数编码的唯一性"><a href="#无符号数编码的唯一性" class="headerlink" title="无符号数编码的唯一性"></a>无符号数编码的唯一性</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608182836509.png" srcset="/img/loading.gif" lazyload alt="image-20210608182836509" style="zoom:67%;">
-
-<h4 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h4><h5 id="补码编码的定义"><a href="#补码编码的定义" class="headerlink" title="补码编码的定义"></a>补码编码的定义</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608183201953.png" srcset="/img/loading.gif" lazyload alt="image-20210608183201953" style="zoom:67%;">
-
-<h5 id="补码编码的唯一性"><a href="#补码编码的唯一性" class="headerlink" title="补码编码的唯一性"></a>补码编码的唯一性</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608183234799.png" srcset="/img/loading.gif" lazyload alt="image-20210608183234799" style="zoom:67%;">
-
+<h5 id="无符号数编码的唯一性"><a href="#无符号数编码的唯一性" class="headerlink" title="无符号数编码的唯一性"></a>无符号数编码的唯一性</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608182836509.png" srcset="/img/loading.gif" lazyload alt="image-20210608182836509" style="zoom:67%;"></p>
+<h4 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h4><h5 id="补码编码的定义"><a href="#补码编码的定义" class="headerlink" title="补码编码的定义"></a>补码编码的定义</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608183201953.png" srcset="/img/loading.gif" lazyload alt="image-20210608183201953" style="zoom:67%;"></p>
+<h5 id="补码编码的唯一性"><a href="#补码编码的唯一性" class="headerlink" title="补码编码的唯一性"></a>补码编码的唯一性</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608183234799.png" srcset="/img/loading.gif" lazyload alt="image-20210608183234799" style="zoom:67%;"></p>
 <ul>
-<li><p>补码的范围是不对称的：$|TMin|&#x3D;|TMax|+1$。</p>
+<li><p>补码的范围是不对称的：$|TMin|=|TMax|+1$。</p>
 </li>
-<li><p>最大的无符号数值刚好比补码的最大值的两倍的大一点：$UMax_w&#x3D;2TMax_w+1$。</p>
+<li><p>最大的无符号数值刚好比补码的最大值的两倍的大一点：$UMax_w=2TMax_w+1$。</p>
 <p>注意$-1$和$UMax$由同样的位表示——一个全1的串。</p>
 </li>
 </ul>
 <h4 id="2-2-4-有符号数与无符号数之间的转换"><a href="#2-2-4-有符号数与无符号数之间的转换" class="headerlink" title="2.2.4 有符号数与无符号数之间的转换"></a>2.2.4 有符号数与无符号数之间的转换</h4><ul>
 <li>假设变量x声明位int，u声明为unsigned，表达式(unsigned)x会将x的值转换成一个无符号数值，而(int)u将u的值转换成一个有符号整数。</li>
 </ul>
-<h5 id="补码转换为无符号数："><a href="#补码转换为无符号数：" class="headerlink" title="补码转换为无符号数："></a>补码转换为无符号数：</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608184712172.png" srcset="/img/loading.gif" lazyload alt="image-20210608184712172" style="zoom:67%;">
-
-<h5 id="无符号数转化为补码"><a href="#无符号数转化为补码" class="headerlink" title="无符号数转化为补码"></a>无符号数转化为补码</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608184746355.png" srcset="/img/loading.gif" lazyload alt="image-20210608184746355" style="zoom:67%;">
-
+<h5 id="补码转换为无符号数："><a href="#补码转换为无符号数：" class="headerlink" title="补码转换为无符号数："></a>补码转换为无符号数：</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608184712172.png" srcset="/img/loading.gif" lazyload alt="image-20210608184712172" style="zoom:67%;"></p>
+<h5 id="无符号数转化为补码"><a href="#无符号数转化为补码" class="headerlink" title="无符号数转化为补码"></a>无符号数转化为补码</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608184746355.png" srcset="/img/loading.gif" lazyload alt="image-20210608184746355" style="zoom:67%;"></p>
 <h4 id="2-2-5-C语言中的有符号数与无符号数"><a href="#2-2-5-C语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C语言中的有符号数与无符号数"></a>2.2.5 C语言中的有符号数与无符号数</h4><ul>
 <li>如果它的一个运算数是有符号而另一个是无符号的，那么C语言会隐式地将有符号参数强制类型转换为无符号数。</li>
 </ul>
 <h4 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h4><h5 id="零扩展"><a href="#零扩展" class="headerlink" title="零扩展"></a>零扩展</h5><ul>
 <li><p>要将一个无符号数转换为一个更大的数据类型，我们只要简单的在表示的开头添加0。这种运算被称为<strong>零扩展</strong>（zero extension）</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185221135.png" srcset="/img/loading.gif" lazyload alt="image-20210608185221135" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185221135.png" srcset="/img/loading.gif" lazyload alt="image-20210608185221135" style="zoom:67%;"></p>
+</li>
 </ul>
 <h5 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h5><ul>
 <li><p>要将一个补码数字转换为一个更大的数据类型，可以执行一个<strong>符号扩展</strong>（sign extension）</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185326409.png" srcset="/img/loading.gif" lazyload alt="image-20210608185326409" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185326409.png" srcset="/img/loading.gif" lazyload alt="image-20210608185326409" style="zoom:67%;"></p>
+</li>
 </ul>
-<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><h5 id="截断无符号数"><a href="#截断无符号数" class="headerlink" title="截断无符号数"></a>截断无符号数</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185436962.png" srcset="/img/loading.gif" lazyload alt="image-20210608185436962" style="zoom:67%;">
-
-<h5 id="截断补码数值"><a href="#截断补码数值" class="headerlink" title="截断补码数值"></a>截断补码数值</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185503997.png" srcset="/img/loading.gif" lazyload alt="image-20210608185503997" style="zoom:67%;">
-
-<h4 id="2-2-8-关于有符号数与无符号数的建议"><a href="#2-2-8-关于有符号数与无符号数的建议" class="headerlink" title="2.2.8 关于有符号数与无符号数的建议"></a>2.2.8 关于有符号数与无符号数的建议</h4><h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185633585.png" srcset="/img/loading.gif" lazyload alt="image-20210608185633585" style="zoom:67%;">
-
-<h5 id="检测无符号数中加法的溢出"><a href="#检测无符号数中加法的溢出" class="headerlink" title="检测无符号数中加法的溢出"></a>检测无符号数中加法的溢出</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185706207.png" srcset="/img/loading.gif" lazyload alt="image-20210608185706207" style="zoom:67%;">
-
-<h5 id="无符号数求反"><a href="#无符号数求反" class="headerlink" title="无符号数求反"></a>无符号数求反</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185846184.png" srcset="/img/loading.gif" lazyload alt="image-20210608185846184" style="zoom:67%;">
-
-<h4 id="2-3-2-补码加法"><a href="#2-3-2-补码加法" class="headerlink" title="2.3.2 补码加法"></a>2.3.2 补码加法</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185940296.png" srcset="/img/loading.gif" lazyload alt="image-20210608185940296" style="zoom:67%;">
-
-<h5 id="检测补码加法中的溢出"><a href="#检测补码加法中的溢出" class="headerlink" title="检测补码加法中的溢出"></a>检测补码加法中的溢出</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190016605.png" srcset="/img/loading.gif" lazyload alt="image-20210608190016605" style="zoom:67%;">
-
-<h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190049598.png" srcset="/img/loading.gif" lazyload alt="image-20210608190049598" style="zoom:67%;">
-
-<h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190306482.png" srcset="/img/loading.gif" lazyload alt="image-20210608190306482" style="zoom:67%;">
-
-<h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190332236.png" srcset="/img/loading.gif" lazyload alt="image-20210608190332236" style="zoom:67%;">
-
-<h5 id="无符号和补码乘法的位级等价性"><a href="#无符号和补码乘法的位级等价性" class="headerlink" title="无符号和补码乘法的位级等价性"></a>无符号和补码乘法的位级等价性</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190507561.png" srcset="/img/loading.gif" lazyload alt="image-20210608190507561" style="zoom:67%;">
-
+<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><h5 id="截断无符号数"><a href="#截断无符号数" class="headerlink" title="截断无符号数"></a>截断无符号数</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185436962.png" srcset="/img/loading.gif" lazyload alt="image-20210608185436962" style="zoom:67%;"></p>
+<h5 id="截断补码数值"><a href="#截断补码数值" class="headerlink" title="截断补码数值"></a>截断补码数值</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185503997.png" srcset="/img/loading.gif" lazyload alt="image-20210608185503997" style="zoom:67%;"></p>
+<h4 id="2-2-8-关于有符号数与无符号数的建议"><a href="#2-2-8-关于有符号数与无符号数的建议" class="headerlink" title="2.2.8 关于有符号数与无符号数的建议"></a>2.2.8 关于有符号数与无符号数的建议</h4><h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185633585.png" srcset="/img/loading.gif" lazyload alt="image-20210608185633585" style="zoom:67%;"></p>
+<h5 id="检测无符号数中加法的溢出"><a href="#检测无符号数中加法的溢出" class="headerlink" title="检测无符号数中加法的溢出"></a>检测无符号数中加法的溢出</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185706207.png" srcset="/img/loading.gif" lazyload alt="image-20210608185706207" style="zoom:67%;"></p>
+<h5 id="无符号数求反"><a href="#无符号数求反" class="headerlink" title="无符号数求反"></a>无符号数求反</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185846184.png" srcset="/img/loading.gif" lazyload alt="image-20210608185846184" style="zoom:67%;"></p>
+<h4 id="2-3-2-补码加法"><a href="#2-3-2-补码加法" class="headerlink" title="2.3.2 补码加法"></a>2.3.2 补码加法</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608185940296.png" srcset="/img/loading.gif" lazyload alt="image-20210608185940296" style="zoom:67%;"></p>
+<h5 id="检测补码加法中的溢出"><a href="#检测补码加法中的溢出" class="headerlink" title="检测补码加法中的溢出"></a>检测补码加法中的溢出</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190016605.png" srcset="/img/loading.gif" lazyload alt="image-20210608190016605" style="zoom:67%;"></p>
+<h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190049598.png" srcset="/img/loading.gif" lazyload alt="image-20210608190049598" style="zoom:67%;"></p>
+<h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190306482.png" srcset="/img/loading.gif" lazyload alt="image-20210608190306482" style="zoom:67%;"></p>
+<h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190332236.png" srcset="/img/loading.gif" lazyload alt="image-20210608190332236" style="zoom:67%;"></p>
+<h5 id="无符号和补码乘法的位级等价性"><a href="#无符号和补码乘法的位级等价性" class="headerlink" title="无符号和补码乘法的位级等价性"></a>无符号和补码乘法的位级等价性</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190507561.png" srcset="/img/loading.gif" lazyload alt="image-20210608190507561" style="zoom:67%;"></p>
 <h4 id="2-3-6-乘以常数"><a href="#2-3-6-乘以常数" class="headerlink" title="2.3.6 乘以常数"></a>2.3.6 乘以常数</h4><ul>
 <li><p>编译器使用了一项重要的优化，试着用移位和加法运算的组合来代替乘以常数因子的乘法。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190820347.png" srcset="/img/loading.gif" lazyload alt="image-20210608190820347" style="zoom:67%;">
-
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190839402.png" srcset="/img/loading.gif" lazyload alt="image-20210608190839402" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190820347.png" srcset="/img/loading.gif" lazyload alt="image-20210608190820347" style="zoom:67%;"></p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190839402.png" srcset="/img/loading.gif" lazyload alt="image-20210608190839402" style="zoom:67%;"></p>
+</li>
 </ul>
-<h4 id="2-3-7-除以2的幂"><a href="#2-3-7-除以2的幂" class="headerlink" title="2.3.7 除以2的幂"></a>2.3.7 除以2的幂</h4><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190931912.png" srcset="/img/loading.gif" lazyload alt="image-20210608190931912" style="zoom:67%;">
-
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191005986.png" srcset="/img/loading.gif" lazyload alt="image-20210608191005986" style="zoom:67%;">
-
+<h4 id="2-3-7-除以2的幂"><a href="#2-3-7-除以2的幂" class="headerlink" title="2.3.7 除以2的幂"></a>2.3.7 除以2的幂</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608190931912.png" srcset="/img/loading.gif" lazyload alt="image-20210608190931912" style="zoom:67%;"></p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191005986.png" srcset="/img/loading.gif" lazyload alt="image-20210608191005986" style="zoom:67%;"></p>
 <ul>
 <li><p>我们可以通过在移位前”偏置（biasing）”这个值，来修正这种不合适的舍入。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191148416.png" srcset="/img/loading.gif" lazyload alt="image-20210608191148416" style="zoom:67%;">
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191148416.png" srcset="/img/loading.gif" lazyload alt="image-20210608191148416" style="zoom:67%;"></p>
 </li>
 <li><p>同乘法不同，我们不能用除以2的幂的除法来表示除以任何常数K的除法。</p>
 </li>
 </ul>
 <h4 id="2-3-8-关于整数运算的最后思考"><a href="#2-3-8-关于整数运算的最后思考" class="headerlink" title="2.3.8 关于整数运算的最后思考"></a>2.3.8 关于整数运算的最后思考</h4><h3 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h3><h4 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h4><h4 id="2-4-2-IEEE浮点表示"><a href="#2-4-2-IEEE浮点表示" class="headerlink" title="2.4.2 IEEE浮点表示"></a>2.4.2 IEEE浮点表示</h4><ul>
-<li><p>IEEE浮点标准用$V&#x3D;(-1)^s<em>M</em>2^E$的形式来表示一个数：</p>
+<li><p>IEEE浮点标准用$V=(-1)^s<em>M</em>2^E$的形式来表示一个数：</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191808690.png" srcset="/img/loading.gif" lazyload alt="image-20210608191808690"></p>
 </li>
 </ul>
-<h5 id="标准浮点格式"><a href="#标准浮点格式" class="headerlink" title="标准浮点格式"></a>标准浮点格式</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191905833.png" srcset="/img/loading.gif" lazyload alt="image-20210608191905833" style="zoom:67%;">
-
-<h5 id="单精度浮点数值的分类"><a href="#单精度浮点数值的分类" class="headerlink" title="单精度浮点数值的分类"></a>单精度浮点数值的分类</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608192611586.png" srcset="/img/loading.gif" lazyload alt="image-20210608192611586" style="zoom:67%;">
-
+<h5 id="标准浮点格式"><a href="#标准浮点格式" class="headerlink" title="标准浮点格式"></a>标准浮点格式</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608191905833.png" srcset="/img/loading.gif" lazyload alt="image-20210608191905833" style="zoom:67%;"></p>
+<h5 id="单精度浮点数值的分类"><a href="#单精度浮点数值的分类" class="headerlink" title="单精度浮点数值的分类"></a>单精度浮点数值的分类</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608192611586.png" srcset="/img/loading.gif" lazyload alt="image-20210608192611586" style="zoom:67%;"></p>
 <h5 id="情况1：规格化的值"><a href="#情况1：规格化的值" class="headerlink" title="情况1：规格化的值"></a>情况1：规格化的值</h5><ul>
-<li><p>阶码的值$E&#x3D;e-Bias$，其中$e$是无符号数，其位表示为$e_{k-1}…e_1e_0$，而$Bias$是一个等于$2^{k-1}-1$（单精度是127，双精度是1023）的偏置值。由此产生指数的取值范围，对于单精度是$-126$<del>$+127$，而对于双精度是$-1022$</del>$+1023$，</p>
+<li><p>阶码的值$E=e-Bias$，其中$e$是无符号数，其位表示为$e_{k-1}…e_1e_0$，而$Bias$是一个等于$2^{k-1}-1$（单精度是127，双精度是1023）的偏置值。由此产生指数的取值范围，对于单精度是$-126$~$+127$，而对于双精度是$-1022$~$+1023$，</p>
 </li>
-<li><p>小数字段frac被解释为描述小数值$f$，其中$0\leq f&lt; 1$，其二进制表示为0，$f_{n-1}…f_1f_0$，也就是二进制小数点在最高有效位的左边。尾数定义为$M&#x3D;1+f$。有时，这种方式也叫做<strong>隐含</strong>的以1开头的（implied leading 1）表示。</p>
+<li><p>小数字段frac被解释为描述小数值$f$，其中$0\leq f&lt; 1$，其二进制表示为0，$f_{n-1}…f_1f_0$，也就是二进制小数点在最高有效位的左边。尾数定义为$M=1+f$。有时，这种方式也叫做<strong>隐含</strong>的以1开头的（implied leading 1）表示。</p>
 </li>
 </ul>
 <h5 id="情况2：非规格化的值"><a href="#情况2：非规格化的值" class="headerlink" title="情况2：非规格化的值"></a>情况2：非规格化的值</h5><ul>
-<li><p>阶码值是$E&#x3D;1-Bias$，而尾数的值是$M&#x3D;f$，也就是小数字段的值，不包含隐含的开头的1</p>
+<li><p>阶码值是$E=1-Bias$，而尾数的值是$M=f$，也就是小数字段的值，不包含隐含的开头的1</p>
 </li>
-<li><p>符号位是0，阶码字段全为0（表明是一个非规格化值），而小数域也全为0，这就得到$M&#x3D;f&#x3D;0$。令人奇怪的是，当符号位为1，而其他域全为0时，我们得到值$-0.0$。</p>
+<li><p>符号位是0，阶码字段全为0（表明是一个非规格化值），而小数域也全为0，这就得到$M=f=0$。令人奇怪的是，当符号位为1，而其他域全为0时，我们得到值$-0.0$。</p>
 </li>
 </ul>
 <h5 id="情况3：特殊值"><a href="#情况3：特殊值" class="headerlink" title="情况3：特殊值"></a>情况3：特殊值</h5><ul>
-<li>最后一类数值时当指阶码全为1的时候出现的。当小数域全为0时，得到的值表示无穷，当$s&#x3D;0$时是$+\infty$，或者当$s&#x3D;1$时是$-\infty$。当我们把两个非常大的数相乘，或者除以零时，无穷能够表示<strong>溢出</strong>的结果。当小数域为非零时，结果值被称为“NaN”，即“不是一个数（Not a Number）”的缩写。</li>
+<li>最后一类数值时当指阶码全为1的时候出现的。当小数域全为0时，得到的值表示无穷，当$s=0$时是$+\infty$，或者当$s=1$时是$-\infty$。当我们把两个非常大的数相乘，或者除以零时，无穷能够表示<strong>溢出</strong>的结果。当小数域为非零时，结果值被称为“NaN”，即“不是一个数（Not a Number）”的缩写。</li>
 </ul>
 <h4 id="2-4-3-数字示例"><a href="#2-4-3-数字示例" class="headerlink" title="2.4.3 数字示例"></a>2.4.3 数字示例</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210608194502658.png" srcset="/img/loading.gif" lazyload alt="image-20210608194502658"></p>
 <h4 id="2-4-4-舍入"><a href="#2-4-4-舍入" class="headerlink" title="2.4.4 舍入"></a>2.4.4 舍入</h4><ul>
@@ -620,7 +596,6 @@
 <li>假设一个C程序，有两个文件p1.c和p2.c。我们用Unix命令行编译这些代码：</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_">linux&gt; </span><span class="language-bash">gcc -Og -o p p1.c p2.c</span><br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>命令gcc指的就是GCC C编译器。因为这是Linux上默认的编译器，我们也可以简单地用cc来启动它。编译选项-Og告诉编译器使用会生成符合C代码整体结构的机器代码优化等级。使用较高级别优化产生的代码会严重变形，以至于产生的机器代码和初始源代码之间的关系非常难以理解。</li>
 </ul>
@@ -640,24 +615,23 @@
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_">linux&gt; </span><span class="language-bash">objdump -d test.o</span><br></code></pre></div></td></tr></table></figure>
 </li>
 <li><p>其中一些关于机器代码和它的反汇编特性值得注意：</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609161646145.png" srcset="/img/loading.gif" lazyload alt="image-20210609161646145" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609161646145.png" srcset="/img/loading.gif" lazyload alt="image-20210609161646145" style="zoom:67%;"></p>
+</li>
 </ul>
 <h4 id="3-2-3-关于格式的注解"><a href="#3-2-3-关于格式的注解" class="headerlink" title="3.2.3 关于格式的注解"></a>3.2.3 关于格式的注解</h4><h3 id="3-3-数据格式"><a href="#3-3-数据格式" class="headerlink" title="3.3 数据格式"></a>3.3 数据格式</h3><ul>
 <li>由于是从16位体系结构扩展成32位的，Intel用术语“字（word）”表示16位数据类型。因此，称32位数为”双字（double word）”，称64位数为“四字（quad word）”。</li>
 </ul>
-<h5 id="C语言数据类型在x86-64中的大小"><a href="#C语言数据类型在x86-64中的大小" class="headerlink" title="C语言数据类型在x86-64中的大小"></a>C语言数据类型在x86-64中的大小</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609161946987.png" srcset="/img/loading.gif" lazyload alt="image-20210609161946987" style="zoom:67%;">
-
+<h5 id="C语言数据类型在x86-64中的大小"><a href="#C语言数据类型在x86-64中的大小" class="headerlink" title="C语言数据类型在x86-64中的大小"></a>C语言数据类型在x86-64中的大小</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609161946987.png" srcset="/img/loading.gif" lazyload alt="image-20210609161946987" style="zoom:67%;"></p>
 <ul>
 <li>大多数GCC指令都有一个字符的后缀，表明操作数的大小。</li>
 </ul>
 <h3 id="3-4-访问信息"><a href="#3-4-访问信息" class="headerlink" title="3.4 访问信息"></a>3.4 访问信息</h3><ul>
 <li><p>一个x86-64的中央处理单元（CPU）包含一组16个存储64位值的<strong>通用目的寄存器</strong>。这些寄存器用来存储整数数据和指针。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609162219218.png" srcset="/img/loading.gif" lazyload alt="image-20210609162219218" style="zoom:67%;">
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609162219218.png" srcset="/img/loading.gif" lazyload alt="image-20210609162219218" style="zoom:67%;"></p>
 </li>
 <li><p>指令可以对这16个寄存器的低位字节中存放的不同大小的数据进行操作。</p>
 </li>
-<li><p>生成1字节和2字节的数字的指令会保持剩下的字节不变；生成4字节数字的指令会把高位4个字节置为0。</p>
-</li>
+<li>生成1字节和2字节的数字的指令会保持剩下的字节不变；生成4字节数字的指令会把高位4个字节置为0。</li>
 </ul>
 <h4 id="3-4-1-操作数指示符"><a href="#3-4-1-操作数指示符" class="headerlink" title="3.4.1 操作数指示符"></a>3.4.1 操作数指示符</h4><ul>
 <li>大多数指令有一个或多个<strong>操作数</strong>（operand），指示出执行一个操作中要使用的源数据值，以及放置结果的目的位置。</li>
@@ -668,17 +642,14 @@
 </ul>
 </li>
 </ul>
-<h5 id="操作数格式"><a href="#操作数格式" class="headerlink" title="操作数格式"></a>操作数格式</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163308333.png" srcset="/img/loading.gif" lazyload alt="image-20210609163308333" style="zoom:67%;">
-
-<h4 id="3-4-2-数据传送指令"><a href="#3-4-2-数据传送指令" class="headerlink" title="3.4.2 数据传送指令"></a>3.4.2 数据传送指令</h4><h5 id="最简单形式的数据传送指令——MOV类"><a href="#最简单形式的数据传送指令——MOV类" class="headerlink" title="最简单形式的数据传送指令——MOV类"></a>最简单形式的数据传送指令——MOV类</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163410428.png" srcset="/img/loading.gif" lazyload alt="image-20210609163410428" style="zoom: 80%;">
-
+<h5 id="操作数格式"><a href="#操作数格式" class="headerlink" title="操作数格式"></a>操作数格式</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163308333.png" srcset="/img/loading.gif" lazyload alt="image-20210609163308333" style="zoom:67%;"></p>
+<h4 id="3-4-2-数据传送指令"><a href="#3-4-2-数据传送指令" class="headerlink" title="3.4.2 数据传送指令"></a>3.4.2 数据传送指令</h4><h5 id="最简单形式的数据传送指令——MOV类"><a href="#最简单形式的数据传送指令——MOV类" class="headerlink" title="最简单形式的数据传送指令——MOV类"></a>最简单形式的数据传送指令——MOV类</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163410428.png" srcset="/img/loading.gif" lazyload alt="image-20210609163410428" style="zoom: 80%;"></p>
 <ul>
 <li>源操作数指定的值是一个立即数，存储在寄存器中或内存中。目的操作数指定一个位置，要么是一个寄存器或者是一个内存地址。</li>
 <li>x86-64加了一条限制，传送指令的两个操作数不能都指向内存位置。寄存器部分的大小必须与指令最后一个字符（’b‘，’w‘，’l‘或’q‘）指定的大小匹配。</li>
 <li>任何为寄存器生成32位值的指令都会把该寄存器的高位部分置成0.</li>
 </ul>
-<h5 id="零扩展和符号扩展数据传送指令"><a href="#零扩展和符号扩展数据传送指令" class="headerlink" title="零扩展和符号扩展数据传送指令"></a>零扩展和符号扩展数据传送指令</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163900487.png" srcset="/img/loading.gif" lazyload alt="image-20210609163900487" style="zoom:67%;">
-
+<h5 id="零扩展和符号扩展数据传送指令"><a href="#零扩展和符号扩展数据传送指令" class="headerlink" title="零扩展和符号扩展数据传送指令"></a>零扩展和符号扩展数据传送指令</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210609163900487.png" srcset="/img/loading.gif" lazyload alt="image-20210609163900487" style="zoom:67%;"></p>
 <h4 id="3-4-3-数据传送示例"><a href="#3-4-3-数据传送示例" class="headerlink" title="3.4.3 数据传送示例"></a>3.4.3 数据传送示例</h4><ul>
 <li>我们看到C语言中所谓的“指针”其实就是地址。间接引用指针就是将该指针放在一个寄存器中，然后在内存引用中使用这个寄存器。其次，像x这样的局部变量通常是保存在寄存器中，而不是内存中。</li>
 <li>访问寄存器比访问内存快得多。</li>
@@ -706,7 +677,7 @@
 </ul>
 <h4 id="3-5-3-移位操作"><a href="#3-5-3-移位操作" class="headerlink" title="3.5.3 移位操作"></a>3.5.3 移位操作</h4><ul>
 <li>移位量可以是一个立即数，或是放在单字节寄存器%cl中。（这些指令很特别，因为只允许以这个特定发的寄存器作为操作数。）</li>
-<li>x86-64中，移位操作对$w$位长的数据值进行操作，移位量由%cl寄存器的低$m$决定的，这里$2^m&#x3D;w$。高位会被忽略。</li>
+<li>x86-64中，移位操作对$w$位长的数据值进行操作，移位量由%cl寄存器的低$m$决定的，这里$2^m=w$。高位会被忽略。</li>
 <li>移位操作的目的操作数可以是一个寄存器或是一个内存位置。</li>
 </ul>
 <h4 id="3-5-4-讨论"><a href="#3-5-4-讨论" class="headerlink" title="3.5.4 讨论"></a>3.5.4 讨论</h4><h4 id="3-5-5-特殊的算术操作"><a href="#3-5-5-特殊的算术操作" class="headerlink" title="3.5.5 特殊的算术操作"></a>3.5.5 特殊的算术操作</h4><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210610230126901.png" srcset="/img/loading.gif" lazyload alt="image-20210610230126901"></p>
@@ -749,8 +720,7 @@
 <li><p>对于第一种情况，我们将这一整类指令称为SET指令</p>
 </li>
 <li><p>一条SET指令的目的操作数是低位字节寄存器元素（图3-2）之一，或是一个字节的内存位置，指令会将这个字节设置成0或者1。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611141336406.png" srcset="/img/loading.gif" lazyload alt="image-20210611141336406" style="zoom:67%;">
-
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611141336406.png" srcset="/img/loading.gif" lazyload alt="image-20210611141336406" style="zoom:67%;"></p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611141452316.png" srcset="/img/loading.gif" lazyload alt="image-20210611141452316"></p>
 </li>
 <li><p>注意cmpq指令的比较顺序（第2行）。虽然参数列出的顺序先是%rsi（b）再是%rdi（a），实际上比较的是a和b。还要记得，正如在3.4.2节种讨论过的那样，movzbl指令不仅会把%eax的高3个字节清零，还会把整个寄存器%rax的高4个字节都清零。</p>
@@ -821,30 +791,28 @@
 <li>对于数据类型T和整型常数N，声明如下：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C">T A[N];<br></code></pre></div></td></tr></table></figure>
-
 <p>起始位置表示为$x_A$。这个声明有两个效果。首先，它在内存中分配一个$L*N$字节的连续区域，这里$L$是数据类型T的大小（单位为字节）。</p>
 <p>其次，它引入了标识符A，可以用A来作为指向数组开头的指针，这个指针的值就是$x_A$。可以用0~N-1的整数索引来访问该数组元素。数组元素$i$会被存放在地址为$x_A+L*i$的地方。</p>
 <h4 id="3-8-2-指针运算"><a href="#3-8-2-指针运算" class="headerlink" title="3.8.2 指针运算"></a>3.8.2 指针运算</h4><ul>
 <li><p>C语言允许对指针进行运算，而计算出来的值会根据该指针引用的数据类型的大小进行伸缩。也就是说，如果$p$是一个指向类型为$T$的数据的指针，$p$的值为$x_p$,那么表达式$p+i$的值为$x_p+L*i$，这里$L$是数据类型$T$的大小。</p>
 </li>
-<li><p>单操作数操作符’&amp;’和‘*’可以产生指针和间接引用指针。也就是，对于一个表示某个对象的表达式Expr，&amp;Expr是给出该对象地址的一个指针。对于一个表示地址的表达式AExpr，*AExpr给出该地址处的值。因此，表达式Expr与*&amp;Expr是等价的。可以对数组和指针应用数组下标的操作。数组引用A[i]等同于表达式*(A+i)。</p>
+<li><p>单操作数操作符’&amp;’和‘*’可以产生指针和间接引用指针。也就是，对于一个表示某个对象的表达式Expr，&amp;Expr是给出该对象地址的一个指针。对于一个表示地址的表达式AExpr，*AExpr给出该地址处的值。因此，表达式Expr与<em>&amp;Expr是等价的。可以对数组和指针应用数组下标的操作。数组引用A[i]等同于表达式\</em>(A+i)。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210611204545720.png" srcset="/img/loading.gif" lazyload alt="image-20210611204545720"></p>
 </li>
 </ul>
 <h4 id="3-8-3-嵌套的数组"><a href="#3-8-3-嵌套的数组" class="headerlink" title="3.8.3 嵌套的数组"></a>3.8.3 嵌套的数组</h4><ul>
 <li><p>当我们创建数组的数组时，数组分配和引用的一般原则也是成立的。例如，声明</p>
-<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> A[<span class="hljs-number">5</span>][<span class="hljs-number">3</span>];<br></code></pre></div></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> A[<span class="hljs-number">5</span>][<span class="hljs-number">3</span>];<br></code></pre></div></td></tr></table></figure>
+</li>
 </ul>
 <p>等价于下面的声明</p>
 <figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> <span class="hljs-type">row3_t</span>[<span class="hljs-number">3</span>];<br><span class="hljs-type">row3_t</span> A[<span class="hljs-number">5</span>];<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>通常来说，对于一个声明如下的数组：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c">T D[R][C];<br></code></pre></div></td></tr></table></figure>
-
 <p>它的数组元素$D[i][j]$的内存地址为</p>
-<p>D[i][j]&#x3D;$x_D+L(C*i+j)$</p>
+<p>D[i][j]=$x_D+L(C*i+j)$</p>
 <h4 id="3-8-4-定长数组"><a href="#3-8-4-定长数组" class="headerlink" title="3.8.4 定长数组"></a>3.8.4 定长数组</h4><h4 id="3-8-5-变长数组"><a href="#3-8-5-变长数组" class="headerlink" title="3.8.5 变长数组"></a>3.8.5 变长数组</h4><h3 id="3-9-异质的数据结构"><a href="#3-9-异质的数据结构" class="headerlink" title="3.9 异质的数据结构"></a>3.9 异质的数据结构</h3><ul>
 <li>C语言提供了两种将不同类型的对象组合到一起创建数据类型的机制：<strong>结构</strong>（structure），用关键字struct来声明，将多个对象集合到一个单位中；<strong>联合</strong>（union），用关键字union来声明，允许使用几种不同的类型来引用一个对象。</li>
 </ul>
@@ -915,12 +883,11 @@
 </li>
 </ul>
 <h3 id="3-11-浮点代码"><a href="#3-11-浮点代码" class="headerlink" title="3.11 浮点代码"></a>3.11 浮点代码</h3><ul>
-<li><p>如图3-45所示，AVX浮点体系结构允许数据存储在16个YMM寄存器中，它们的名字为%ymm0<del>%ymm15。每个YMM寄存器都是256位（32字节）。当对标量数据操作时，这些寄存器只保存浮点数，而且只使用低32位（对于float）或64位（对于double）。汇编代码用寄存器SSE XMM寄存器名字%xmm0</del>%xmm15来引用它们，每个XMM寄存器都对应的YMM寄存器的低128位（16字节）。</p>
+<li><p>如图3-45所示，AVX浮点体系结构允许数据存储在16个YMM寄存器中，它们的名字为%ymm0~%ymm15。每个YMM寄存器都是256位（32字节）。当对标量数据操作时，这些寄存器只保存浮点数，而且只使用低32位（对于float）或64位（对于double）。汇编代码用寄存器SSE XMM寄存器名字%xmm0~%xmm15来引用它们，每个XMM寄存器都对应的YMM寄存器的低128位（16字节）。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613202922594.png" srcset="/img/loading.gif" lazyload alt="image-20210613202922594"></p>
 </li>
 </ul>
-<h4 id="3-11-1-浮点传送和转换操作"><a href="#3-11-1-浮点传送和转换操作" class="headerlink" title="3.11.1 浮点传送和转换操作"></a>3.11.1 浮点传送和转换操作</h4><h5 id="浮点传送指令"><a href="#浮点传送指令" class="headerlink" title="浮点传送指令"></a>浮点传送指令</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203039064.png" srcset="/img/loading.gif" lazyload alt="image-20210613203039064" style="zoom:80%;">
-
+<h4 id="3-11-1-浮点传送和转换操作"><a href="#3-11-1-浮点传送和转换操作" class="headerlink" title="3.11.1 浮点传送和转换操作"></a>3.11.1 浮点传送和转换操作</h4><h5 id="浮点传送指令"><a href="#浮点传送指令" class="headerlink" title="浮点传送指令"></a>浮点传送指令</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203039064.png" srcset="/img/loading.gif" lazyload alt="image-20210613203039064" style="zoom:80%;"></p>
 <h5 id="双操作浮点转换指令"><a href="#双操作浮点转换指令" class="headerlink" title="双操作浮点转换指令"></a>双操作浮点转换指令</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203151849.png" srcset="/img/loading.gif" lazyload alt="image-20210613203151849"></p>
 <h5 id="三操作数浮点转换指令"><a href="#三操作数浮点转换指令" class="headerlink" title="三操作数浮点转换指令"></a>三操作数浮点转换指令</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613203202598.png" srcset="/img/loading.gif" lazyload alt="image-20210613203202598"></p>
 <h4 id="3-11-2-过程中的浮点代码"><a href="#3-11-2-过程中的浮点代码" class="headerlink" title="3.11.2 过程中的浮点代码"></a>3.11.2 过程中的浮点代码</h4><ul>
@@ -990,17 +957,16 @@
 <h3 id="5-5-减少过程的调用"><a href="#5-5-减少过程的调用" class="headerlink" title="5.5 减少过程的调用"></a>5.5 减少过程的调用</h3><h3 id="5-6-消除不必要的内存引用"><a href="#5-6-消除不必要的内存引用" class="headerlink" title="5.6 消除不必要的内存引用"></a>5.6 消除不必要的内存引用</h3><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613215006549.png" srcset="/img/loading.gif" lazyload alt="image-20210613215006549"></p>
 <ul>
 <li><p>按照图5-10中combine4所示的方式重写代码。引入一个临时变量acc，它在循环中用来累积计算出来的值。只有在循环完成之后结果才存放在dest中。正如下面的汇编代码所示，编译器现在可以用寄存器%xmm0来保存累计值。与combine3中的循环相比，我们将每次迭代的内存操作从两次读和一次写减少到只需要一次读。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613215437594.png" srcset="/img/loading.gif" lazyload alt="image-20210613215437594" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613215437594.png" srcset="/img/loading.gif" lazyload alt="image-20210613215437594" style="zoom:67%;"></p>
+</li>
 </ul>
 <h3 id="5-7-理解现代处理器"><a href="#5-7-理解现代处理器" class="headerlink" title="5.7 理解现代处理器"></a>5.7 理解现代处理器</h3><ul>
 <li>当一系列操作必须按照严格顺序执行时，就会遇到<strong>延迟界限</strong>（latency bound），因为在下一条指令开始之前，这条指令必须结束。当代码中的数据相关限制了处理器利用指令级并行的能力时，延迟界限能够限制程序性能。</li>
 <li><strong>吞吐量界限</strong>（throughput bound）刻画了处理器功能单元的原始计算能力。这个界限是程序性能的终极限制。</li>
 </ul>
 <h4 id="5-7-1-整体操作"><a href="#5-7-1-整体操作" class="headerlink" title="5.7.1 整体操作"></a>5.7.1 整体操作</h4><ul>
-<li><p>整个设计有两个主要部分：<strong>指令控制单元</strong>（ Instruction Control Unit，ICU）和<strong>执行单元</strong>（Execution Unit，EU）。前者负责从内存中读出指令序列，并根据这些指令序列生成一组针对程序数据的基本操作；而后者执行这些操作。</p>
-</li>
-<li><p>ICU从<strong>指令高速缓存</strong>（instruction cache）中读取指令，指令高速缓存是一个特殊的高速存储器，它包含最近访问的指令。</p>
-</li>
+<li>整个设计有两个主要部分：<strong>指令控制单元</strong>（ Instruction Control Unit，ICU）和<strong>执行单元</strong>（Execution Unit，EU）。前者负责从内存中读出指令序列，并根据这些指令序列生成一组针对程序数据的基本操作；而后者执行这些操作。</li>
+<li>ICU从<strong>指令高速缓存</strong>（instruction cache）中读取指令，指令高速缓存是一个特殊的高速存储器，它包含最近访问的指令。</li>
 <li><p>现代处理器采用了一种称为<strong>分支预测</strong>（branch predication）的技术，处理器会猜测是否会选择分支，同时还预测分支的目标地址。使用<strong>投机执行</strong>（speculative execution）的技术，处理器会开始取出位于它预测的分支会跳到的地方的指令，并对指令译码，甚至在它确定分支预测是否正确之前就开始取出位于它预测的分支会跳到的地方的指令，并对指令译码，甚至在它确定分支预测是否正确之前就开始执行这些操作。如果过后确定分支预测错误，会将状态重新设置到分支点的状态，并开始取出和执行另一方向上的指令。标记为<strong>取值控制</strong>的块包括分支预测，以完成确定取哪些指令的任务。</p>
 </li>
 <li><p>EU接收来自取指单元的操作。</p>
@@ -1010,8 +976,7 @@
 </li>
 <li><p>我们可以看出功能单元的这种组合具有同时执行多个同类型操作的潜力。它有4个功能单元可以执行整数操作，2个单元能执行加载操作，2个单元能执行浮点乘法。</p>
 </li>
-<li><p>在ICU中，<strong>退役单元</strong>（retirement unit）记录正在进行的处理，并确保它遵守机器级程序的顺序语义。</p>
-<ul>
+<li>在ICU中，<strong>退役单元</strong>（retirement unit）记录正在进行的处理，并确保它遵守机器级程序的顺序语义。<ul>
 <li>首先，一旦一条指令的操作完成了，而且所有引起这条指令的分支点也都被确认为预测正确，那么这条指令就可以<strong>退役</strong>（retire）了，所有对程序寄存器的更新都可以被实际执行了。另一方面，如果引起该指令的某个分支点预测错误，这条指令就会被<strong>清空</strong>（flushed），丢弃所有计算出来的结果。通过这种方法，预测错误就不会改变程序的状态了。</li>
 </ul>
 </li>
@@ -1023,7 +988,7 @@
 <li>另一个是<strong>发射时间</strong>（issue time），它表示两个连续的同类型的运算之间需要的最小时钟周期数；</li>
 <li>还有一个是<strong>容量</strong>（capacity），它表示能够执行该运算的功能单元的数量。</li>
 </ul>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613232257891.png" srcset="/img/loading.gif" lazyload alt="image-20210613232257891" style="zoom:80%;">
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210613232257891.png" srcset="/img/loading.gif" lazyload alt="image-20210613232257891" style="zoom:80%;"></p>
 </li>
 <li><p>发射时间为1的功能单元被称为<strong>完全流水线化的</strong>（fully pipelined)；每个时钟周期可以开始一个新的运算。出现容量大于1的运算是由于有多个功能单元。</p>
 </li>
@@ -1031,7 +996,7 @@
 </li>
 <li><p>表达发射时间的一种更常见的方法是指明这个功能单元的最大<strong>吞吐量</strong>，定义为发射时间的倒数。一个完全流水线化的功能单元有最大的吞吐量，每个时钟周期一个运算。</p>
 <ul>
-<li>对一个容量为C，发射时间为I的操作来说，处理器可能获得的吞吐量为每时钟周期C&#x2F;I个操作。</li>
+<li>对一个容量为C，发射时间为I的操作来说，处理器可能获得的吞吐量为每时钟周期C/I个操作。</li>
 </ul>
 </li>
 <li><p>我们用CPE值的两个基本界限来描述这种影响：</p>
@@ -1046,8 +1011,7 @@
 <h4 id="5-7-3-处理器操作的抽象类型"><a href="#5-7-3-处理器操作的抽象类型" class="headerlink" title="5.7.3 处理器操作的抽象类型"></a>5.7.3 处理器操作的抽象类型</h4><ul>
 <li>我们会使用程序的<strong>数据流</strong>（data-flow）表示，这是一种图形化的表示方法，展现了不同操作之间的数据相关时如何限制它们的执行顺序的。这些限制形成了图中的<strong>关键路径</strong>（critical path），这是执行一组机器指令所需时钟周期数的一个下界。</li>
 </ul>
-<h5 id="1-从机器级代码到数据流图"><a href="#1-从机器级代码到数据流图" class="headerlink" title="1.从机器级代码到数据流图"></a>1.从机器级代码到数据流图</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614233612112.png" srcset="/img/loading.gif" lazyload alt="image-20210614233612112" style="zoom: 80%;">
-
+<h5 id="1-从机器级代码到数据流图"><a href="#1-从机器级代码到数据流图" class="headerlink" title="1.从机器级代码到数据流图"></a>1.从机器级代码到数据流图</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614233612112.png" srcset="/img/loading.gif" lazyload alt="image-20210614233612112" style="zoom: 80%;"></p>
 <ul>
 <li><p>对于形成循环的代码片段，我们可以将访问到的寄存器分为四类：</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234326400.png" srcset="/img/loading.gif" lazyload alt="image-20210614234326400"></p>
@@ -1056,7 +1020,8 @@
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234414936.png" srcset="/img/loading.gif" lazyload alt="image-20210614234414936"></p>
 <ul>
 <li><p>在图5-14b中，表明的是由于循环的一次迭代在循环寄存器中形成的数据相关。</p>
-<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234545156.png" srcset="/img/loading.gif" lazyload alt="image-20210614234545156" style="zoom:67%;"></li>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210614234545156.png" srcset="/img/loading.gif" lazyload alt="image-20210614234545156" style="zoom:67%;"></p>
+</li>
 </ul>
 <h5 id="其他性能因素"><a href="#其他性能因素" class="headerlink" title="其他性能因素"></a>其他性能因素</h5><ul>
 <li>数据流表示中的关键路径提供的只是程序需要周期数的<strong>下界</strong>。还有其他一些因素会限制性能。</li>
@@ -1078,8 +1043,8 @@
 <ul>
 <li><p>可以看到，现在有两条关键路径，一条对应于计算索引为偶数的元素的乘积（程序值acc0），另一条对应于计算索引为奇数的元素的乘积（程序值acc1）。</p>
 <ul>
-<li>每条关键路径只包含n&#x2F;2个操作。</li>
-<li>对于不同的数据类型和合并运算的组合，延迟为L的操作的CPE等于L&#x2F;2。</li>
+<li>每条关键路径只包含n/2个操作。</li>
+<li>对于不同的数据类型和合并运算的组合，延迟为L的操作的CPE等于L/2。</li>
 </ul>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615162138941.png" srcset="/img/loading.gif" lazyload alt="image-20210615162138941"></p>
 </li>
@@ -1099,18 +1064,17 @@
 </li>
 <li><p>总的来说，重新结合变换能够减少计算中关键路径上操作的数量，通过更好地利用功能单元的流水线能力得到更好的性能。</p>
 </li>
-<li><p>大多数编译器不会尝试对浮点运算重新结合，因为这些运算不保证是可结合的。</p>
-</li>
+<li>大多数编译器不会尝试对浮点运算重新结合，因为这些运算不保证是可结合的。</li>
 </ul>
 <h3 id="5-10-优化合并代码的结果小结"><a href="#5-10-优化合并代码的结果小结" class="headerlink" title="5.10 优化合并代码的结果小结"></a>5.10 优化合并代码的结果小结</h3><h3 id="5-11-一些限制因素"><a href="#5-11-一些限制因素" class="headerlink" title="5.11 一些限制因素"></a>5.11 一些限制因素</h3><ul>
 <li>关键路径指明了执行该程序所需时间的一个基本的下界。也就是说，如果程序中有某条数据相关链，这条链上的所有延迟之和等于T，那么这个程序至少需要T个周期才能执行完。</li>
-<li>我们还看到功能单元的吞吐量界限也是程序执行时间的一个下界。也就是说，假设一个程序一共需要N个某种运算的计算，而微处理器只有C个能执行这个操作的功能单元，并且这些单元的发射时间为I。那么这个程序的执行至少需要N*I&#x2F;C个周期。</li>
+<li>我们还看到功能单元的吞吐量界限也是程序执行时间的一个下界。也就是说，假设一个程序一共需要N个某种运算的计算，而微处理器只有C个能执行这个操作的功能单元，并且这些单元的发射时间为I。那么这个程序的执行至少需要N*I/C个周期。</li>
 </ul>
 <h4 id="5-11-1-寄存器溢出"><a href="#5-11-1-寄存器溢出" class="headerlink" title="5.11.1 寄存器溢出"></a>5.11.1 寄存器溢出</h4><ul>
 <li>如果我们的并行度p超过了可用的寄存器数量，那么编译器会<strong>溢出</strong>（spilling），将某些临时值存放到内存中，通常是在运行时堆栈上分配空间。</li>
 </ul>
 <h4 id="5-11-2-分支预测和预测错误处罚"><a href="#5-11-2-分支预测和预测错误处罚" class="headerlink" title="5.11.2 分支预测和预测错误处罚"></a>5.11.2 分支预测和预测错误处罚</h4><h5 id="不要过分关心可预测的分支"><a href="#不要过分关心可预测的分支" class="headerlink" title="不要过分关心可预测的分支"></a>不要过分关心可预测的分支</h5><h3 id="5-12-理解内存性能"><a href="#5-12-理解内存性能" class="headerlink" title="5.12 理解内存性能"></a>5.12 理解内存性能</h3><h4 id="5-12-1-加载的性能"><a href="#5-12-1-加载的性能" class="headerlink" title="5.12.1 加载的性能"></a>5.12.1 加载的性能</h4><ul>
-<li>对两个加载单元而言，其每个时钟周期只能启动一条加载操作，所以CPE不可能小于0.50，对于每个被计算的元素必须加载k个值的应用，我们不可能获得低于k&#x2F;2的CPE。</li>
+<li>对两个加载单元而言，其每个时钟周期只能启动一条加载操作，所以CPE不可能小于0.50，对于每个被计算的元素必须加载k个值的应用，我们不可能获得低于k/2的CPE。</li>
 </ul>
 <h4 id="5-12-2-存储的性能"><a href="#5-12-2-存储的性能" class="headerlink" title="5.12.2 存储的性能"></a>5.12.2 存储的性能</h4><ul>
 <li><p>与加载操作一样，在大多数情况中，存储操作能够在完全流水化的模式中工作，每个周期开始一条新的存储。</p>
@@ -1118,7 +1082,7 @@
 <li><p>与到目前为止我们已经考虑过的其他操作不同，存储操作并不影响任何寄存器的值。因此，就其本性来说，一系列存储操作不会产生数据相关。只有加载操作会受存储操作结果的影响，因为只有加载操作能从由存储操作写的那个位置读回值。</p>
 <ul>
 <li>在图5-33的示例A中，参数src是一个指向数组元素a[0]的指针，而dest是一个指向数组元素a[1]的指针。从src读出的结果不受对dest的写的影响。在较大次数的迭代上测试这个示例得到CPE等于1.3。</li>
-<li>在图5-33的示例B中，参数src和dest都是指向数组元素a[0]的指针。在这种情况中，指针引用*src的每次加载都会得到指针引用*dest的前次执行存储的值。一个内存读的结果依赖于一个最近的内存写。我们的性能测试表明示例B的CPE为7.3。写&#x2F;读相关导致处理速度下降约6个时钟周期。</li>
+<li>在图5-33的示例B中，参数src和dest都是指向数组元素a[0]的指针。在这种情况中，指针引用*src的每次加载都会得到指针引用*dest的前次执行存储的值。一个内存读的结果依赖于一个最近的内存写。我们的性能测试表明示例B的CPE为7.3。写/读相关导致处理速度下降约6个时钟周期。</li>
 </ul>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170347062.png" srcset="/img/loading.gif" lazyload alt="image-20210615170347062"></p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615170401671.png" srcset="/img/loading.gif" lazyload alt="image-20210615170401671"></p>
@@ -1127,22 +1091,13 @@
 </li>
 </ul>
 <h3 id="5-13-应用：性能提高技术"><a href="#5-13-应用：性能提高技术" class="headerlink" title="5.13 应用：性能提高技术"></a>5.13 应用：性能提高技术</h3><ul>
-<li><ol>
-<li>高级设计。为遇到的问题选择适当的算法和数据结构。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>基本编码原则。避免限制优化的元素，这样编译器就能产生高效的代码。</li>
-</ol>
-<ul>
+<li>1) 高级设计。为遇到的问题选择适当的算法和数据结构。</li>
+<li>2) 基本编码原则。避免限制优化的元素，这样编译器就能产生高效的代码。<ul>
 <li>消除连续的函数调用。</li>
 <li>消除不必要的内存引用。</li>
 </ul>
 </li>
-<li><ol start="3">
-<li>低级优化。</li>
-</ol>
-<ul>
+<li>3) 低级优化。<ul>
 <li>展开循环</li>
 <li>通过使用例如多个累积变量和重新结合等技术，找到方法提高指令级并行。</li>
 <li>用功能性的风格重写条件操作，使得编译采用条件数据传送。</li>
@@ -1163,9 +1118,9 @@
 </li>
 </ol>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615171808860.png" srcset="/img/loading.gif" lazyload alt="image-20210615171808860"></p>
-<ol start="3">
+<ol>
 <li><p>传统的DRAM</p>
-<p>DRAM芯片中的单元（位）被分成$d$个<strong>超单元</strong>（supercell），每个超单元都由$w$个DRAM单元组成，一个$d\times w$的DRAM总共存储了$dw$位信息。超单元被组织成一个$r$行$c$列的长方形阵列，这里$rc&#x3D;d$。每个超单元有形如$(i,j)$的地址，这里$i$表示行，而$j$表示列。</p>
+<p>DRAM芯片中的单元（位）被分成$d$个<strong>超单元</strong>（supercell），每个超单元都由$w$个DRAM单元组成，一个$d\times w$的DRAM总共存储了$dw$位信息。超单元被组织成一个$r$行$c$列的长方形阵列，这里$rc=d$。每个超单元有形如$(i,j)$的地址，这里$i$表示行，而$j$表示列。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615172402478.png" srcset="/img/loading.gif" lazyload alt="image-20210615172402478"></p>
 <p>每个DRAM芯片被连接到某个称为<strong>内存控制器</strong>（memory controller）的电路，这个电路可以一次传送$w$位到每个DRAM芯片或一次从每个DRAM芯片传出$w$位。为了读出超单元（$i,j$）的内容，内存控制器将行地址$i$发送到DRAM，然后是列地址$j$。DRAM把超单元$(i,j)$的内容发回给控制器作为响应。行地址$i$称为RAS（Row Access Strobe，行访问选通脉冲）请求。列地址$j$称为CAS（Column Access Strobe，列访问选通脉冲）请求。注意，RAS和CAS请求共享相同的DRAM地址引脚。</p>
 </li>
@@ -1173,7 +1128,7 @@
 <ul>
 <li>要取出内存地址A处的一个字，内存控制器将A转换成一个超单元地址$(i,j)$，并将它发送到内存模块，然后内存模块再将$i$和$j$广播道每个DRAM。作为响应，每个DRAM输出它的$(i,j)$超单元的8位内容。模块中的电路手机这些输出，并把它们合并成一个64位字，再返回给内存控制器。</li>
 </ul>
-<ol start="5">
+<ol>
 <li><p>增强的DRAM</p>
 <ul>
 <li>快页模式DRAM（Fast Page Mode DRAM，FPM DRAM）。</li>
@@ -1193,8 +1148,6 @@
 </ul>
 </li>
 <li><p>访问内存</p>
-</li>
-</ol>
 <ul>
 <li>数据流通过称为<strong>总线</strong>（bus）的共享电子电路在处理器和DRAM主存之间来来回回。每次CPU和主存之间的数据传送都是通过一系列步骤来完成的，这些步骤称为<strong>总线事务</strong>（bus transaction）。<ul>
 <li><strong>读事务</strong>（read transaction）从主存传送数据到CPU。</li>
@@ -1202,24 +1155,21 @@
 </ul>
 </li>
 </ul>
-<p>   <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174054455.png" srcset="/img/loading.gif" lazyload alt="image-20210615174054455"></p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174054455.png" srcset="/img/loading.gif" lazyload alt="image-20210615174054455"></p>
+</li>
+</ol>
 </li>
 </ul>
 <h4 id="6-1-2-磁盘存储"><a href="#6-1-2-磁盘存储" class="headerlink" title="6.1.2 磁盘存储"></a>6.1.2 磁盘存储</h4><ul>
 <li><strong>磁盘</strong>是广为应用的保存大量数据的存储设备，存储数据的数量级可以达到几百到几千兆字节，而基于RAM的存储器只能有几百或几千兆字节。不过，从磁盘上读信息的时间为毫秒级，比从DRAM读慢了10万倍，比从SRAM读慢了100万倍。</li>
 </ul>
-<h5 id="1-磁盘构造"><a href="#1-磁盘构造" class="headerlink" title="1.磁盘构造"></a>1.磁盘构造</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174443162.png" srcset="/img/loading.gif" lazyload alt="image-20210615174443162" style="zoom:80%;">
-
-
-
-  <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174459503.png" srcset="/img/loading.gif" lazyload alt="image-20210615174459503" style="zoom:80%;">
-
+<h5 id="1-磁盘构造"><a href="#1-磁盘构造" class="headerlink" title="1.磁盘构造"></a>1.磁盘构造</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174443162.png" srcset="/img/loading.gif" lazyload alt="image-20210615174443162" style="zoom:80%;"></p>
+<p>  <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174459503.png" srcset="/img/loading.gif" lazyload alt="image-20210615174459503" style="zoom:80%;"></p>
 <h5 id="2-磁盘容量"><a href="#2-磁盘容量" class="headerlink" title="2. 磁盘容量"></a>2. 磁盘容量</h5><ul>
 <li>一个磁盘上可以记录的最大位数称为它的<strong>最大容量</strong>，或者简称为<strong>容量</strong>。磁盘容量是由以下技术因素决定的：<br><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174625772.png" srcset="/img/loading.gif" lazyload alt="image-20210615174625772"></li>
 <li><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174643305.png" srcset="/img/loading.gif" lazyload alt="image-20210615174643305"></li>
 </ul>
-<h5 id="3-磁盘操作"><a href="#3-磁盘操作" class="headerlink" title="3.磁盘操作"></a>3.磁盘操作</h5><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174710471.png" srcset="/img/loading.gif" lazyload alt="image-20210615174710471" style="zoom:80%;">
-
+<h5 id="3-磁盘操作"><a href="#3-磁盘操作" class="headerlink" title="3.磁盘操作"></a>3.磁盘操作</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174710471.png" srcset="/img/loading.gif" lazyload alt="image-20210615174710471" style="zoom:80%;"></p>
 <ul>
 <li><p>磁盘以扇区大小的块来读写数据。对扇区的<strong>访问时间</strong>（access time）有三个主要的部分：<strong>寻道时间</strong>（seek time）、<strong>旋转时间</strong>（rotational latency）和<strong>传送时间</strong>（transfer time）：</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615174928908.png" srcset="/img/loading.gif" lazyload alt="image-20210615174928908"></p>
@@ -1231,10 +1181,10 @@
 </li>
 </ul>
 <h5 id="4-逻辑磁盘块"><a href="#4-逻辑磁盘块" class="headerlink" title="4.逻辑磁盘块"></a>4.逻辑磁盘块</h5><ul>
-<li>一个B个扇区大小的<strong>逻辑块</strong>的序列，编号为0，1，…，B-1。磁盘封装中有一个小小的硬件&#x2F;固件设备，称为<strong>磁盘控制器</strong>，维护者逻辑块号和实际（物理）磁盘扇区之间的映射关系。</li>
-<li>当操作系统想要执行一个I&#x2F;O操作时，例如读一个磁盘扇区的数据到主存，操作系统会发送一个命令到磁盘控制器，让它读某个逻辑块号。控制器上的固件执行一个快速表查找，将一个逻辑块号翻译成一个（盘面，磁道，扇区）的三元组，这个三元组唯一地标识了对应的物理扇区。</li>
+<li>一个B个扇区大小的<strong>逻辑块</strong>的序列，编号为0，1，…，B-1。磁盘封装中有一个小小的硬件/固件设备，称为<strong>磁盘控制器</strong>，维护者逻辑块号和实际（物理）磁盘扇区之间的映射关系。</li>
+<li>当操作系统想要执行一个I/O操作时，例如读一个磁盘扇区的数据到主存，操作系统会发送一个命令到磁盘控制器，让它读某个逻辑块号。控制器上的固件执行一个快速表查找，将一个逻辑块号翻译成一个（盘面，磁道，扇区）的三元组，这个三元组唯一地标识了对应的物理扇区。</li>
 </ul>
-<h5 id="5-连接I-x2F-O设备"><a href="#5-连接I-x2F-O设备" class="headerlink" title="5. 连接I&#x2F;O设备"></a>5. 连接I&#x2F;O设备</h5><h5 id="6-访问磁盘"><a href="#6-访问磁盘" class="headerlink" title="6. 访问磁盘"></a>6. 访问磁盘</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175559948.png" srcset="/img/loading.gif" lazyload alt="image-20210615175559948"></p>
+<h5 id="5-连接I-O设备"><a href="#5-连接I-O设备" class="headerlink" title="5. 连接I/O设备"></a>5. 连接I/O设备</h5><h5 id="6-访问磁盘"><a href="#6-访问磁盘" class="headerlink" title="6. 访问磁盘"></a>6. 访问磁盘</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210615175559948.png" srcset="/img/loading.gif" lazyload alt="image-20210615175559948"></p>
 <h4 id="6-1-3-固态硬盘"><a href="#6-1-3-固态硬盘" class="headerlink" title="6.1.3 固态硬盘"></a>6.1.3 固态硬盘</h4><ul>
 <li>读SSD比写要块。随机读和写的性能差别是由底层闪存基本属性决定的。</li>
 <li>如图6-13所示，一个闪存由B个块的序列组成，每个块由P页组成。</li>
@@ -1300,15 +1250,15 @@
 </ul>
 <h5 id="4-缓存管理"><a href="#4-缓存管理" class="headerlink" title="4.缓存管理"></a>4.缓存管理</h5><h3 id="6-4-高速缓存存储器"><a href="#6-4-高速缓存存储器" class="headerlink" title="6.4 高速缓存存储器"></a>6.4 高速缓存存储器</h3><h5 id="高速缓存存储器的典型总线结构"><a href="#高速缓存存储器的典型总线结构" class="headerlink" title="高速缓存存储器的典型总线结构"></a>高速缓存存储器的典型总线结构</h5><p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194008217.png" srcset="/img/loading.gif" lazyload alt="image-20210616194008217"></p>
 <h4 id="6-4-1-通用的高速缓存存储器组织结构"><a href="#6-4-1-通用的高速缓存存储器组织结构" class="headerlink" title="6.4.1 通用的高速缓存存储器组织结构"></a>6.4.1 通用的高速缓存存储器组织结构</h4><ul>
-<li><p>考虑一个计算机系统，其中每个存储器地址有$m$位，形成$M&#x3D;2^m$个不同的地址。如图6-25a所示，这样一个机器的高速缓存被组织成一个有$S&#x3D;2^s$个<strong>高速缓存组</strong>（cache set）的数组。每个组包含$E$个<strong>高速缓存行</strong>（cache line）。每个行是由一个$B&#x3D;2^b$字节的数据块（block）组成的。一个<strong>有效位</strong>（valid bit）指明这个行是否包含由意义的信息，还有$t&#x3D;m-(b+s)$个<strong>标记位</strong>（tag bit）（   集），它们唯一地标识存储在这个高速缓存行的块。</p>
+<li><p>考虑一个计算机系统，其中每个存储器地址有$m$位，形成$M=2^m$个不同的地址。如图6-25a所示，这样一个机器的高速缓存被组织成一个有$S=2^s$个<strong>高速缓存组</strong>（cache set）的数组。每个组包含$E$个<strong>高速缓存行</strong>（cache line）。每个行是由一个$B=2^b$字节的数据块（block）组成的。一个<strong>有效位</strong>（valid bit）指明这个行是否包含由意义的信息，还有$t=m-(b+s)$个<strong>标记位</strong>（tag bit）（   集），它们唯一地标识存储在这个高速缓存行的块。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194515993-1623843917008.png" srcset="/img/loading.gif" lazyload alt="image-20210616194515993"></p>
 </li>
-<li><p>一般而言，高速缓存的结构可以用元组$(S,E,B,m)$来描述。高速缓存的大小（或容量）$C$指的是所有块的大小的和。标记位和有效位不包括在内。因此，$C&#x3D;S\times E \times B$。</p>
+<li><p>一般而言，高速缓存的结构可以用元组$(S,E,B,m)$来描述。高速缓存的大小（或容量）$C$指的是所有块的大小的和。标记位和有效位不包括在内。因此，$C=S\times E \times B$。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616194750930.png" srcset="/img/loading.gif" lazyload alt="image-20210616194750930"></p>
 </li>
 </ul>
 <h4 id="6-4-2-直接映射高速缓存"><a href="#6-4-2-直接映射高速缓存" class="headerlink" title="6.4.2 直接映射高速缓存"></a>6.4.2 直接映射高速缓存</h4><ul>
-<li><p>每个组只有一行（$E&#x3D;1$）的高速缓存被称为<strong>直接映射</strong>高速缓存（direct-mapped cache）。</p>
+<li><p>每个组只有一行（$E=1$）的高速缓存被称为<strong>直接映射</strong>高速缓存（direct-mapped cache）。</p>
 </li>
 <li><p>抽取初被请求的字的过程，分为三步：</p>
 <ol>
@@ -1333,7 +1283,7 @@
 <li><p>它的<strong>组选择</strong>与直接映射高速缓存的组选择一样，组索引位标识组。</p>
 </li>
 <li><p>组相连高速缓存的<strong>行匹配</strong>比直接映射高速缓存中的更复杂，因为它必须检查多行的标记位和有效位，以确定所请求的字是否在集合中。</p>
-<p>​	<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200705881.png" srcset="/img/loading.gif" lazyload alt="image-20210616200705881"></p>
+<p>​    <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200705881.png" srcset="/img/loading.gif" lazyload alt="image-20210616200705881"></p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200719291.png" srcset="/img/loading.gif" lazyload alt="image-20210616200719291"></p>
 </li>
 </ul>
@@ -1349,11 +1299,11 @@
 </li>
 </ul>
 <h4 id="6-4-4-全相联高速缓存"><a href="#6-4-4-全相联高速缓存" class="headerlink" title="6.4.4 全相联高速缓存"></a>6.4.4 全相联高速缓存</h4><ul>
-<li><p><strong>全相联高速缓存</strong>（fully associative cache）是由一个包含所有高速缓存行的组（即$E&#x3D;C&#x2F;B$）组成的。</p>
+<li><p><strong>全相联高速缓存</strong>（fully associative cache）是由一个包含所有高速缓存行的组（即$E=C/B$）组成的。</p>
 </li>
 <li><p>全相联高速缓存中的组选择非常简单，因为只有一个组，地址中没有组索引位，地址只被划分成了一个标记和一个块偏移。</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200750144.png" srcset="/img/loading.gif" lazyload alt="image-20210616200750144"></p>
-<p>​	<img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200804495.png" srcset="/img/loading.gif" lazyload alt="image-20210616200804495"></p>
+<p>​    <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616200804495.png" srcset="/img/loading.gif" lazyload alt="image-20210616200804495"></p>
 </li>
 <li><p>全相联高速缓存只适合做小的高速缓存。</p>
 </li>
@@ -1369,10 +1319,9 @@
 <li>有许多指标来衡量高速缓存的性能：<br><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201749638.png" srcset="/img/loading.gif" lazyload alt="image-20210616201749638"></li>
 </ul>
 <ol>
-<li>高速缓存大小的影响</li>
-</ol>
-<p>   <img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201856220.png" srcset="/img/loading.gif" lazyload alt="image-20210616201856220"></p>
-<ol start="2">
+<li><p>高速缓存大小的影响</p>
+<p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201856220.png" srcset="/img/loading.gif" lazyload alt="image-20210616201856220"></p>
+</li>
 <li><p>块大小的影响</p>
 <p><img src="/2021/06/01/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/image-20210616201910591.png" srcset="/img/loading.gif" lazyload alt="image-20210616201910591"></p>
 </li>
@@ -1639,43 +1588,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://lib.baomitu.com/mathjax/3.2.0/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.3/katex.min.css" />
   
 
 

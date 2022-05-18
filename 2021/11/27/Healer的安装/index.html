@@ -56,7 +56,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://lib.baomitu.com/highlight.js/10.7.3/styles/vs2015.min.css" />
     
   
 
@@ -71,7 +71,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -252,11 +252,10 @@
             <h1 style="display: none">Healer的安装和初步使用</h1>
             
             <div class="markdown-body">
-              <h1 id="Healer的安装和初步使用"><a href="#Healer的安装和初步使用" class="headerlink" title="Healer的安装和初步使用"></a><a target="_blank" rel="noopener" href="https://github.com/SunHao-0/healer">Healer的安装和初步使用</a></h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​	Healer 是受 Syzkaller 启发的内核模糊测试器。<br>​	与 Syzkaller 类似，Healer 使用 Syzlang 描述提供的 syscall 信息生成确认参数结构约束和部分语义约束的系统调用序列，并通过不断执行生成的调用序列导致内核崩溃，从而发现内核错误。<br>​	与 Syzkaller 不同，Healer 不使用经验选择表，而是通过动态移除最小化调用序列中的调用并观察覆盖变化，来检测系统调用之间的影响关系，并利用影响关系来指导调用序列的生成和变异。 此外，Healer 还使用了与 Syzkaller 不同的架构设计。</p>
+              <h1 id="Healer的安装和初步使用"><a href="#Healer的安装和初步使用" class="headerlink" title="Healer的安装和初步使用"></a><a target="_blank" rel="noopener" href="https://github.com/SunHao-0/healer">Healer的安装和初步使用</a></h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​    Healer 是受 Syzkaller 启发的内核模糊测试器。<br>​    与 Syzkaller 类似，Healer 使用 Syzlang 描述提供的 syscall 信息生成确认参数结构约束和部分语义约束的系统调用序列，并通过不断执行生成的调用序列导致内核崩溃，从而发现内核错误。<br>​    与 Syzkaller 不同，Healer 不使用经验选择表，而是通过动态移除最小化调用序列中的调用并观察覆盖变化，来检测系统调用之间的影响关系，并利用影响关系来指导调用序列的生成和变异。 此外，Healer 还使用了与 Syzkaller 不同的架构设计。</p>
 <h2 id="构建Healer"><a href="#构建Healer" class="headerlink" title="构建Healer"></a>构建Healer</h2><ul>
 <li><p>除了一些修补代码之外，Healer 是用纯rust编写的。 因此，首先应安装 rust 工具链。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">curl --proto &#x27;=https&#x27; --tlsv1.2 -sSf https://sh.rustup.rs | sh <br>rustc --version # check install<br></code></pre></div></td></tr></table></figure>
-
 <p>检查安装结果：</p>
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129084016844.png" srcset="/img/loading.gif" lazyload alt="image-20211129084016844"></p>
 </li>
@@ -264,7 +263,8 @@
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129083949436.png" srcset="/img/loading.gif" lazyload alt="image-20211129083949436"></p>
 <ul>
 <li><p>GO111MODULE的开启命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">go env -w GO111MODULE=&quot;on&quot;<br>go env #check<br></code></pre></div></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">go env -w GO111MODULE=&quot;on&quot;<br>go env #check<br></code></pre></div></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>一旦安装了所有必需的工具，就可以使用<strong>以下命令</strong>轻松构建 Healer：</p>
@@ -274,27 +274,21 @@
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129083924376.png" srcset="/img/loading.gif" lazyload alt="image-20211129083924376"></p>
 </li>
 </ul>
-<h2 id="使用-Healer-对-Linux-内核进行模糊测试"><a href="#使用-Healer-对-Linux-内核进行模糊测试" class="headerlink" title="使用 Healer 对 Linux 内核进行模糊测试"></a>使用 Healer 对 Linux 内核进行模糊测试</h2><p>​	总的来说，使用 Healer 对 Linux 内核进行模糊测试需要三个步骤：(1) 准备磁盘映像，(2) 编译内核， (3) 启动 Healer。</p>
-<p>​	Healer 使用 qumu 来引导内核，所以需要准备磁盘镜像和内核镜像。启动后的 qemu 需要能够通过 ssh 密钥登录，内核至少需要具备 kcov 功能。(可以参照Syzkaller文档的详细介绍)</p>
+<h2 id="使用-Healer-对-Linux-内核进行模糊测试"><a href="#使用-Healer-对-Linux-内核进行模糊测试" class="headerlink" title="使用 Healer 对 Linux 内核进行模糊测试"></a>使用 Healer 对 Linux 内核进行模糊测试</h2><p>​    总的来说，使用 Healer 对 Linux 内核进行模糊测试需要三个步骤：(1) 准备磁盘映像，(2) 编译内核， (3) 启动 Healer。</p>
+<p>​    Healer 使用 qumu 来引导内核，所以需要准备磁盘镜像和内核镜像。启动后的 qemu 需要能够通过 ssh 密钥登录，内核至少需要具备 kcov 功能。(可以参照Syzkaller文档的详细介绍)</p>
 <h3 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h3><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">sudo apt update <br>sudo apt install make gcc flex bison libncurses-dev libelf-dev libssl-dev <br></code></pre></div></td></tr></table></figure>
-
 <h3 id="准备磁盘映像"><a href="#准备磁盘映像" class="headerlink" title="准备磁盘映像"></a>准备磁盘映像</h3><h4 id="安装-debootstrap"><a href="#安装-debootstrap" class="headerlink" title="安装 debootstrap"></a>安装 debootstrap</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">sudo apt install debootstrap<br></code></pre></div></td></tr></table></figure>
-
 <h4 id="创建-Debian-Stretch-Linux-映像"><a href="#创建-Debian-Stretch-Linux-映像" class="headerlink" title="创建 Debian Stretch Linux 映像"></a>创建 Debian Stretch Linux 映像</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir $IMAGE <br>cd $IMAGE/ wget https://raw.githubusercontent.com/google/syzkaller/master/tools/create-image.sh -O create-image.sh <br>chmod +x create-image.sh <br>./create-image.sh<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>注意将<code>$IMAGE</code>替换为自己的路径。</li>
 </ul>
 <h4 id="附加工具"><a href="#附加工具" class="headerlink" title="附加工具"></a>附加工具</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./create-image.sh --feature full<br>./create-image.sh --add-perf<br></code></pre></div></td></tr></table></figure>
-
 <h3 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h3><h4 id="获取内核源码"><a href="#获取内核源码" class="headerlink" title="获取内核源码"></a>获取内核源码</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git clone --branch v5.14 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git $KERNEL<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>建议从最新的稳定版本开始。V5.14是一个示例。</li>
 <li>在虚拟机中<code>git clone</code>运行时间较长。在较好的网络环境下，可以选择在物理机中前往<code>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/</code>下载内核源码的压缩包，然后拖入虚拟机解压</li>
 </ul>
 <h4 id="生成默认配置"><a href="#生成默认配置" class="headerlink" title="生成默认配置"></a>生成默认配置</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd $KERNEL<br>make defconfig<br>make kvm_guest.config<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>同样注意将<code>$IMAGE</code>替换为自己的路径。</li>
 </ul>
@@ -302,38 +296,34 @@
 <li>手动编辑<code>.config</code>文件来启用它们:</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># Coverage collection.</span><br>CONFIG_KCOV=y<br><br><span class="hljs-comment"># Debug info for symbolization.</span><br>CONFIG_DEBUG_INFO=y<br><br><span class="hljs-comment"># Memory bug detector</span><br>CONFIG_KASAN=y<br>CONFIG_KASAN_INLINE=y<br><br><span class="hljs-comment"># Required for Debian Stretch</span><br>CONFIG_CONFIGFS_FS=y<br>CONFIG_SECURITYFS=y<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li><p>重新生成配置:</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">make olddefconfig<br></code></pre></div></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">make olddefconfig<br></code></pre></div></td></tr></table></figure>
+</li>
 </ul>
 <h4 id="编译内核命令"><a href="#编译内核命令" class="headerlink" title="编译内核命令"></a>编译内核命令</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">make -j`nproc`<br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li><p>检查:</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ls $KERNEL/vmlinux<br><span class="hljs-meta prompt_"># </span><span class="language-bash">sample output - <span class="hljs-variable">$KERNEL</span>/vmlinux</span><br>ls $KERNEL/arch/x86/boot/bzImage<br><span class="hljs-meta prompt_"># </span><span class="language-bash">sample output - <span class="hljs-variable">$KERNEL</span>/arch/x86/boot/bzImage</span><br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129091321934.png" srcset="/img/loading.gif" lazyload alt="image-20211129091321934"></p>
 </li>
 </ul>
 <h3 id="安装QEMU"><a href="#安装QEMU" class="headerlink" title="安装QEMU"></a>安装QEMU</h3><h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">sudo apt install qemu-system-x86<br></code></pre></div></td></tr></table></figure>
-
 <h4 id="核查"><a href="#核查" class="headerlink" title="核查"></a>核查</h4><ul>
 <li><p>先确定虚拟机的处理器开启<code>虚拟化引擎</code>-<code>虚拟化Intel VT-x/EPT或AMD-V/RVI</code> (我使用的是VMware Workstation)</p>
-<img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129092011086.png" srcset="/img/loading.gif" lazyload alt="image-20211129092011086" style="zoom: 50%;">
+<p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129092011086.png" srcset="/img/loading.gif" lazyload alt="image-20211129092011086" style="zoom: 50%;"></p>
 </li>
 <li><p>确认<code>sshd</code>开启</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ps -e |grep ssh<br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129092306518.png" srcset="/img/loading.gif" lazyload alt="image-20211129092306518"></p>
 <ul>
 <li><p>如果没有出现<code>sshd</code>，则输入命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/etc/init.d/ssh start<br></code></pre></div></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/etc/init.d/ssh start<br></code></pre></div></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>正式启动QEMU：</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">qemu-system-x86_64 \<br>	-m 2G \<br>	-smp 2 \<br>	-kernel $KERNEL/arch/x86/boot/bzImage \<br>	-append &quot;console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0&quot; \<br>	-drive file=$IMAGE/stretch.img,format=raw \<br>	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \<br>	-net nic,model=e1000 \<br>	-enable-kvm \<br>	-nographic \<br>	-pidfile vm.pid \<br><span class="hljs-meta prompt_">	2&gt;</span><span class="language-bash">&amp;1 | <span class="hljs-built_in">tee</span> vm.log</span><br></code></pre></div></td></tr></table></figure>
-
 <ul>
 <li>同样注意路径替换</li>
 </ul>
@@ -345,7 +335,6 @@
 </li>
 <li><p>此后，可以在另一终端中测试ssh能否工作</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ssh -i $IMAGE/stretch.id_rsa -p 10021 -o &quot;StrictHostKeyChecking no&quot; root@localhost<br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129093824085.png" srcset="/img/loading.gif" lazyload alt="image-20211129093824085"></p>
 </li>
 </ul>
@@ -353,7 +342,7 @@
 <li><p>一旦<code>stretch.img</code>（<code>$IMAGE/stretch.img</code>）、<code>ssh-stretch.id_rsa</code>（<code>$IMAGE/ssh-stretch.id_rsa</code>）、<code>bzImage</code>（<code>$KERNEL/linux-5.14/arch/x86/boot/bzImage</code>准备就绪，建议是创建一个工作目录<code>workdir</code>。 然后，在 <code>workdir</code> 中创建一个 <code>bin</code> 目录，并将修补后的 <code>Syzkaller</code> 二进制文件和修复程序二进制文件复制到该目录中（<code>healer-main/target/release/syz-bin</code>），注意不要更改 <code>syz-bin</code> 目录结构。 最终的工作目录需要有以下文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd path/to/workdir &amp;&amp; ls  <br>bin  bzImage  stretch.id_rsa  stretch.img <br>ls ./bin <br>healer linux_amd64  syz-repro  syz-symbolize  syz-sysgen<br></code></pre></div></td></tr></table></figure>
 </li>
-<li><p>最后，在<code>workdir</code>执行以下命令开始模糊测试，其中 -d 指定磁盘映像的路径，-k 指定内核映像的路径，–ssh-key 指定 ssh 密钥的路径。</p>
+<li><p>最后，在<code>workdir</code>执行以下命令开始模糊测试，其中 -d 指定磁盘映像的路径，-k 指定内核映像的路径，—ssh-key 指定 ssh 密钥的路径。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">sudo ./bin/healer -d stretch.img --ssh-key stretch.id_rsa -k bzImage <br></code></pre></div></td></tr></table></figure>
 </li>
 <li><p>若正常运行，界面如下：  <img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129150723525.png" srcset="/img/loading.gif" lazyload alt="image-20211129150723525"></p>
@@ -361,7 +350,6 @@
 </ul>
 <h4 id="遇到的错误"><a href="#遇到的错误" class="headerlink" title="遇到的错误"></a>遇到的错误</h4><p><strong>1</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo ./bin/healer -d stretch.img --ssh-key stretch.id_rsa -k bzImage</span><br><br> ___   ___   ______   ________   __       ______   ______<br>/__/\ /__/\ /_____/\ /_______/\ /_/\     /_____/\ /_____/\<br>\::\ \\  \ \\::::_\/_\::: _  \ \\:\ \    \::::_\/_\:::_ \ \<br> \::\/_\ .\ \\:\/___/\\::(_)  \ \\:\ \    \:\/___/\\:(_) ) )_<br>  \:: ___::\ \\::___\/_\:: __  \ \\:\ \____\::___\/_\: __ `\ \<br>   \: \ \\::\ \\:\____/\\:.\ \  \ \\:\/___/\\:\____/\\ \ `\ \ \<br>    \__\/ \::\/ \_____\/ \__\/\__\/ \_____\/ \_____\/ \_\/ \_\/<br><br>[2021-11-28T05:20:10Z INFO  healer_fuzzer] loading target linux/amd64...<br>[2021-11-28T05:20:15Z INFO  healer_fuzzer] pre-booting one vm...<br>Error: failed to boot qemu<br><br>Caused by:<br>    boot: failed to boot in 0s: &quot;qemu-system-x86_64&quot; &quot;-display&quot; &quot;none&quot; &quot;-serial&quot; &quot;stdio&quot; &quot;-no-reboot&quot; &quot;-snapshot&quot; &quot;-device&quot; &quot;virtio-rng-pci&quot; &quot;-enable-kvm&quot; &quot;-cpu&quot; &quot;host,migratable=off&quot; &quot;-m&quot; &quot;4096&quot; &quot;-smp&quot; &quot;2&quot; &quot;-device&quot; &quot;e1000,netdev=net0&quot; &quot;-netdev&quot; &quot;user,id=net0,host=10.0.2.10,hostfwd=tcp::1025-:22&quot; &quot;-drive&quot; &quot;file=/home/yuhan/workdir/stretch.img,index=0,media=disk&quot; &quot;-kernel&quot; &quot;/home/yuhan/workdir/bzImage&quot; &quot;-append&quot; &quot;root=/dev/sda console=ttyS0 kvm-intel.nested=1 kvm-intel.unrestricted_guest=1 kvm-intel.vmm_exclusive=1 kvm-intel.fasteoi=1 kvm-intel.ept=1 kvm-intel.flexpriority=1 kvm-intel.vpid=1 kvm-intel.emulate_invalid_guest_state=1 kvm-intel.eptad=1 kvm-intel.enable_shadow_vmcs=1 kvm-intel.pml=1 kvm-intel.enable_apicv=1 earlyprintk=serial oops=panic nmi_watchdog=panic panic_on_warn=1 panic=1 ftrace_dump_on_oops=orig_cpu vsyscall=native net.ifnames=0 biosdevname=0&quot; &quot;-device&quot; &quot;ivshmem-plain,memdev=hostmem0&quot; &quot;-object&quot; &quot;memory-backend-file,size=4194304,share,mem-path=/dev/shm/healer-in_shm-0-35410,id=hostmem0&quot; &quot;-device&quot; &quot;ivshmem-plain,memdev=hostmem1&quot; &quot;-object&quot; &quot;memory-backend-file,size=16777216,share,mem-path=/dev/shm/healer-out_shm_0-35410,id=hostmem1&quot;<br>    stderr:<br>    failed to boot, qemu exited with: signal: 6 (core dumped)<br>    cmdline: &quot;qemu-system-x86_64&quot; &quot;-display&quot; &quot;none&quot; &quot;-serial&quot; &quot;stdio&quot; &quot;-no-reboot&quot; &quot;-snapshot&quot; &quot;-device&quot; &quot;virtio-rng-pci&quot; &quot;-enable-kvm&quot; &quot;-cpu&quot; &quot;host,migratable=off&quot; &quot;-m&quot; &quot;4096&quot; &quot;-smp&quot; &quot;2&quot; &quot;-device&quot; &quot;e1000,netdev=net0&quot; &quot;-netdev&quot; &quot;user,id=net0,host=10.0.2.10,hostfwd=tcp::1025-:22&quot; &quot;-drive&quot; &quot;file=/home/yuhan/workdir/stretch.img,index=0,media=disk&quot; &quot;-kernel&quot; &quot;/home/yuhan/workdir/bzImage&quot; &quot;-append&quot; &quot;root=/dev/sda console=ttyS0 kvm-intel.nested=1 kvm-intel.unrestricted_guest=1 kvm-intel.vmm_exclusive=1 kvm-intel.fasteoi=1 kvm-intel.ept=1 kvm-intel.flexpriority=1 kvm-intel.vpid=1 kvm-intel.emulate_invalid_guest_state=1 kvm-intel.eptad=1 kvm-intel.enable_shadow_vmcs=1 kvm-intel.pml=1 kvm-intel.enable_apicv=1 earlyprintk=serial oops=panic nmi_watchdog=panic panic_on_warn=1 panic=1 ftrace_dump_on_oops=orig_cpu vsyscall=native net.ifnames=0 biosdevname=0&quot; &quot;-device&quot; &quot;ivshmem-plain,memdev=hostmem0&quot; &quot;-object&quot; &quot;memory-backend-file,size=4194304,share,mem-path=/dev/shm/healer-in_shm-0-35410,id=hostmem0&quot; &quot;-device&quot; &quot;ivshmem-plain,memdev=hostmem1&quot; &quot;-object&quot; &quot;memory-backend-file,size=16777216,share,mem-path=/dev/shm/healer-out_shm_0-35410,id=hostmem1&quot;<br>    STDERR:<br>    qemu-system-x86_64: error: failed to set MSR 0x48f to 0x7fffff00036dfb<br>    qemu-system-x86_64: /build/qemu-A1914X/qemu-4.2/target/i386/kvm.c:2691: kvm_buf_set_msrs: Assertion `ret == cpu-&gt;kvm_msr_buf-&gt;nmsrs&#x27; failed.<br></code></pre></div></td></tr></table></figure>
-
 <p><strong>解决方案</strong></p>
 <p>找到<code>healer-main/healer_utils/healer_vm/src/qemu.rs</code>，这是healer中关于qemu的配置文件。将<code>“linux/amd64”</code>的对应参数<code>args</code>改为：<code>&quot;-enable-kvm&quot;</code>（下图中的第487行）。</p>
 <p><img src="/2021/11/27/Healer%E7%9A%84%E5%AE%89%E8%A3%85/image-20211129152303710.png" srcset="/img/loading.gif" lazyload alt="image-20211129152303710"></p>
@@ -621,43 +609,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://lib.baomitu.com/mathjax/3.2.0/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.3/katex.min.css" />
   
 
 
