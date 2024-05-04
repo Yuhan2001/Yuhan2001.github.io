@@ -23,19 +23,22 @@
 <meta property="og:site_name" content="Yuhan&#39;s blog">
 <meta property="og:description" content="论文阅读笔记：AAAI 20：《Order Matters》">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121203627839-17058476037342.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121204851147-17058476023021.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121215922638.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121220012016.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240122001434356.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240122012435397.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240122012444904.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240122014527423.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240122014536191.png">
 <meta property="article:published_time" content="2024-05-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-04T15:31:51.963Z">
+<meta property="article:modified_time" content="2024-05-04T15:43:55.059Z">
 <meta property="article:author" content="Wu Yuhan">
 <meta property="article:tag" content="论文笔记">
 <meta property="article:tag" content="Binary Similarity">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121215922638.png">
+<meta name="twitter:image" content="http://yuhan2001.github.io/2024/05/04/Order%20Matters/image-20240121203627839-17058476037342.png">
   
   
   <title>论文笔记：Order Matters - Yuhan&#39;s blog</title>
@@ -205,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.3k 字
+      6.1k 字
     </span>
   
 
@@ -214,7 +217,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      53 分钟
+      51 分钟
     </span>
   
 
@@ -263,10 +266,10 @@
 <h3 id="方法">方法</h3>
 <p><strong>提出的模型</strong>：</p>
 <p>模型的输入是二进制代码函数的控制流图（CFGs），其中每个块是带有中间表示的token序列。在语义感知上，模型使用BERT预训练接受CFG作为输入，并预训练token嵌入和块嵌入。在结构感知上，使用带GRU更新函数的MPNN来计算图的语义和结构嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">g_{ss}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ss</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。在顺序感知上，采用CFG的邻接矩阵作为输入，并使用CNN来计算图的顺序嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>o</mi></msub></mrow><annotation encoding="application/x-tex">g_{o}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。最后将它们连接起来，并使用一个MLP层来计算图嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mrow><mi>f</mi><mi>i</mi><mi>n</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><mi>M</mi><mi>L</mi><mi>P</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>g</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo separator="true">,</mo><msub><mi>g</mi><mi>o</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g_{final} =MLP([g_{ss}, g_{o}])</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">ina</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">L</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">([</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ss</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">])</span></span></span></span></p>
-<p>![image-20240121203627839](Order Matters/image-20240121203627839-17058476037342.png)</p>
+<img src="/2024/05/04/Order%20Matters/image-20240121203627839-17058476037342.png" srcset="/img/loading.gif" lazyload alt="image-20240121203627839" style="zoom:80%;">
 <h4 id="语义感知模块-Semantic-aware-Modeling">语义感知模块 (Semantic-aware Modeling)</h4>
 <p>使用BERT进行预训练，包括四个任务：掩码语言模型任务（MLM）、邻接节点预测任务（ANP）、块内图任务（BIG）和图分类任务（GC）。这些任务帮助模型提取CFG的token级别、块级别和图级别的语义信息。</p>
-<p>![image-20240121204851147](Order Matters/image-20240121204851147-17058476023021.png)</p>
+<img src="/2024/05/04/Order%20Matters/image-20240121204851147-17058476023021.png" srcset="/img/loading.gif" lazyload alt="image-20240121204851147" style="zoom: 80%;">
 <ul>
 <li><strong>掩码语言模型任务（MLM）</strong>：通过在输入层掩盖token并在输出层预测它们来提取<strong>块内的语义信息</strong>。这是一个自监督任务，模型在训练过程中某些token会被隐藏，模型必须基于其他token提供的上下文来预测缺失的token。</li>
 <li><strong>邻接节点预测任务（ANP）</strong>：因为块的信息不仅与块本身的内容相关，还与其邻近的块相关，ANP任务旨在让模型学习这种<strong>邻接信息</strong>。它涉及提取图中所有相邻块对，并在同一图中随机抽样多个块对，以预测它们是否相邻。</li>
@@ -306,7 +309,7 @@
 <img src="/2024/05/04/Order%20Matters/image-20240121220012016.png" srcset="/img/loading.gif" lazyload alt="image-20240121220012016" style="zoom:67%;">
 <h4 id="顺序感知模块-Order-aware-Modeling"><strong>顺序感知模块</strong> (Order-aware Modeling)</h4>
 <p>通过卷积神经网络（CNN）处理邻接矩阵，以提取CFG节点的顺序信息。</p>
-<p>![image-20240122001434356](Order Matters/image-20240122001434356.png)</p>
+<img src="/2024/05/04/Order%20Matters/image-20240122001434356.png" srcset="/img/loading.gif" lazyload alt="image-20240122001434356" style="zoom:80%;">
 <p>如图，CNN能捕获从(a)到(b)的变化信息，当 CNN 看到大量训练数据时，它具有<strong>平移不变性</strong>（translation invariance）</p>
 <p>对于(b)-&gt;©，与图像放缩类似，在看到足够多的训练数据后，CNN 也可以学习这种伸缩不变性（scale invariance）。</p>
 <p>由于二进制代码函数在不同平台上编译时节点顺序通常不会大改变，<strong>CNN</strong>能够处理由此引起的添加、删除或交换节点等小变化，优势如下：</p>
@@ -332,7 +335,7 @@
 </li>
 </ul>
 <p>由于模型具有三个组成部分：语义感知、结构感知和顺序感知，因此进行了不同的实验来找出每个部分的效果。</p>
-<p><img src="/2024/05/04/Order%20Matters/image-20240122012435397.png" srcset="/img/loading.gif" lazyload alt="image-20240122012435397" style="zoom: 67%;"><img src="/2024/05/04/Order%20Matters/image-20240122012444904.png" srcset="/img/loading.gif" lazyload alt="image-20240122012444904" style="zoom: 67%;"></p>
+<p><img src="/2024/05/04/Order%20Matters/image-20240122012435397.png" srcset="/img/loading.gif" lazyload alt="image-20240122012435397"><img src="/2024/05/04/Order%20Matters/image-20240122012444904.png" srcset="/img/loading.gif" lazyload alt="image-20240122012444904" style="zoom: 67%;"></p>
 <blockquote>
 <p>表中：</p>
 <ul>
