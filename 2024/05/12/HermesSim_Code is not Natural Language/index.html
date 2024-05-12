@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wu Yuhan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="论文阅读笔记 [Security 24]论文:《Code is not Natural Language  Unlock the Power of Semantics-Oriented Graph Representation for Binary Code Similarity Detection》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】HermesSim (Security 24)">
+<meta property="og:url" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/index.html">
+<meta property="og:site_name" content="Yuhan&#39;s blog">
+<meta property="og:description" content="论文阅读笔记 [Security 24]论文:《Code is not Natural Language  Unlock the Power of Semantics-Oriented Graph Representation for Binary Code Similarity Detection》">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124003235665.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124004330568.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124013251212.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124015400860.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124023555892.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124024721038.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124024817320.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124032144350.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124032220967.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231104401.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231110294.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231140789.png">
+<meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231126095.png">
+<meta property="article:published_time" content="2024-05-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-12T15:12:28.250Z">
+<meta property="article:author" content="Wu Yuhan">
+<meta property="article:tag" content="论文笔记">
+<meta property="article:tag" content="Binary Similarity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124003235665.png">
+  
+  
+  <title>【论文笔记】HermesSim (Security 24) - Yuhan&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://lib.baomitu.com/highlight.js/10.7.3/styles/vs2015.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yuhan2001.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6da93a2e5d7f160e0f40b273ddbbddac","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yuhan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/3.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【论文笔记】HermesSim (Security 24)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-05-12 00:00" pubdate>
+        2024年5月12日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      76 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【论文笔记】HermesSim (Security 24)</h1>
+            
+            <div class="markdown-body">
+              <h2 id="HermesSim-Security-24">HermesSim [Security 24]</h2>
+<p>论文：《<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/sec24summer-prepub-346-he.pdf">Code is not Natural Language: Unlock the Power of Semantics-Oriented Graph Representation for Binary Code Similarity Detection</a>》</p>
+<h3 id="提出的问题"><strong>提出的问题</strong></h3>
+<p>二进制代码相似性检测（BCSD）是确定两个二进制函数之间的语义相似性的基本任务。</p>
+<p><strong>现有的BCSD方法</strong>主要分为两种：基于指令流的方法和基于控制流图（CFG）的方法。基于指令流的方法将指令流视为自然语言句子，并应用自然语言处理技术。这些方法虽然先进，但<strong>预训练过程昂贵，且侧重于学习代码的有限方面</strong>。而基于CFG的方法则侧重于利用图神经网络捕获控制流特征，但同样<strong>受限于对基于NLP方法的依赖</strong>。</p>
+<p>作者提出，指令流与自然语言句子在语法上相似，但它们在结构、语义和约定上有本质的不同：</p>
+<ul>
+<li>自然语言是模糊和弱结构化的，而二进制代码具有明确定义的结构和语义</li>
+<li>在自然语言中重新排序单词可能改变语义，而在二进制代码中重新排序指令或在基本块间移动指令是可行的，不会影响语义。</li>
+<li>第三，自然语言旨在有效地交换信息，而二进制代码旨在简化机器执行。</li>
+</ul>
+<p>这些差异表明，将代码视为自然语言并不是最理想的。</p>
+<p>作者建议开发一种二进制代码表示，能够：</p>
+<ul>
+<li>显示指令内部结构，显示操作符如何使用操作数</li>
+<li>显示指令间关系，例如定义使用、控制流程和必要的执行顺序</li>
+<li>排除与语义无关的元素，例如用于临时缓存数据的寄存器和不必要的执行顺序限制</li>
+<li>编码其他隐式知识，例如调用约定。</li>
+</ul>
+<blockquote>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124003235665.png" srcset="/img/loading.gif" lazyload alt="image-20240124003235665" style="zoom: 80%;">
+<p>作者列举了三种简单的、语义上等效的转换，这些转换对NLP模型来说是必须学习的：</p>
+<ol>
+<li><strong>交换指令顺序：</strong> 代码片段中的前两个指令可以交换而不改变代码语义。然而，这种转换会改变产生的嵌入集，因此模型需要学习哪些指令的顺序可以调整而不改变语义。（如（b)）</li>
+<li><strong>改变代码片段的位置：</strong> 整个代码片段可能由于在序列开始处插入了一些虚拟指令而被放置在不同的位置。这会改变所有token的位置嵌入，导致一个完全不同的嵌入集，模型需要学习不同位置的相同子序列在语义上是等价的。（如（c)）</li>
+<li><strong>替换寄存器使用：</strong> 使用的寄存器r0可以被以前未使用的寄存器r2替换。模型需要学习所选择的确切寄存器是与语义无关的。相反，通过寄存器传递的数据流则是代码语义的一个组成部分。（如（d)）</li>
+</ol>
+<p>故学习这些附加的语义使得基于NLP的方法变得<strong>更加昂贵</strong>且难以泛化。</p>
+</blockquote>
+<h3 id="实现背景">实现背景</h3>
+<h4 id="二进制代码的隐含结构">二进制代码的隐含结构</h4>
+<p>作者先讨论了二进制代码的隐含结构，可以分为三个类别：指令内部结构、指令间关系和函数级别的约定。</p>
+<ol>
+<li>
+<p><strong>指令内部结构（Intra-instruction Structures）</strong>：指令有其内部结构。例如，MIPS架构中的指令<code>add r1, r2, r3</code>可以解释为<code>add</code>操作符使用存储在寄存器<code>r2</code>和<code>r3</code>中的值，并将产生的值存储在寄存器<code>r1</code>中。同时，x86-64架构中的指令<code>add rax, rdx</code>可以解释为<code>add</code>操作符使用存储在寄存器<code>rax</code>和<code>rdx</code>中的值，但其输出存储在<code>rax</code>和<code>eflags</code>寄存器中。</p>
+</li>
+<li>
+<p><strong>指令间关系（Inter-instruction Relations）</strong>：这些关系可以分为data (def-use relations), control (branches), and effect (execution order)。</p>
+<ul>
+<li>
+<p><strong>Data relations</strong>：揭示了一些指令使用由其他指令定义的值。</p>
+</li>
+<li>
+<p><strong>Control relations</strong>：在基本块级别定义控制流。</p>
+</li>
+<li>
+<p><strong>Effect relations</strong>：之前的研究往往忽略了这一点，建立了指令间执行顺序的限制。（如Figure3(a)的第4行和第5行）</p>
+<ul>
+<li>
+<p>一种类似于传统控制流图表示的方法是将每个基本块中的指令序列化，以限制执行顺序。然而，这种表示方式施加了过多的限制。（第4行的指令不能与前面的两条指令交换，但第2行和第3行的指令可以交换而不影响代码语义）</p>
+</li>
+<li>
+<p>为了追求效果和效率，作者的目标是在最终表示中仅包含必要的执行顺序。故采用the effect model：<strong>将额外的执行顺序限制建模为潜在的数据流</strong>。在上述示例中，STORE指令修改了一个内存槽，而CALL指令调用的子程序Foo可能读取或写入同一个内存槽，这构成了一个潜在的数据流。作者使用<strong>一个抽象的临时变量</strong>来代表每一组相关的内存槽。<strong>可能</strong>从该内存槽组<strong>读取值或写入值</strong>的指令被认为<strong>使用或定义</strong>相应的临时变量。</p>
+<blockquote>
+<p>值得注意的是，构建的效果流与分析能力有关。例如，在（d）中，如果确定被调用的子程序不与内存交互，或STORE指令仅修改当前堆栈帧，而任何子程序都不会访问它，那么在它们之间就不需要引入效果关系。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124004330568.png" srcset="/img/loading.gif" lazyload alt="image-20240124004330568" style="zoom:67%;">
+<blockquote>
+<p>图 3a 中代码片段的语义解释如下。第 1 行的标签 L1 和第 7 行的标签 L2 分别表示两个基本模块的开始。指令 r0 = LOAD 0x1000 加载地址为 0x1000 的内存槽值，并将其放入寄存器 r0。随后，r1 = ADD r1, 2 将表达式 r1 + 2 的值存储到寄存器 r1 中。STORE r0, r1 将 r1 的值存储到 r0 所指示的内存地址中。指令 r3 = CALL Foo, r0 以 r0 为唯一参数调用子程序 Foo，并将返回值存入 r3。BR L2 直接跳转到标签 L2 标记的基本程序块。最后，RET r3 将控制权返回给调用者，返回值设置为存储在 r3 中的值。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>函数级别的约定（Function-level Conventions）</strong>：调用约定定义哪些寄存器用作调用参数和返回值，这有助于恢复调用指令的定义使用关系。此外，函数将临时变量存储在自己的堆栈帧中，其他函数不会访问这些临时变量。这种理解有助于<strong>完善Effect relations</strong>。</p>
+</li>
+</ol>
+<h4 id="Semantics-Oriented-Graph">Semantics-Oriented Graph</h4>
+<p>故提出的SOG(Semantics-Oriented Graph)将通过处理三个关键方面，有效捕获二进制代码的语义：</p>
+<ol>
+<li><strong>位置独立性</strong>：SOG不会为每个指令或token分配位置标识符，因为二进制代码的语义与位置无关。因此，图表示被认为更适合此目的。</li>
+<li><strong>选择性执行顺序</strong>：SOG避免完全采用执行顺序来限制指令，因为大部分执行顺序限制是机器相关的，但与语义无关。SOG使用“效果模型”仅限制必要的执行顺序。</li>
+<li><strong>消除与语义无关的token</strong>：SOG旨在去除与语义无关的token，同时对携带语义意义的指令或token之间的关系进行建模。</li>
+</ol>
+<p><strong>SOG的构建</strong>包括三个步骤：</p>
+<ul>
+<li><strong>基于指令的完整语义图（ISCG）</strong>：第一步将指令序列提升为图形表示，展示指令之间的关系作为边。这种表示增强了数据流图（DFG），增加了额外的control flow 和 effect flow边。指令是节点，图不指定指令属于哪个基本块，允许指令在基本块之间“浮动”，而不改变语义。</li>
+<li><strong>基于3 token的完整语义图（TSCG）</strong>：第二步涉及将指令分解为token，以揭示指令内部结构，这简化了节点嵌入并消除了与语义无关的元素。这个过程根据引入它们的特定指令token来细化指令间关系。</li>
+<li><strong>最终的SOG表示</strong>：最后一步涉及去除代表临时存储（如寄存器或堆栈插槽）的节点，这些存储在语义上是独立的，并直接连接它们的输入和输出。此步骤保留了未初始化存储的使用，因为它们携带语义信息（未初始化的存储大多携带从调用者例程传递的值。如果当前函数的调用约定已知，则可以使用未初始化存储的名称来推断参数在参数列表中的位置）。</li>
+</ul>
+<p>SOG能够编码各种函数级约定，例如调用参数和堆栈帧。例如，它可以通过从调用节点到参数节点添加数据边来揭示调用参数，并使用抽象临时变量来模拟堆栈帧的效果。</p>
+<h3 id="实现">实现</h3>
+<h4 id="SOG的构建">SOG的构建</h4>
+<p>SOG 的构建可以通过与将线性 IR 转换为 SSA 形式类似的过程来完成。</p>
+<p>将 SOG 分为三个子图：</p>
+<p><strong>control子图构建</strong>:</p>
+<ul>
+<li>在基本块的末尾插入虚拟分支（BR）指令，以确保每个基本块以branch指令结束。</li>
+<li>branch指令作为基本块的代表，转化为图的节点。</li>
+<li>从branch targets到branches添加<strong>控制流边</strong>。</li>
+<li>为了避免歧义，每个节点被视为只为每种类型的关系定义单一值</li>
+<li>对于有多个后继者的条件或间接分支指令，将其输出视为连接值，并为每个后继者引入一个<strong>投影（PROJ）节点</strong>，将连接值投影为该特定后续者的单元值。</li>
+</ul>
+<p><strong>data子图构建</strong>:</p>
+<ul>
+<li>通过定义-使用（<strong>def-use</strong>）分析来构建。</li>
+<li>为每个指令操作符创建一个节点，并为每个操作数添加指向定义该操作数值的前一个节点的有向边。</li>
+<li>如果找不到定义操作数的前一个节点（如整数文字或未初始化的寄存器），则引入代表该整数文字或未初始化寄存器的新节点。这样，所有引用同一未定义操作数的指令都连接到同一操作数节点。</li>
+<li>这个过程还包括解决对齐挑战，例如多个指令同时定义一个操作数值。为此引入了一个特殊的节点类型，<strong>PIECE</strong>，用于抽象地连接多个值。</li>
+</ul>
+<p><strong>effect子图构建</strong>:</p>
+<ul>
+<li>effect子图的构建与data子图类似，将effect视为特殊类型的由特殊指令使用和定义的值。</li>
+<li>识别两种效果模型：内存effect和I/Oeffect。</li>
+<li>内存 effect：从内存加载值的指令使用内存effect，改变内存状态的指令使用并定义内存effect。</li>
+<li>I/O effect：以类似方式构建。</li>
+</ul>
+<p>此外，还在SOG中集成<strong>phi节点</strong>。SOG的构建自然与静态单赋值（SSA）形式一致，因为它为每个指令定义了一个节点。为了保持简洁，需要为data值和effect值引入必要的phi指令。</p>
+<ul>
+<li>由于 phi 指令的语义取决于控制流，因此首次引入 phi 节点时，将其设置为 phi 指令所在基本块的分支节点。</li>
+<li>其他位置引用phi 节点时，按照分支节点的出边的顺序进行设置：当分支节点通过它的第 i 条出边接收到控制流时，使用该分支节点的phi节点就会选择第 i+1 个输入作为输出。</li>
+</ul>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124013251212.png" srcset="/img/loading.gif" lazyload alt="image-20240124013251212" style="zoom:80%;">
+<blockquote>
+<p>论文的Appendix A中提供了图构建算法的伪代码。</p>
+</blockquote>
+<h4 id="系统框架"><strong>系统框架</strong></h4>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124015400860.png" srcset="/img/loading.gif" lazyload alt="image-20240124015400860" style="zoom:80%;">
+<p>SOG的每个节点都有一个token，每条边都有一个类型label和一个位置label。</p>
+<h4 id="训练">训练</h4>
+<p>我们采用<strong>基于边际的成对损失</strong>[21]和<strong>距离加权负采样策略</strong>[41]进行训练。</p>
+<p>通过首先对 N 个<strong>不同的函数符号</strong>进行采样，然后对每个符号具有<strong>不同编译设置</strong>的 2 个函数进行采样来收集<strong>小批量</strong>。</p>
+<p>使用<strong>余弦相似度</strong>的负值作为距离度量。</p>
+<h4 id="函数嵌入">函数嵌入</h4>
+<p><strong>图归一化和编码</strong></p>
+<p>每个<strong>节点</strong>都有一个token，直接</p>
+<p>映射到可学习的嵌入向量。</p>
+<p>每条<strong>边</strong>都有一个类型属性（data、control或effect）和一个位置属性（相应操作数的索引）。分别将类型和位置属性转换为两个嵌入，并将它们相加形成最终的边嵌入。</p>
+<p>模型需要学习包括token和label在内的词汇表。一些token和label在词汇表之外，故：</p>
+<ul>
+<li>为每个token分配一个token类型，共三种（instruction tokens, integer literals, and register tokens）
+<ul>
+<li>由于不同的架构有不同的寄存器使用习惯，我们进一步根据架构将register tokens分为几种子类型。</li>
+</ul>
+</li>
+<li>对于每种类型的token，识别最常见的token并将它们包含在模型的词汇中。其他不常见的token进行<strong>归一化</strong>。</li>
+</ul>
+<p><strong>局部结构捕捉</strong></p>
+<p>使用<strong>双向 GGNN 层</strong>来捕捉每个节点的邻接结构。</p>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124023555892.png" srcset="/img/loading.gif" lazyload alt="image-20240124023555892" style="zoom: 80%;">
+<p><strong>Multi-head Softmax Aggregator</strong></p>
+<p>采用<strong>Multi-head Softmax Aggregator</strong>，将所有节点嵌入聚合成图嵌入，它改编自 softmax 聚合器 [19]。</p>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124024721038.png" srcset="/img/loading.gif" lazyload alt="image-20240124024721038" style="zoom: 80%;">
+<ul>
+<li>（10）定义了如何计算一个节点的加权嵌入向量，其中 t 是一个可学习的参数向量，H 是所有节点嵌入向量的集合。它通过Softmax函数对所有节点嵌入进行加权求和，得到最终的图嵌入。</li>
+</ul>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124024817320.png" srcset="/img/loading.gif" lazyload alt="image-20240124024817320" style="zoom:80%;">
+<ul>
+<li>
+<p>公式(11) ：每个头的节点嵌入首先通过一个线性层转换到不同的表示空间，然后通过ReLU函数进行非线性变换。</p>
+</li>
+<li>
+<p>公式(12) ：通过Softmax聚合器对每个节点的特征进行选择性加权，其中每个头的输出 x^k_u 会减去平均值并除以标准差，实现了特征的归一化处理。ε 是一个小数，用来保证数值稳定性。</p>
+</li>
+<li>
+<p>公式(13) ：最终，所有头的输出嵌入向量被拼接起来，并通过另一个线性层来生成最终的图嵌入 g。</p>
+</li>
+</ul>
+<h4 id="实现工具">实现工具</h4>
+<p><strong>图构建模块</strong>基于 Ghidra</p>
+<ul>
+<li>利用 Ghidra 来反汇编二进制函数并将它们提升到其 Pcode IR，然后基于该 Pcode IR 构建 SOG。</li>
+</ul>
+<p><strong>图嵌入模块</strong>： Pytorch 和 PyG 。</p>
+<h3 id="效果">效果</h3>
+<p>参数设置和结果图表详见论文。</p>
+<p><strong>数据集</strong>: 使用先前研究发布的Dataset-1，包含三种不同架构（x86、ARM和MIPS）、两种位模式（32位和64位）、5个优化级别（O0、O1、O2、O3和Os）的257K训练、13K验证和522K测试二进制函数，由两个不同的编译器家族（GCC和CLANG）编译。</p>
+<p>**对比实验：**Table 1、Figure 7</p>
+<ul>
+<li>**结果：**HermesSim在各种设置下都明显优于所有基准方法。</li>
+<li><strong>不同子任务的性能</strong>：GMN通常在涉及跨体系结构的CFG的任务中优于基于NLP的方法，如SAFE、Asm2Vec和Trex。然而，在使用大型池大小的某些任务中，GMN的性能不如Trex。这可能是因为在大型池中搜索时，CFG可能会发生冲突。</li>
+<li><strong>模型参数</strong>：基于NLP的方法与基于图表示的方法相比具有更多的参数，至少多一个数量级。</li>
+<li><strong>稳定性和可扩展性</strong>：HermesSim的性能在池大小增加时保持稳定，并且在池大小增加时甚至比最先进的基准方法，如jTrans和GMN，表现得更好。</li>
+</ul>
+<p>**消融研究：**Table 2、Figure 8</p>
+<ul>
+<li>SOE表示方法在BCSD任务中具有较好的性能，相对于其他基准方法和表示方法，它在召回率和效果方面都表现出色</li>
+<li>多头softmax聚合器也表现出色。</li>
+</ul>
+<p><strong>运行时效率：</strong></p>
+<ul>
+<li>
+<p>运行时成本：<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124032144350.png" srcset="/img/loading.gif" lazyload alt="image-20240124032144350" style="zoom: 50%;"></p>
+</li>
+<li>
+<p><strong>图表示的大小和推断时间：</strong><img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240124032220967.png" srcset="/img/loading.gif" lazyload alt="image-20240124032220967" style="zoom:50%;"></p>
+<blockquote>
+<p>CFGs和ISCGs平均而言比SOGs小，这意味着在本地结构捕捉阶段具有更低的内存和时间成本，但会增加节点属性提取的复杂性</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>现实世界漏洞搜索：</strong></p>
+<ul>
+<li>
+<p>研究人员收集了来自三个供应商（TP-Link、Mercury和Fast）的12个RTOS固件图像，进行了1天漏洞搜索任务。他们构建了一个包含62605个函数的存储库，跨两种不同架构（ARM32和MIPS32）。在TP-Link WDR7620固件中手动识别了5个CVE和10个易受攻击函数，并将这些易受攻击函数用作查询。</p>
+</li>
+<li>
+<p>对于每个查询函数，研究人员将存储库中的函数分为三组：c1代表与查询函数具有完全相同源代码构建的函数，c2代表与查询函数具有相同符号但源代码略有不同的函数，c3代表其他从不同源代码编译的函数。</p>
+</li>
+<li>
+<p>通过使用HermesSim和其他基准方法进行相似性搜索，并手动检查前20个结果。</p>
+<blockquote>
+<p>理想情况下，BCSD 系统应将 c1 中的函数排在 c2 和 c3 中的函数之前，并将 c2 中的函数排在 c3 中的函数之前。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>结果</strong>：HermesSim在失败次数、RECALL@1和MRR方面明显优于其他基准方法。它能够有效地识别和排名易受攻击函数，包括那些在源代码略有不同或不同架构之间的情况。</p>
+</li>
+</ul>
+<blockquote>
+<p>Appendix B 展示漏洞的详细信息</p>
+</blockquote>
+<h3 id="讨论（潜在改进）">讨论（潜在改进）</h3>
+<p><strong>Dirty Effect</strong> <strong>Problem：</strong></p>
+<ul>
+<li>
+<p><strong>编译器引入</strong>与effect相关的指令</p>
+</li>
+<li>
+<p><strong>堆栈临时变量</strong>的数量取决于体系结构和优化级别，在effect flow中包含堆栈内存访问可能没有好处</p>
+</li>
+<li>
+<p>解决方案：<strong>load-store elimination analysis</strong></p>
+</li>
+</ul>
+<p><strong>I/O Effect Model</strong>：**本文只研究了memory effect model。 ** I/O Effect 涉及到与I/O设备交互的指令。</p>
+<p><strong>Extra Information and Encoding Ability</strong>：本研究不处理对字符串、整数、外部函数符号和其他相关实体的引用。</p>
+<p><strong>Addressing Analysis Failures</strong>：</p>
+<ul>
+<li>
+<p>当前的传统程序分析算法可能无法完全恢复间接分支的控制流关系，这一限制影响了SOG表示。</p>
+</li>
+<li>
+<p>探索如何向深度神经网络提供必要的信息（例如，引用的数据），以使它们能够推断间接分支的控制流，可能是值得的。</p>
+</li>
+</ul>
+<h3 id="结论">结论</h3>
+<p>在本文中，作者提出了一种语义完整的二进制代码表示方法，即语义导向图（SOG），用于二进制代码相似性检测（BCSD）。这种表示方法不仅利用了代码结构、语义和约定的明确定义，而且还清除了嵌入在低级机器代码中与语义无关的元素。作者详细介绍了SOG的构建过程，并讨论了对这种表示方法的潜在改进。为了充分发挥SOG在BCSD中的潜力，作者提出了一种新颖的多头softmax聚合器，它允许有效融合图的多个方面。通过整合所提出的技术，作者构建了一个有效且高效的BCSD解决方案，HermesSim，该解决方案依赖于图神经网络（GNN）模型来捕获SOG的结构信息，并采用先进的训练策略。广泛的实验表明，HermesSim在实验室实验和现实世界的漏洞搜索中都显著优于现有的最先进方法。此外，评估证明了揭示二进制代码的完整语义结构和清除与语义无关的元素的价值。作者还展示了所提出的聚合器的有效性和HermesSim的高效性。</p>
+<hr>
+<h3 id="附：部分基础概念解释">附：部分基础概念解释</h3>
+<h4 id="基于边距的成对损失-Margin-based-Pairwise-Loss">基于边距的成对损失 (Margin-based Pairwise Loss)</h4>
+<ol>
+<li><strong>定义与目的</strong>: 这种损失函数主要用于学习数据点之间的相对距离或相似度。它通常用于诸如人脸识别、推荐系统等领域，其中需要判断两个数据点是否相似或不同。</li>
+<li><strong>工作原理</strong>: 基于边距的损失函数会考虑成对的数据点（例如，两个不同的图像）。对于每一对相似的点（正样本对），它试图将它们的表示拉近；对于不相似的点（负样本对），则推远它们的表示。</li>
+<li><strong>边距 (Margin)</strong>: 损失函数中的“边距”是一个预设的阈值，用于区分正样本对和负样本对之间的距离。如果一对数据点的距离小于这个边距，模型会受到惩罚，因此模型会学习使正样本对的距离尽可能小，而负样本对的距离大于这个边距。</li>
+</ol>
+<h4 id="距离加权负采样策略-Distance-Weighted-Negative-Sampling-Strategy">距离加权负采样策略 (Distance-Weighted Negative Sampling Strategy)</h4>
+<ol>
+<li><strong>背景</strong>: 在训练过程中，选择合适的负样本对（即不相似的数据点对）对模型性能至关重要。</li>
+<li><strong>策略含义</strong>: 距离加权负采样是一种选择负样本对的方法。这种策略根据数据点之间的距离来加权选择负样本。与随机选择不同，这种方法倾向于选择那些与正样本对距离相近但实际上是负样本的数据点。</li>
+<li><strong>优势</strong>: 这种策略可以提高模型对困难负样本（即那些与正样本在特征空间中较为接近的负样本）的识别能力。通过这种方式，模型可以更好地学习区分相似但不同的数据点，从而提高泛化能力。</li>
+</ol>
+<h4 id="图神经网络（GNN）">图神经网络（GNN）</h4>
+<ol>
+<li><strong>基本概念</strong>：图神经网络是一种专门处理图结构数据的神经网络。在图神经网络中，图由节点（代表实体）和边（代表实体间的关系）组成。</li>
+<li><strong>功能</strong>：GNN的目标是学习节点的表示（embedding），这些表示可以捕捉节点的特征以及它们与其他节点的关系。</li>
+</ol>
+<h4 id="门控图神经网络（GGNN）">门控图神经网络（GGNN）</h4>
+<ol>
+<li><strong>门控机制</strong>：GGNN引入了门控机制，类似于LSTM（长短期记忆）网络中的门控。这种机制可以帮助网络更有效地控制信息的流动，特别是在处理图中的长距离依赖时。</li>
+<li><strong>工作原理</strong>：在GGNN中，每个节点根据其邻居节点的信息来更新自己的状态，这个过程涉及到信息的聚合和门控操作。</li>
+</ol>
+<h4 id="间接分支的几个典型例子">间接分支的几个典型例子</h4>
+<ol>
+<li><strong>基于变量的跳转</strong>：例如，C语言中的<code>switch</code>语句可能被编译成使用跳转表的间接跳转，其中具体的跳转目标取决于<code>switch</code>语句的条件变量。</li>
+<li><strong>函数指针调用</strong>：当通过函数指针调用函数时，具体调用哪个函数是在运行时决定的，这也是一种间接分支。</li>
+<li><strong>虚拟调用</strong>：在面向对象编程中，如C++或Java，虚函数的调用通常是间接的，因为直到运行时才能确定具体调用哪个派生类的方法。</li>
+</ol>
+<h3 id="附">附</h3>
+<h4 id="SOG-Construction-Algorithm">SOG Construction Algorithm</h4>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231104401.png" srcset="/img/loading.gif" lazyload alt="image-20240512231104401" style="zoom:80%;">
+<p>2: 输入是一个二进制函数<code>f</code>，是汇编语言或线性中间表示（IR）形式的函数。</p>
+<p>3: 创建一个新的<code>DefState</code>对象，用于跟踪和管理在构建SOG过程中所有变量的定义状态。</p>
+<p>4: 创建一个新的<code>SOGConstructor</code>对象，这是构建SOG的工具。</p>
+<p>5: 调用<code>GetAbstractEffectNodes</code>函数获取所有抽象的效应节点，这些节点代表程序中可能影响状态的操作（如内存写操作）。</p>
+<p>6: 计算函数<code>f</code>的控制流图（CFG）的支配树（Dominator Tree），它是理解代码结构的一种方法，可以确定某个特定节点必须通过哪些路径才能被到达。</p>
+<p>7: 在函数<code>f</code>中插入Phi节点，Phi节点用于合并来自支配树中不同路径的变量定义。</p>
+<p>8: 准备函数<code>f</code>的控制流相关数据，可能涉及到设置控制流节点和边的关系。</p>
+<p>9: 处理函数<code>f</code>的每个基本块，使用<code>defState</code>来跟踪定义状态，<code>f.start</code>是处理的起始点，<code>effectNodes</code>包含了所有需要考虑的effect节点。</p>
+<p>10: 返回构建的语义导向图<code>g</code></p>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231110294.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
+<p>13: 遍历函数<code>f</code>中的所有基本块（<code>bb</code>）。</p>
+<p>14-15: 检查每个基本块是否以分支指令结束。如果不是，添加一个虚拟的分支指令，这是为了确保每个基本块在图中都正确地表示其控制流。</p>
+<p>16: 创建一个新的节点（<code>node</code>）来表示基本块中的最后一条指令，这里假设基本块的最后一条指令是与控制流相关的。</p>
+<p>17: 在<code>defState</code>中记录这个基本块与新创建的节点之间的关系。</p>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231140789.png" srcset="/img/loading.gif" lazyload alt="image-20240512231140789" style="zoom:80%;">
+<p>20: 提交当前的定义状态，这相当于在处理每个基本块之前保存当前的变量定义状态。</p>
+<p>21: 调用<code>BuildInBlock</code>函数，为当前的基本块<code>bb</code>构建内部结构</p>
+<p>22-23: 对于基本块的每个子节点，递归地调用<code>ProcessBlock</code>函数来处理。</p>
+<p>24: <code>defState.revert()</code>回滚到最后一次提交的定义状态。这是为了在处理完当前基本块及其子代后，能够恢复到进入基本块之前的状态，以便准确地处理其他基本块。</p>
+<img src="/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231126095.png" srcset="/img/loading.gif" lazyload alt="image-20240512231126095" style="zoom:80%;">
+<p>28: 遍历基本块<code>bb</code>中的每一条指令<code>inst</code>。</p>
+<p>29: 为每条指令创建一个对应的SOG节点<code>node</code>。</p>
+<p>30: 将创建的节点<code>node</code>添加到SOG中。</p>
+<p><strong>data flow</strong></p>
+<p>32-34: 对于指令的每个输入操作数，创建或获取一个对应的<code>inpNode</code>，并将其作为data-use添加到节点<code>node</code>。</p>
+<p>35-36: 对于指令的每个输出操作数，更新<code>defState</code>以反映最新的定义状态</p>
+<p><strong>effect flow</strong></p>
+<p>38-39: 遍历所有的<code>effect</code>，如果节点<code>node</code>使用了这个effect，则添加一个effect-use关系。</p>
+<p>40-42: 如果节点<code>node</code>定义了某个效应，则更新<code>defState</code>以反映这个effect的最新定义状态。</p>
+<p><strong>control flow</strong></p>
+<p>44-48：如果节点<code>node</code>是一个控制节点（例如条件分支），则对其前驱节点进行处理，可能包括用<code>MayWrapWithProj</code>包装多个后继的情况，并添加控制使用关系。</p>
+<p>49-52：对于基本块的每个后继节点<code>succ</code>，处理与Phi节点相关的控制流，这可能涉及到在Phi节点中设置正确的输入顺序。</p>
+<p>最后，过程返回，完成对当前基本块内部结构的构建。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Binary-Similarity%E8%AE%BA%E6%96%87/">Binary Similarity论文</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Binary-Similarity/">Binary Similarity</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均为博客作者本人编写整理，转载请联系作者！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/11/jTrans/">
+                        <span class="hidden-mobile">【论文笔记】jTrans（ISSTA 22）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"gI9ZupcpBXTdxJvxZZrrxydJ-gzGzoHsz","appKey":"Eew9XWCbMWVcoNrQzrg87EP3","path":"window.location.pathname","placeholder":"说点什么","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":"trut","recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>Copyrights © 2024 Yuhan</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>Xiayan</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.3/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6da93a2e5d7f160e0f40b273ddbbddac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
