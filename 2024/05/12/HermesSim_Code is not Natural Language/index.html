@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231140789.png">
 <meta property="og:image" content="http://yuhan2001.github.io/2024/05/12/HermesSim_Code%20is%20not%20Natural%20Language/image-20240512231126095.png">
 <meta property="article:published_time" content="2024-05-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-12T15:12:28.250Z">
+<meta property="article:modified_time" content="2024-05-12T15:19:17.157Z">
 <meta property="article:author" content="Wu Yuhan">
 <meta property="article:tag" content="论文笔记">
 <meta property="article:tag" content="Binary Similarity">
@@ -332,7 +332,7 @@
 <p><strong>SOG的构建</strong>包括三个步骤：</p>
 <ul>
 <li><strong>基于指令的完整语义图（ISCG）</strong>：第一步将指令序列提升为图形表示，展示指令之间的关系作为边。这种表示增强了数据流图（DFG），增加了额外的control flow 和 effect flow边。指令是节点，图不指定指令属于哪个基本块，允许指令在基本块之间“浮动”，而不改变语义。</li>
-<li><strong>基于3 token的完整语义图（TSCG）</strong>：第二步涉及将指令分解为token，以揭示指令内部结构，这简化了节点嵌入并消除了与语义无关的元素。这个过程根据引入它们的特定指令token来细化指令间关系。</li>
+<li><strong>基于token的完整语义图（TSCG）</strong>：第二步涉及将指令分解为token，以揭示指令内部结构，这简化了节点嵌入并消除了与语义无关的元素。这个过程根据引入它们的特定指令token来细化指令间关系。</li>
 <li><strong>最终的SOG表示</strong>：最后一步涉及去除代表临时存储（如寄存器或堆栈插槽）的节点，这些存储在语义上是独立的，并直接连接它们的输入和输出。此步骤保留了未初始化存储的使用，因为它们携带语义信息（未初始化的存储大多携带从调用者例程传递的值。如果当前函数的调用约定已知，则可以使用未初始化存储的名称来推断参数在参数列表中的位置）。</li>
 </ul>
 <p>SOG能够编码各种函数级约定，例如调用参数和堆栈帧。例如，它可以通过从调用节点到参数节点添加数据边来揭示调用参数，并使用抽象临时变量来模拟堆栈帧的效果。</p>
